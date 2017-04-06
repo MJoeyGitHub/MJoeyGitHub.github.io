@@ -87,34 +87,16 @@
 
 
 
-<meta name="description" content="最近出去面试, 做一些面试的总结吧
-面试第一家 （电话面试）
-什么是线程安全？
-答 ： 多条线程同时访问一段代码，不会造成数据混乱的情况
-
-你接触到的项目，哪些场景运用到了线程安全？
-答： 举例说明，12306 同一列火车的车票， 同一时间段多人抢票！如何解决互斥锁使用格式">
+<meta name="description" content="最近出去面试, 做一些面试的总结吧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试整理">
 <meta property="og:url" content="http://yoursite.com/2017/04/06/面试整理/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
-<meta property="og:description" content="最近出去面试, 做一些面试的总结吧
-面试第一家 （电话面试）
-什么是线程安全？
-答 ： 多条线程同时访问一段代码，不会造成数据混乱的情况
-
-你接触到的项目，哪些场景运用到了线程安全？
-答： 举例说明，12306 同一列火车的车票， 同一时间段多人抢票！如何解决互斥锁使用格式">
-<meta property="og:updated_time" content="2017-04-06T03:38:12.000Z">
+<meta property="og:description" content="最近出去面试, 做一些面试的总结吧">
+<meta property="og:updated_time" content="2017-04-06T09:14:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试整理">
-<meta name="twitter:description" content="最近出去面试, 做一些面试的总结吧
-面试第一家 （电话面试）
-什么是线程安全？
-答 ： 多条线程同时访问一段代码，不会造成数据混乱的情况
-
-你接触到的项目，哪些场景运用到了线程安全？
-答： 举例说明，12306 同一列火车的车票， 同一时间段多人抢票！如何解决互斥锁使用格式">
+<meta name="twitter:description" content="最近出去面试, 做一些面试的总结吧">
 
 
 
@@ -349,37 +331,45 @@
       
 
       
-        <h2 id="最近出去面试-做一些面试的总结吧"><a href="#最近出去面试-做一些面试的总结吧" class="headerlink" title="最近出去面试, 做一些面试的总结吧"></a>最近出去面试, 做一些面试的总结吧</h2><hr>
-<h3 id="面试第一家-（电话面试）"><a href="#面试第一家-（电话面试）" class="headerlink" title="面试第一家 （电话面试）"></a>面试第一家 （电话面试）</h3><blockquote>
+        <h1 id="最近出去面试-做一些面试的总结吧"><a href="#最近出去面试-做一些面试的总结吧" class="headerlink" title="最近出去面试, 做一些面试的总结吧"></a>最近出去面试, 做一些面试的总结吧</h1><h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="面试第一家-（电话面试）"><a href="#面试第一家-（电话面试）" class="headerlink" title="面试第一家 （电话面试）"></a>面试第一家 （电话面试）</h2><blockquote>
 <h3 id="什么是线程安全？"><a href="#什么是线程安全？" class="headerlink" title="什么是线程安全？"></a>什么是线程安全？</h3></blockquote>
 <p>答 ： 多条线程同时访问一段代码，不会造成数据混乱的情况</p>
+<hr>
 <blockquote>
 <h3 id="你接触到的项目，哪些场景运用到了线程安全？"><a href="#你接触到的项目，哪些场景运用到了线程安全？" class="headerlink" title="你接触到的项目，哪些场景运用到了线程安全？"></a>你接触到的项目，哪些场景运用到了线程安全？</h3></blockquote>
 <p>答： 举例说明，12306 同一列火车的车票， 同一时间段多人抢票！<br>如何解决<br>互斥锁使用格式</p>
-<a id="more"></a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@synchronized(锁对象) &#123; // 需要锁定的代码  &#125;</span></div><div class="line">注意：锁定<span class="number">1</span>份代码只用<span class="number">1</span>把锁，用多把锁是无效的</div><div class="line">```</div></pre></td></tr></table></figure>
-<p>Tips: 互斥锁的优缺点<br>优点：能有效防止因多线程抢夺资源造成的数据安全问题<br>缺点：需要消耗大量的CPU资源</p>
-<p>互斥锁的使用前提：多条线程抢夺同一块资源<br>相关专业术语：线程同步,多条线程按顺序地执行任务<br>互斥锁，就是使用了线程同步技术</p>
-<p>Objective-C中的原子和非原子属性<br>OC在定义属性时有nonatomic和atomic两种选择<br>atomic：原子属性，为setter方法加锁（默认就是atomic）<br>nonatomic：非原子属性，不会为setter方法加锁</p>
-<p>atomic加锁原理:<br>@property (assign, atomic) int age;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@synchronized(锁对象) &#123; // 需要锁定的代码  &#125;</span></div><div class="line">注意：锁定<span class="number">1</span>份代码只用<span class="number">1</span>把锁，用多把锁是无效的</div><div class="line"></div><div class="line">Tips: 互斥锁的优缺点</div><div class="line">优点：能有效防止因多线程抢夺资源造成的数据安全问题</div><div class="line">缺点：需要消耗大量的CPU资源</div><div class="line"> </div><div class="line">互斥锁的使用前提：多条线程抢夺同一块资源 </div><div class="line">相关专业术语：线程同步,多条线程按顺序地执行任务</div><div class="line">互斥锁，就是使用了线程同步技术</div><div class="line"> </div><div class="line">Objective-C中的原子和非原子属性</div><div class="line">OC在定义属性时有nonatomic和atomic两种选择</div><div class="line">atomic：原子属性，为setter方法加锁（默认就是atomic）</div><div class="line">nonatomic：非原子属性，不会为setter方法加锁</div><div class="line"> </div><div class="line">atomic加锁原理:</div><div class="line"><span class="meta">@property (assign, atomic) int age;</span></div><div class="line"> - (void)setAge:(int)age</div><div class="line">&#123; </div><div class="line"><span class="meta">    @synchronized(self) &#123;  </span></div><div class="line">       _age = age;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">原子和非原子属性的选择</div><div class="line">nonatomic和atomic对比</div><div class="line">atomic：线程安全，需要消耗大量的资源</div><div class="line">nonatomic：非线程安全，适合内存小的移动设备</div><div class="line"> </div><div class="line">iOS开发的建议</div><div class="line">所有属性都声明为nonatomic</div><div class="line">尽量避免多线程抢夺同一块资源</div><div class="line">尽量将加锁、资源抢夺的业务逻辑交给服务器端处理，减小移动客户端的压力</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<h3 id="你实现过单例模式么？-你能用几种实现方案？"><a href="#你实现过单例模式么？-你能用几种实现方案？" class="headerlink" title="你实现过单例模式么？ 你能用几种实现方案？"></a>你实现过单例模式么？ 你能用几种实现方案？</h3></blockquote>
+<p>答 : 官网写法有两种</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">1. 运用GCD:</div><div class="line">import &quot;Manager.h&quot;</div><div class="line">@implementation Manager</div><div class="line">+ (Manager *)sharedManager &#123;</div><div class="line">  static dispatch_once_t onceToken;</div><div class="line">  static Manager * sharedManager;</div><div class="line">  dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">    sharedManager=[[Manager alloc] init];</div><div class="line">  &#125;);</div><div class="line">  return sharedManager;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">注明：dispatch_once这个函数，  它可以保证整个应用程序生命周期中某段代码只被执行一次！</div><div class="line"></div><div class="line"></div><div class="line">2. 不使用GCD的方式:</div><div class="line">static Manager *manager;</div><div class="line">@implementation Manager</div><div class="line">+ (Manager *)defaultManager &#123;</div><div class="line">    if(!manager)</div><div class="line">        manager=[[self allocWithZone:NULL] init];</div><div class="line">    return  manager;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<h3 id="项目开发中，你用单例都做了什么？"><a href="#项目开发中，你用单例都做了什么？" class="headerlink" title="项目开发中，你用单例都做了什么？"></a>项目开发中，你用单例都做了什么？</h3></blockquote>
+<p>答 ：整个程序公用一份资源的时候  例如 ：</p>
+<blockquote>
 <ul>
-<li>(void)setAge:(int)age<br>{<br> @synchronized(self) {  <pre><code>_age = age;
-</code></pre> }<br>}<br>原子和非原子属性的选择<br>nonatomic和atomic对比<br>atomic：线程安全，需要消耗大量的资源<br>nonatomic：非线程安全，适合内存小的移动设备</li>
+<li>设置单例类访问应用的配置信息</li>
+<li>用户的个人信息登录后用的NSUserDefaults存储，对登录类进一步采用单例封装方便全局访问</li>
+<li>防撞一个单例对 应用 多处 对同意本地数据库存进行操作</li>
 </ul>
-<p>iOS开发的建议<br>所有属性都声明为nonatomic<br>尽量避免多线程抢夺同一块资源<br>尽量将加锁、资源抢夺的业务逻辑交给服务器端处理，减小移动客户端的压力<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; ### 你实现过单例模式么？ 你能用几种实现方案？</div><div class="line"></div><div class="line">答 : 官网写法有两种</div></pre></td></tr></table></figure></p>
-<ol>
-<li>运用GCD:<br>import “Manager.h”<br>@implementation Manager</li>
-</ol>
-<ul>
-<li>(Manager <em>)sharedManager {<br>static dispatch_once_t onceToken;<br>static Manager </em> sharedManager;<br>dispatch_once(&amp;onceToken, ^{<br>  sharedManager=[[Manager alloc] init];<br>});<br>return sharedManager;<br>}<br>@end<br>注明：dispatch_once这个函数，  它可以保证整个应用程序生命周期中某段代码只被执行一次！</li>
-</ul>
-<ol>
-<li>不使用GCD的方式:<br>static Manager *manager;<br>@implementation Manager</li>
-</ol>
-<ul>
-<li>(Manager *)defaultManager {<br>  if(!manager)<pre><code>manager=[[self allocWithZone:NULL] init];
-</code></pre>  return  manager;<br>}<br>@end<br>```</li>
-</ul>
+</blockquote>
+<hr>
+<h2 id="忽然自己想到了几个估计会用到的面试题"><a href="#忽然自己想到了几个估计会用到的面试题" class="headerlink" title="忽然自己想到了几个估计会用到的面试题"></a>忽然自己想到了几个估计会用到的面试题</h2><hr>
+<blockquote>
+<h3 id="开发过程中，-你用过什么调试工具？-调试过程中有什么意外？"><a href="#开发过程中，-你用过什么调试工具？-调试过程中有什么意外？" class="headerlink" title="开发过程中， 你用过什么调试工具？ 调试过程中有什么意外？"></a>开发过程中， 你用过什么调试工具？ 调试过程中有什么意外？</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">答 ：Instruments [&apos;ɪnstrʊmənts]。 </div><div class="line"></div><div class="line">必须运行在真机上进行调试。</div><div class="line"></div><div class="line">应用程序运行一定要发布配置 而不是调试配置.</div><div class="line"></div><div class="line">此软件大概就是看某段代码的运行时间 ，以及检测代码的CPU消耗量</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<h3 id="开发过程中，-你是怎么优化项目的，请举例说明？"><a href="#开发过程中，-你是怎么优化项目的，请举例说明？" class="headerlink" title="开发过程中， 你是怎么优化项目的，请举例说明？"></a>开发过程中， 你是怎么优化项目的，请举例说明？</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">除了说调试工具 instruments之外, 在说说UITableViewCell缓存池，估算高度（iOS8）等等</div></pre></td></tr></table></figure>
+<p>当然上面的仅仅是基础, 想更牛逼 <a href="http://www.jianshu.com/p/af6b095aaaf3" target="_blank" rel="external">优化链接</a></p>
+<hr>
+<blockquote>
+<h3 id="开发过程中，-你碰到那些技术难点？是怎么解决的？"><a href="#开发过程中，-你碰到那些技术难点？是怎么解决的？" class="headerlink" title="开发过程中， 你碰到那些技术难点？是怎么解决的？"></a>开发过程中， 你碰到那些技术难点？是怎么解决的？</h3></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">靠个人</div></pre></td></tr></table></figure>
+<hr>
 <h1 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h1>
       
     </div>
@@ -535,7 +525,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最近出去面试-做一些面试的总结吧"><span class="nav-number">1.</span> <span class="nav-text">最近出去面试, 做一些面试的总结吧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面试第一家-（电话面试）"><span class="nav-number">1.1.</span> <span class="nav-text">面试第一家 （电话面试）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程安全？"><span class="nav-number">1.2.</span> <span class="nav-text">什么是线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你接触到的项目，哪些场景运用到了线程安全？"><span class="nav-number">1.3.</span> <span class="nav-text">你接触到的项目，哪些场景运用到了线程安全？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未完待续。。。"><span class="nav-number"></span> <span class="nav-text">未完待续。。。</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#最近出去面试-做一些面试的总结吧"><span class="nav-number">1.</span> <span class="nav-text">最近出去面试, 做一些面试的总结吧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试第一家-（电话面试）"><span class="nav-number">1.2.</span> <span class="nav-text">面试第一家 （电话面试）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程安全？"><span class="nav-number">1.2.1.</span> <span class="nav-text">什么是线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你接触到的项目，哪些场景运用到了线程安全？"><span class="nav-number">1.2.2.</span> <span class="nav-text">你接触到的项目，哪些场景运用到了线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你实现过单例模式么？-你能用几种实现方案？"><span class="nav-number">1.2.3.</span> <span class="nav-text">你实现过单例模式么？ 你能用几种实现方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目开发中，你用单例都做了什么？"><span class="nav-number">1.2.4.</span> <span class="nav-text">项目开发中，你用单例都做了什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忽然自己想到了几个估计会用到的面试题"><span class="nav-number">1.3.</span> <span class="nav-text">忽然自己想到了几个估计会用到的面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你用过什么调试工具？-调试过程中有什么意外？"><span class="nav-number">1.3.1.</span> <span class="nav-text">开发过程中， 你用过什么调试工具？ 调试过程中有什么意外？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你是怎么优化项目的，请举例说明？"><span class="nav-number">1.3.2.</span> <span class="nav-text">开发过程中， 你是怎么优化项目的，请举例说明？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你碰到那些技术难点？是怎么解决的？"><span class="nav-number">1.3.3.</span> <span class="nav-text">开发过程中， 你碰到那些技术难点？是怎么解决的？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未完待续。。。"><span class="nav-number">2.</span> <span class="nav-text">未完待续。。。</span></a></li></ol></div>
             
 
           </div>
