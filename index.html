@@ -336,7 +336,7 @@
 
       
         
-          <h1 id="移动端SQLite的基本使用-基础篇（iOS版本）"><a href="#移动端SQLite的基本使用-基础篇（iOS版本）" class="headerlink" title="移动端SQLite的基本使用 - 基础篇（iOS版本）"></a>移动端SQLite的基本使用 - 基础篇（iOS版本）</h1>
+          <p> 移动端SQLite的基本使用 - 基础篇（iOS版本）</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/11/移动端SQlite学习/#more" rel="contents">
@@ -586,102 +586,14 @@
 
       
         
-          
-            <a id="more"></a>
-<h3 id="一直也没有一个像样的博客-偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so-在此记录一下"><a href="#一直也没有一个像样的博客-偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so-在此记录一下" class="headerlink" title="一直也没有一个像样的博客, 偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so 在此记录一下"></a>一直也没有一个像样的博客, 偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so 在此记录一下</h3><h3 id="这个是完美的配置教程"><a href="#这个是完美的配置教程" class="headerlink" title="这个是完美的配置教程"></a><a href="http://baixin.io/2015/08/HEXO搭建个人博客/" target="_blank" rel="external"><strong>这个是完美的配置教程</strong></a></h3><h3 id="这个是如何去写博客的基本语法"><a href="#这个是如何去写博客的基本语法" class="headerlink" title="这个是如何去写博客的基本语法"></a><a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external"><strong>这个是如何去写博客的基本语法</strong></a></h3><hr>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><blockquote>
-<ul>
-<li>安装node.js</li>
-<li>安装配置hexo</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="终端指令下载Hexo"><a href="#终端指令下载Hexo" class="headerlink" title="终端指令下载Hexo"></a>终端指令下载Hexo</h3><blockquote>
-<ul>
-<li>npm install -g hexo-cli</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="如果出现问题-重新再前面加上-sudo-npm-install-g-hexo-cli"><a href="#如果出现问题-重新再前面加上-sudo-npm-install-g-hexo-cli" class="headerlink" title="如果出现问题  重新再前面加上 sudo npm install -g hexo-cli"></a>如果出现问题  重新再前面加上 sudo npm install -g hexo-cli</h3><blockquote>
-<ul>
-<li>hexo init blog （你的博客名字）</li>
-<li>cd blog （你的博客名字）</li>
-<li>npm install</li>
-<li>hexo server</li>
-</ul>
-</blockquote>
-<hr>
-<blockquote>
-<ul>
-<li>以上操作会弹出一个网址<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></li>
-<li>复制这个网址 到你的网页  发现你的博客搭建好了</li>
-</ul>
-</blockquote>
-<h3 id="创建你的博客"><a href="#创建你的博客" class="headerlink" title="创建你的博客"></a>创建你的博客</h3><blockquote>
-<ul>
-<li>hexo new “创建我的题材”</li>
-<li>hexo server 上传的hexo</li>
-<li>再进去 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 看看是否有你创建标题的名字（右上方位）</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="配置Github"><a href="#配置Github" class="headerlink" title="配置Github"></a>配置Github</h3><p>找到你创建博客的文件夹   找到这个文件  用Xcode打开这个 <a href="">vim _config.yml</a><br>翻到最下面，改成我这样子的</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https:<span class="comment">//github.com/你的账户名字/你的账户名字.github.io.git（助注意创建名字的时候 一定要用正好名字创建）</span></div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<p>Warning!!!</p>
-<blockquote>
-<ul>
-<li>其中上面的域名 是你在github 上面创新仓库的时自己创建的</li>
-<li>切记分号右边都要加空格</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="关联github仓库URL"><a href="#关联github仓库URL" class="headerlink" title="关联github仓库URL"></a>关联github仓库URL</h3><blockquote>
-<ul>
-<li>hexo generate (hexo g)  </li>
-<li>hexo deploy   (hexo d)</li>
-</ul>
-</blockquote>
-<h3 id="然后再浏览器中输入http-你的账户名字-github-io-就行了"><a href="#然后再浏览器中输入http-你的账户名字-github-io-就行了" class="headerlink" title="然后再浏览器中输入http://你的账户名字.github.io/就行了"></a>然后再浏览器中输入<a href="http://你的账户名字.github.io/就行了" target="_blank" rel="external">http://你的账户名字.github.io/就行了</a></h3><hr>
-<h3 id="关联SSH-key（此步骤是上传到GitHub，-如果只想在本地的话，放弃此步骤）"><a href="#关联SSH-key（此步骤是上传到GitHub，-如果只想在本地的话，放弃此步骤）" class="headerlink" title="关联SSH key（此步骤是上传到GitHub， 如果只想在本地的话，放弃此步骤）"></a>关联SSH key（此步骤是上传到GitHub， 如果只想在本地的话，放弃此步骤）</h3><blockquote>
-<ul>
-<li>git config –global user.name “你的名字”</li>
-<li>git config –global user.email “你的邮箱”</li>
-</ul>
-</blockquote>
-<p>查看配置命令：</p>
-<blockquote>
-<ul>
-<li>git config –list</li>
-</ul>
-</blockquote>
-<p>生成SSH密钥：</p>
-<blockquote>
-<ul>
-<li>ssh-keygen -t rsa -C “voidking@qq.com”</li>
-</ul>
-</blockquote>
-<p>找到id_rsa和id_rsa.pub文件夹 ，打开id_rsa.pub，复制全文。打开<a href="https://github.com/settings/ssh ，Add SSH key，粘贴进去" target="_blank" rel="external">https://github.com/settings/ssh</a> ，Add SSH key，粘贴进去</p>
-<p>再次部署</p>
-<blockquote>
-<ul>
-<li>hexo d，根据提示输入用户名和密码，等待一会儿便成功了</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="关于主题"><a href="#关于主题" class="headerlink" title="关于主题"></a>关于主题</h3><blockquote>
-<ul>
-<li>这里的主题就是皮肤功能，需要自己去配置主题的一些相关信息</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="关于写blog的工具"><a href="#关于写blog的工具" class="headerlink" title="关于写blog的工具"></a>关于写blog的工具</h3><blockquote>
-<ul>
-<li>我用的是MacDown（MAC版本），个人觉得还可以</li>
-</ul>
-</blockquote>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><p> <a href="http://wp.huangshiyang.com/hexo" target="_blank" rel="external">常见问题解决方案</a></p>
-
-          
+          <p>一直也没有一个像样的博客, 偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so 在此记录一下</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/01/Hexo的基本设置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
