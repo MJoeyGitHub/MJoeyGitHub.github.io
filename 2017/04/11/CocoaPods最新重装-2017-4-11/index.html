@@ -87,15 +87,16 @@
 
 
 
-<meta name="description" content="昆仑罗彩霞，为我独尊">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Joey | A ridiculous programmer">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="由于我的cocoapods 忽然出现问题了~  于是我找了几篇大牛的博客  最终总结下来2017年04月11日 的可以使用的版本~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CocoaPods最新重装-2017.4.11">
+<meta property="og:url" content="http://yoursite.com/2017/04/11/CocoaPods最新重装-2017-4-11/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
-<meta property="og:description" content="昆仑罗彩霞，为我独尊">
+<meta property="og:description" content="由于我的cocoapods 忽然出现问题了~  于是我找了几篇大牛的博客  最终总结下来2017年04月11日 的可以使用的版本~">
+<meta property="og:updated_time" content="2017-04-12T02:00:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Joey | A ridiculous programmer">
-<meta name="twitter:description" content="昆仑罗彩霞，为我独尊">
+<meta name="twitter:title" content="CocoaPods最新重装-2017.4.11">
+<meta name="twitter:description" content="由于我的cocoapods 忽然出现问题了~  于是我找了几篇大牛的博客  最终总结下来2017年04月11日 的可以使用的版本~">
 
 
 
@@ -123,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/11/CocoaPods最新重装-2017-4-11/"/>
 
 
 
 
 
-  <title> Joey | A ridiculous programmer </title>
+  <title> CocoaPods最新重装-2017.4.11 | Joey | A ridiculous programmer </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,9 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -249,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -281,10 +280,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2017/04/11/CocoaPods最新重装-2017-4-11/" itemprop="url">
-                  CocoaPods最新重装-2017.4.11
-                </a>
+                CocoaPods最新重装-2017.4.11
               
             
           </h1>
@@ -335,28 +331,104 @@
       
 
       
+        <p>由于我的cocoapods 忽然出现问题了~  于是我找了几篇大牛的博客  最终总结下来2017年04月11日 的可以使用的版本~ </p>
+<a id="more"></a>
+<h2 id="卸载cocoapods"><a href="#卸载cocoapods" class="headerlink" title="卸载cocoapods"></a>卸载cocoapods</h2><p>1.在装之前最好先卸载点老版本</p>
+<blockquote>
+<p> $ sudo gem uninstall cocoapods</p>
+</blockquote>
+<p>2.查看本地安装过的cocopods相关东西</p>
+<blockquote>
+<p>$ gem list –local | grep cocoapods</p>
+</blockquote>
+<p>3.然后使用命令逐个删除</p>
+<blockquote>
+<p>$ sudo gem uninstall cocoapods-core</p>
+<p>$ sudo gem uninstall cocoapods-deintegrate</p>
+</blockquote>
+<h2 id="安装RVM"><a href="#安装RVM" class="headerlink" title="安装RVM"></a>安装RVM</h2><p>不管需不需要升级ruby，rvm可以让你拥有多个版本的Ruby，并且可以在多个版本之间自由切换。如果已经安装过跳到第2步（rvm -v 查看是否安装）</p>
+<blockquote>
+<p>curl -L get.rvm.io | bash -s stable (需要等一会)</p>
+<p>source ~/.bashrc</p>
+<p>source ~/.bash_profile</p>
+</blockquote>
+<p>等待终端加载完毕,后输入</p>
+<blockquote>
+<p>rvm -v</p>
+</blockquote>
+<p>如果能显示版本号则安装成功了。</p>
+<h3 id="第二步：安装ruby"><a href="#第二步：安装ruby" class="headerlink" title="第二步：安装ruby"></a>第二步：安装ruby</h3><p>CocoaPods目前安装需要Ruby的版本大于2.2.2,不然会报错：Error installing pods: activesupport requires Rubyversion &gt;= 2.2.2。目前Mac系统默认自带是2.0，所以需要升级。<br>查看已安装的ruby:</p>
+<blockquote>
+<p>rvm list</p>
+</blockquote>
+<p>如果已安装版本大于2.2.2，直接到第3步。</p>
+<blockquote>
+<p>ruby -v  //也可以查看ruby版本</p>
+</blockquote>
+<p>//列出ruby可安装的版本信息</p>
+<blockquote>
+<p>rvm list known</p>
+<p>rvm install 2.2.2  //安装一个ruby版本</p>
+<p>rvm use 2.2.2 –default</p>
+</blockquote>
+<h3 id="第三步：更换源"><a href="#第三步：更换源" class="headerlink" title="第三步：更换源"></a>第三步：更换源</h3><p>我们需要来修改更换源（由于国内被墙）所以要把源切换至ruby-china在终端执行以下命令</p>
+<p>目前网上文章大都是这面这种：</p>
+<h1 id="现在大错特错"><a href="#现在大错特错" class="headerlink" title="现在大错特错"></a>现在大错特错</h1><p>~~ sudo gem update –system ~~</p>
+<p>~~ gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a> ~~ </p>
+<p>~~ //等有反应之后再敲入以下命令 ~~ </p>
+<p>~~ gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a> ~~ </p>
+<p>~~  这里是个大坑：会报错_connect returned=1 errno=0 state=SSLv3 read servercertificateB:certificate verify failed (<a href="https://ruby.taobao.org/specs.4.8.gz" target="_blank" rel="external">https://ruby.taobao.org/specs.4.8.gz</a>) ~~ </p>
+<h1 id="下面才是对的！！！"><a href="#下面才是对的！！！" class="headerlink" title="下面才是对的！！！"></a>下面才是对的！！！</h1><p>这是因为taobao Gems 源已停止维护，现由 ruby-china 提供镜像服务，正确的操作是：</p>
+<blockquote>
+<p>sudo gem update –system</p>
+<p>gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a></p>
+<p>gem sources –remove <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a>       //如果安装了淘宝的镜像</p>
+</blockquote>
+<p>//等有反应之后再敲入以下命令</p>
+<blockquote>
+<p>gem sources -a <a href="https://gems.ruby-china.org/" target="_blank" rel="external">https://gems.ruby-china.org/</a></p>
+</blockquote>
+<p>为了验证你的Ruby镜像是并且仅是ruby-china，可以用以下命令查看：</p>
+<blockquote>
+<p>gem sources -l</p>
+</blockquote>
+<p>只有在终端中出现下面文字才表明你上面的命令是成功的：</p>
+<p><strong><em> CURRENT SOURCES </em></strong></p>
+<blockquote>
+<p><a href="https://gems.ruby-china.org/" target="_blank" rel="external">https://gems.ruby-china.org/</a></p>
+</blockquote>
+<h2 id="安装-coocapods"><a href="#安装-coocapods" class="headerlink" title="安装 coocapods"></a>安装 coocapods</h2><blockquote>
+<p>sudo gem install -n /usr/local/bin cocoapods</p>
+<p>pod setup</p>
+</blockquote>
+<p>这个过程会很慢，反正我挂了一天最后还是跟远端连接失败挂掉了，据说大多都是挂机一晚上才装好的，继续往下看吧，总有更好的。</p>
+<p>2）、执行：</p>
+<blockquote>
+<p>git clone <a href="https://git.coding.net/CocoaPods/Specs.git" target="_blank" rel="external">https://git.coding.net/CocoaPods/Specs.git</a> ~/.cocoapods/repos/master</p>
+<p>pod repo update</p>
+</blockquote>
+<h1 id="OK结束-祝大家升职加薪"><a href="#OK结束-祝大家升职加薪" class="headerlink" title="OK结束~ 祝大家升职加薪~"></a>OK结束~ 祝大家升职加薪~</h1>
+      
+    </div>
+
+    <div>
+      
         
-          <p>由于我的cocoapods 忽然出现问题了~  于是我找了几篇大牛的博客  最终总结下来2017年04月11日 的可以使用的版本~ </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/11/CocoaPods最新重装-2017-4-11/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 
@@ -364,397 +436,38 @@
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/移动端SQlite学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Joey | A ridiculous programmer">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/04/11/移动端SQlite学习/" rel="next" title="移动端SQlite学习">
+                <i class="fa fa-chevron-left"></i> 移动端SQlite学习
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2017/04/11/移动端SQlite学习/" itemprop="url">
-                  移动端SQlite学习
-                </a>
-              
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T11:42:32+08:00">
-                2017-04-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p> 移动端SQLite的基本使用 - 基础篇（iOS版本）</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/11/移动端SQlite学习/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/面试整理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Joey | A ridiculous programmer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/06/面试整理/" itemprop="url">
-                  面试整理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T10:02:03+08:00">
-                2017-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近出去面试, 做一些面试的总结吧</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/06/面试整理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/01/Hexo的基本设置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Joey | A ridiculous programmer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/01/Hexo的基本设置/" itemprop="url">
-                  Hexo的基本设置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T11:18:12+08:00">
-                2017-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>一直也没有一个像样的博客, 偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so 在此记录一下</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/01/Hexo的基本设置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -762,6 +475,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -781,8 +498,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg"
@@ -826,6 +552,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载cocoapods"><span class="nav-number">1.</span> <span class="nav-text">卸载cocoapods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装RVM"><span class="nav-number">2.</span> <span class="nav-text">安装RVM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：安装ruby"><span class="nav-number">2.1.</span> <span class="nav-text">第二步：安装ruby</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：更换源"><span class="nav-number">2.2.</span> <span class="nav-text">第三步：更换源</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#现在大错特错"><span class="nav-number"></span> <span class="nav-text">现在大错特错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下面才是对的！！！"><span class="nav-number"></span> <span class="nav-text">下面才是对的！！！</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-coocapods"><span class="nav-number">1.</span> <span class="nav-text">安装 coocapods</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OK结束-祝大家升职加薪"><span class="nav-number"></span> <span class="nav-text">OK结束~ 祝大家升职加薪~</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -933,6 +675,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
