@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/06/面试整理/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
 <meta property="og:description" content="最近出去面试, 做一些面试的总结吧">
-<meta property="og:updated_time" content="2017-04-12T02:42:18.000Z">
+<meta property="og:updated_time" content="2017-04-17T10:00:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试整理">
 <meta name="twitter:description" content="最近出去面试, 做一些面试的总结吧">
@@ -385,6 +385,30 @@
 <h3 id="开发过程中，-你碰到那些技术难点？是怎么解决的？"><a href="#开发过程中，-你碰到那些技术难点？是怎么解决的？" class="headerlink" title="开发过程中， 你碰到那些技术难点？是怎么解决的？"></a>开发过程中， 你碰到那些技术难点？是怎么解决的？</h3></blockquote>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">靠个人</div></pre></td></tr></table></figure>
 <hr>
+<blockquote>
+<h3 id="APNS的基本原理"><a href="#APNS的基本原理" class="headerlink" title="APNS的基本原理"></a>APNS的基本原理</h3></blockquote>
+<h3 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h3><blockquote>
+<ul>
+<li>第一阶段：应用程序的服务器端把要发送的消息、目的iPhone的标识打包，发给APNS。</li>
+<li>第二阶段：APNS在自身的已注册Push服务的iPhone列表中，查找有相应标识的iPhone，并把消息发送到iPhone。</li>
+<li>第三阶段：iPhone把发来的消息传递给相应的应用程序，并且按照设定弹出Push通知。</li>
+</ul>
+</blockquote>
+<h3 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h3><hr>
+<blockquote>
+<ul>
+<li>1、应用程序注册APNS消息推送。</li>
+<li>2、iOS从APNS Server获取devicetoken，应用程序接收device token。</li>
+<li>3、应用程序将device token发送给程序的PUSH服务端程序。</li>
+<li>4、服务端程序向APNS服务发送消息。</li>
+<li>5、APNS服务将消息发送给iPhone应用程序。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="面试第二家"><a href="#面试第二家" class="headerlink" title="面试第二家"></a>面试第二家</h2><p> 这家是让我又爱又恨啊~ 面试了3轮一口水没给我~ 到现在我还在头疼，不过，<br> 好的是2面和3面，第2面虽然不是iOS技术。不过人很好，不刁钻！ 3面的iOS技术真的好！给我的感觉真的就是想找对的人~！  给那个同行点赞！！</p>
+<h3 id="好了言归正传：-说面试！"><a href="#好了言归正传：-说面试！" class="headerlink" title="好了言归正传： 说面试！"></a>好了言归正传： 说面试！</h3><blockquote>
+<h3 id="APNS的基本原理？"><a href="#APNS的基本原理？" class="headerlink" title="APNS的基本原理？"></a>APNS的基本原理？</h3><h3 id="用过多线程么？说一说你用到什么地方了？怎么用的！"><a href="#用过多线程么？说一说你用到什么地方了？怎么用的！" class="headerlink" title="用过多线程么？说一说你用到什么地方了？怎么用的！"></a>用过多线程么？说一说你用到什么地方了？怎么用的！</h3><h3 id="Swift中-class和Struct有什么区别！"><a href="#Swift中-class和Struct有什么区别！" class="headerlink" title="Swift中 class和Struct有什么区别！"></a>Swift中 class和Struct有什么区别！</h3><h3 id="Swift中-你用过map么？"><a href="#Swift中-你用过map么？" class="headerlink" title="Swift中 你用过map么？"></a>Swift中 你用过map么？</h3><h3 id="Swift中-你用过泛型么？"><a href="#Swift中-你用过泛型么？" class="headerlink" title="Swift中 你用过泛型么？"></a>Swift中 你用过泛型么？</h3><h3 id="OC中你封装过网络请求么"><a href="#OC中你封装过网络请求么" class="headerlink" title="OC中你封装过网络请求么?"></a>OC中你封装过网络请求么?</h3><h3 id="OC中消息传输机制有哪些？"><a href="#OC中消息传输机制有哪些？" class="headerlink" title="OC中消息传输机制有哪些？"></a>OC中消息传输机制有哪些？</h3><h3 id="OC中你最喜欢的Api是哪一个？"><a href="#OC中你最喜欢的Api是哪一个？" class="headerlink" title="OC中你最喜欢的Api是哪一个？"></a>OC中你最喜欢的Api是哪一个？</h3><h3 id="静态库和动态库的问题？"><a href="#静态库和动态库的问题？" class="headerlink" title="静态库和动态库的问题？"></a>静态库和动态库的问题？</h3><h3 id="都是Swift是面向协议编程-你用过么？"><a href="#都是Swift是面向协议编程-你用过么？" class="headerlink" title="都是Swift是面向协议编程 你用过么？"></a>都是Swift是面向协议编程 你用过么？</h3></blockquote>
+<hr>
 <h1 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h1>
       
     </div>
@@ -511,7 +535,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -522,7 +546,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -533,7 +557,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -568,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试第一家-（电话面试）"><span class="nav-number">2.</span> <span class="nav-text">面试第一家 （电话面试）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程安全？"><span class="nav-number">2.1.</span> <span class="nav-text">什么是线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你接触到的项目，哪些场景运用到了线程安全？"><span class="nav-number">2.2.</span> <span class="nav-text">你接触到的项目，哪些场景运用到了线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你实现过单例模式么？-你能用几种实现方案？"><span class="nav-number">2.3.</span> <span class="nav-text">你实现过单例模式么？ 你能用几种实现方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目开发中，你用单例都做了什么？"><span class="nav-number">2.4.</span> <span class="nav-text">项目开发中，你用单例都做了什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忽然自己想到了几个估计会用到的面试题"><span class="nav-number">3.</span> <span class="nav-text">忽然自己想到了几个估计会用到的面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你用过什么调试工具？-调试过程中有什么意外？"><span class="nav-number">3.1.</span> <span class="nav-text">开发过程中， 你用过什么调试工具？ 调试过程中有什么意外？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你是怎么优化项目的，请举例说明？"><span class="nav-number">3.2.</span> <span class="nav-text">开发过程中， 你是怎么优化项目的，请举例说明？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你碰到那些技术难点？是怎么解决的？"><span class="nav-number">3.3.</span> <span class="nav-text">开发过程中， 你碰到那些技术难点？是怎么解决的？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未完待续。。。"><span class="nav-number"></span> <span class="nav-text">未完待续。。。</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试第一家-（电话面试）"><span class="nav-number">2.</span> <span class="nav-text">面试第一家 （电话面试）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程安全？"><span class="nav-number">2.1.</span> <span class="nav-text">什么是线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你接触到的项目，哪些场景运用到了线程安全？"><span class="nav-number">2.2.</span> <span class="nav-text">你接触到的项目，哪些场景运用到了线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你实现过单例模式么？-你能用几种实现方案？"><span class="nav-number">2.3.</span> <span class="nav-text">你实现过单例模式么？ 你能用几种实现方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目开发中，你用单例都做了什么？"><span class="nav-number">2.4.</span> <span class="nav-text">项目开发中，你用单例都做了什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忽然自己想到了几个估计会用到的面试题"><span class="nav-number">3.</span> <span class="nav-text">忽然自己想到了几个估计会用到的面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你用过什么调试工具？-调试过程中有什么意外？"><span class="nav-number">3.1.</span> <span class="nav-text">开发过程中， 你用过什么调试工具？ 调试过程中有什么意外？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你是怎么优化项目的，请举例说明？"><span class="nav-number">3.2.</span> <span class="nav-text">开发过程中， 你是怎么优化项目的，请举例说明？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你碰到那些技术难点？是怎么解决的？"><span class="nav-number">3.3.</span> <span class="nav-text">开发过程中， 你碰到那些技术难点？是怎么解决的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APNS的基本原理"><span class="nav-number">3.4.</span> <span class="nav-text">APNS的基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本"><span class="nav-number">3.5.</span> <span class="nav-text">基本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细说明"><span class="nav-number">3.6.</span> <span class="nav-text">详细说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试第二家"><span class="nav-number">4.</span> <span class="nav-text">面试第二家</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#好了言归正传：-说面试！"><span class="nav-number">4.1.</span> <span class="nav-text">好了言归正传： 说面试！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APNS的基本原理？"><span class="nav-number">4.2.</span> <span class="nav-text">APNS的基本原理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用过多线程么？说一说你用到什么地方了？怎么用的！"><span class="nav-number">4.3.</span> <span class="nav-text">用过多线程么？说一说你用到什么地方了？怎么用的！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift中-class和Struct有什么区别！"><span class="nav-number">4.4.</span> <span class="nav-text">Swift中 class和Struct有什么区别！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift中-你用过map么？"><span class="nav-number">4.5.</span> <span class="nav-text">Swift中 你用过map么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift中-你用过泛型么？"><span class="nav-number">4.6.</span> <span class="nav-text">Swift中 你用过泛型么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中你封装过网络请求么"><span class="nav-number">4.7.</span> <span class="nav-text">OC中你封装过网络请求么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中消息传输机制有哪些？"><span class="nav-number">4.8.</span> <span class="nav-text">OC中消息传输机制有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中你最喜欢的Api是哪一个？"><span class="nav-number">4.9.</span> <span class="nav-text">OC中你最喜欢的Api是哪一个？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态库和动态库的问题？"><span class="nav-number">4.10.</span> <span class="nav-text">静态库和动态库的问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#都是Swift是面向协议编程-你用过么？"><span class="nav-number">4.11.</span> <span class="nav-text">都是Swift是面向协议编程 你用过么？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未完待续。。。"><span class="nav-number"></span> <span class="nav-text">未完待续。。。</span></a></div>
             
 
           </div>
