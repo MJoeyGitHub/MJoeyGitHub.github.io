@@ -1,0 +1,806 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="有没有那么一首歌," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="运用到iOS项目中 - OC篇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端SQLite学习 - FMDB">
+<meta property="og:url" content="http://yoursite.com/2016/08/28/移动端SQLite学习-FMDB/index.html">
+<meta property="og:site_name" content="Joey | A ridiculous programmer">
+<meta property="og:description" content="运用到iOS项目中 - OC篇">
+<meta property="og:updated_time" content="2017-04-19T09:32:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动端SQLite学习 - FMDB">
+<meta name="twitter:description" content="运用到iOS项目中 - OC篇">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/28/移动端SQLite学习-FMDB/"/>
+
+
+
+
+
+  <title> 移动端SQLite学习 - FMDB | Joey | A ridiculous programmer </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joey | A ridiculous programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JMoey</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/28/移动端SQLite学习-FMDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                移动端SQLite学习 - FMDB
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T11:02:52+08:00">
+                2016-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS技术/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>运用到iOS项目中 - OC篇</p>
+<a id="more"></a>
+<h2 id="FMDB的基本使用"><a href="#FMDB的基本使用" class="headerlink" title="FMDB的基本使用"></a>FMDB的基本使用</h2><h3 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h3><p>FMDB有三个主要的类</p>
+<blockquote>
+<ul>
+<li><ol>
+<li>FMDatabase</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<p>一个FMDatabase对象就代表一个单独的SQLite数据库</p>
+<p>用来执行SQL语句</p>
+<hr>
+<blockquote>
+<ul>
+<li><ol>
+<li>FMResultSet</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<p>使用FMDatabase执行查询后的结果集</p>
+<hr>
+<blockquote>
+<ul>
+<li><ol>
+<li>FMDatabaseQueue</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<p>用于在多线程中执行多个查询或更新，它是线程安全的</p>
+<hr>
+<p>打开数据库</p>
+<blockquote>
+<p>通过指定SQLite数据库文件路径来创建FMDatabase对象</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">FMDatabase *db = [FMDatabase databaseWithPath:path];</div><div class="line"><span class="keyword">if</span> (![db open]) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"数据库打开失败！"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>文件路径有三种情况</p>
+<blockquote>
+<ul>
+<li><ol>
+<li>具体文件路径</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<p>　　如果不存在会自动创建</p>
+<blockquote>
+<ul>
+<li><ol>
+<li>空字符串@””</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<p>　　会在临时目录创建一个空的数据库</p>
+<p>　　当FMDatabase连接关闭时，数据库文件也被删除</p>
+<blockquote>
+<ul>
+<li><ol>
+<li>nil</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<p>　　会创建一个内存中临时数据库，当FMDatabase连接关闭时，数据库会被销毁</p>
+<hr>
+<p>执行更新</p>
+<blockquote>
+<ul>
+<li><p>在FMDB中，除查询以外的所有操作，都称为“更新”</p>
+</li>
+<li><p>create、drop、insert、update、delete等</p>
+</li>
+</ul>
+</blockquote>
+<p>使用executeUpdate:方法执行更新</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)executeUpdate:(<span class="built_in">NSString</span>*)sql, ...</div><div class="line"></div><div class="line">- (<span class="built_in">BOOL</span>)executeUpdateWithFormat:(<span class="built_in">NSString</span>*)format, ...</div><div class="line"></div><div class="line">- (<span class="built_in">BOOL</span>)executeUpdate:(<span class="built_in">NSString</span>*)sql withArgumentsInArray:(<span class="built_in">NSArray</span> *)arguments</div></pre></td></tr></table></figure>
+<p>示例</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[db executeUpdate:<span class="string">@"UPDATE t_student SET age = ? WHERE name = ?;"</span>, @<span class="number">20</span>, <span class="string">@"Jack"</span>]</div></pre></td></tr></table></figure>
+<p>五、执行查询</p>
+<p>查询方法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (FMResultSet *)executeQuery:(<span class="built_in">NSString</span>*)sql, ...</div><div class="line"></div><div class="line">- (FMResultSet *)executeQueryWithFormat:(<span class="built_in">NSString</span>*)format, ...</div><div class="line"></div><div class="line">- (FMResultSet *)executeQuery:(<span class="built_in">NSString</span> *)sql withArgumentsInArray:(<span class="built_in">NSArray</span> *)arguments</div></pre></td></tr></table></figure>
+<p>示例</p>
+<p>// 查询数据</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">FMResultSet *rs = [db executeQuery:<span class="string">@"SELECT * FROM t_student"</span>];</div></pre></td></tr></table></figure>
+<p>// 遍历结果集</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> ([rs next]) &#123;</div><div class="line">    <span class="built_in">NSString</span> *name = [rs stringForColumn:<span class="string">@"name"</span>];</div><div class="line">    <span class="keyword">int</span> age = [rs intForColumn:<span class="string">@"age"</span>];</div><div class="line">    <span class="keyword">double</span> score = [rs doubleForColumn:<span class="string">@"score"</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  ViewController.m</span></div><div class="line"><span class="comment">//  FMDB测试</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Created by Joey on 2017/4/11.</span></div><div class="line"><span class="comment">//  Copyright © 2017年 Joey. All rights reserved.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"FMDB.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)FMDatabase *db;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    <span class="comment">//获得数据库文件的路径</span></div><div class="line">    <span class="built_in">NSString</span> *doc=[<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) lastObject];</div><div class="line">    <span class="built_in">NSString</span> *path=[doc stringByAppendingPathComponent:<span class="string">@"student.sqlite"</span>];</div><div class="line">    </div><div class="line">    FMDatabase *db = [FMDatabase databaseWithPath:path];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> ([db open]) &#123;</div><div class="line">        </div><div class="line"><span class="comment">//        BOOL result = [db executeUpdate:@"CRERTE TABLE IF NOT EXISTS t_student (id integer PRIMARY KEY AUTOINCREMENT name text NOT NULL, age integer NOT NULL);"];</span></div><div class="line">        </div><div class="line">        <span class="built_in">BOOL</span> result=[db executeUpdate:<span class="string">@"CREATE TABLE IF NOT EXISTS t_student (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, age integer NOT NULL);"</span>];</div><div class="line">        <span class="keyword">if</span> (result) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"创建表成功"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"创建表格失败"</span>);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">self</span>.db = db;</div><div class="line"></div><div class="line">    </div><div class="line">    <span class="comment">/// 打印沙盒的位置</span></div><div class="line">    <span class="built_in">NSArray</span> *paths = <span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>);</div><div class="line">    <span class="built_in">NSString</span> *documentsDirectory=[paths objectAtIndex:<span class="number">0</span>];<span class="comment">//Documents目录</span></div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,documentsDirectory);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event</div><div class="line">&#123;</div><div class="line">    	[<span class="keyword">self</span> delete];</div><div class="line">       [<span class="keyword">self</span> insert];</div><div class="line">       [<span class="keyword">self</span> query];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// 插入数据</span></div><div class="line">- (<span class="keyword">void</span>)insert</div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span> ; i++) &#123;</div><div class="line">        <span class="built_in">NSString</span> *name = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"jake-%d"</span>, arc4random_uniform(<span class="number">100</span>)];</div><div class="line">        </div><div class="line">        <span class="comment">// executeUpdate: 不确定的参数用问号来占位</span></div><div class="line">        [<span class="keyword">self</span>.db executeUpdate:<span class="string">@"INSERT INTO t_student (name, age) VALUES (?, ?);"</span>, name, @(arc4random_uniform(<span class="number">40</span>))];</div><div class="line">        </div><div class="line"><span class="comment">//        [self.db executeUpdate:@"INSERT INTO t_student (name, age) VALUES (?, ?);" withArgumentsInArray:@[name, @(arc4random_uniform(40))]];</span></div><div class="line"></div><div class="line">        <span class="comment">// executeUpdateWithFormat : 不确定的参数用%@、%d等来占位</span></div><div class="line"><span class="comment">//        [self.db executeUpdateWithFormat:@"INSERT INTO t_student (name, age) VALUES (%@, %d);", name, arc4random_uniform(40)];</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// 删除数据</span></div><div class="line">- (<span class="keyword">void</span>)delete</div><div class="line">&#123;</div><div class="line">    [<span class="keyword">self</span>.db executeUpdate:<span class="string">@"DROP TABLE IF EXISTS t_student;"</span>];</div><div class="line">    [<span class="keyword">self</span>.db executeUpdate:<span class="string">@"CREATE TABLE IF NOT EXISTS t_student (id integer PRIMARY KEY AUTOINCREMENT, name text NOT NULL, age integer NOT NULL);"</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// 查询</span></div><div class="line">- (<span class="keyword">void</span>)query</div><div class="line">&#123;</div><div class="line">    FMResultSet *resultSet = [<span class="keyword">self</span>.db executeQuery:<span class="string">@"SELECT * FROM t_student"</span>];</div><div class="line">    <span class="comment">// 2.遍历结果</span></div><div class="line">    <span class="keyword">while</span> ([resultSet next]) &#123;</div><div class="line">         <span class="keyword">int</span> ID = [resultSet intForColumn:<span class="string">@"id"</span>];</div><div class="line">         <span class="built_in">NSString</span> *name = [resultSet stringForColumn:<span class="string">@"name"</span>];</div><div class="line">         <span class="keyword">int</span> age = [resultSet intForColumn:<span class="string">@"age"</span>];</div><div class="line">         <span class="built_in">NSLog</span>(<span class="string">@"%d %@ %d"</span>, ID, name, age);</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">打印结果：</div><div class="line">2017-04-12 13:11:11.506 FMDB测试[15277:173494] 1 jake-68 35</div><div class="line">2017-04-12 13:11:11.506 FMDB测试[15277:173494] 2 jake-66 31</div><div class="line">2017-04-12 13:11:11.506 FMDB测试[15277:173494] 3 jake-22 33</div><div class="line">2017-04-12 13:11:11.506 FMDB测试[15277:173494] 4 jake-71 19</div><div class="line">2017-04-12 13:11:11.507 FMDB测试[15277:173494] 5 jake-31 11</div><div class="line">2017-04-12 13:11:11.507 FMDB测试[15277:173494] 6 jake-82 12</div><div class="line">2017-04-12 13:11:11.507 FMDB测试[15277:173494] 7 jake-68 19</div><div class="line">2017-04-12 13:11:11.507 FMDB测试[15277:173494] 8 jake-1 1</div><div class="line">2017-04-12 13:11:11.508 FMDB测试[15277:173494] 9 jake-35 36</div><div class="line">2017-04-12 13:11:11.508 FMDB测试[15277:173494] 10 jake-3 35</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="FMDB数据库队列"><a href="#FMDB数据库队列" class="headerlink" title="FMDB数据库队列"></a>FMDB数据库队列</h2><p>Demo :</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  ViewController.m</span></div><div class="line"><span class="comment">//  FMDB数据库队列测试</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//  Created by Joey on 2017/4/12.</span></div><div class="line"><span class="comment">//  Copyright © 2017年 Joey. All rights reserved.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"FMDB.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span> ,<span class="keyword">strong</span>) FMDatabaseQueue *queue;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">// 获取数据库文件的路径</span></div><div class="line">    <span class="built_in">NSString</span> *doc = [<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) lastObject];</div><div class="line">    <span class="built_in">NSString</span> *fileName = [doc stringByAppendingPathComponent:<span class="string">@"persom.sqlite"</span>];</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">// 获取数据库队列</span></div><div class="line">    FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:fileName];</div><div class="line">    </div><div class="line">    <span class="comment">// 打开数据库</span></div><div class="line">    [queue inDatabase:^(FMDatabase *db) &#123;</div><div class="line">        <span class="built_in">BOOL</span> result = [db executeUpdate:<span class="string">@"CREATE TABLE IF NOT EXISTS t_person (id integer PRIMARY KEY AUTOINCREMENT ,  name text NOT NULL , age integer NOT NULL);"</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (result) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"success！"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"error"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    <span class="keyword">self</span>.queue = queue;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="built_in">UIEvent</span> *)event</div><div class="line">&#123;</div><div class="line">    <span class="comment">// 插入数据</span></div><div class="line">    </div><div class="line"><span class="comment">//    [self.queue inDatabase:^(FMDatabase *db) &#123;</span></div><div class="line"><span class="comment">//        [db executeUpdate:@"INSERT INTO t_person (name, age) VALUES (?, ?);", @"JOEY", @22];</span></div><div class="line"><span class="comment">//    &#125;];</span></div><div class="line"></div><div class="line">    <span class="comment">// 查询数据</span></div><div class="line">    [<span class="keyword">self</span>.queue inDatabase:^(FMDatabase *db) &#123;</div><div class="line">       </div><div class="line">        <span class="comment">// 只想查询语句</span></div><div class="line">        FMResultSet *resultSet = [db executeQuery:<span class="string">@"SELECT * FROM t_person"</span>];</div><div class="line">        </div><div class="line">        <span class="comment">// 遍历结果</span></div><div class="line">        <span class="keyword">while</span> ([resultSet next]) &#123;</div><div class="line">            <span class="keyword">int</span> ID = [resultSet intForColumn:<span class="string">@"id"</span>];</div><div class="line">            <span class="built_in">NSString</span> *name = [resultSet stringForColumn:<span class="string">@"name"</span>];</div><div class="line">            <span class="keyword">int</span> age = [resultSet intForColumn:<span class="string">@"age"</span>];</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%d %@ %d"</span>, ID, name, age);</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外这个是我学习的地方，第四条 已经给出部分存储字段的<a href="http://www.jianshu.com/p/968c381cb7d7" target="_blank" rel="external">Demo</a> 唯一缺点没有给出图片的</p>
+<h3 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h3><blockquote>
+<ul>
+<li>在不开启子线程的情况下，如何提高数据库的读写性能？</li>
+</ul>
+</blockquote>
+<p>答： 开启事务  （其中事务 功能是如果在操作过程中 还没有得到最终结果 操作意外中断了，  会有一个回滚的效果 就叫事务）</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/有没有那么一首歌/" rel="tag"># 有没有那么一首歌</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/23/Swift元祖/" rel="next" title="Swift元祖">
+                <i class="fa fa-chevron-left"></i> Swift元祖
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/28/移动端SQlite学习/" rel="prev" title="移动端SQlite学习">
+                移动端SQlite学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg"
+               alt="Joey" />
+          <p class="site-author-name" itemprop="name">Joey</p>
+           
+              <p class="site-description motion-element" itemprop="description">昆仑罗彩霞，为我独尊</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FMDB的基本使用"><span class="nav-number">1.</span> <span class="nav-text">FMDB的基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心类"><span class="nav-number">1.1.</span> <span class="nav-text">核心类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码示例"><span class="nav-number">1.2.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FMDB数据库队列"><span class="nav-number">2.</span> <span class="nav-text">FMDB数据库队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#延伸"><span class="nav-number">2.1.</span> <span class="nav-text">延伸</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joey</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
