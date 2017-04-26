@@ -252,6 +252,492 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/26/小码哥FM项目练习开始/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/26/小码哥FM项目练习开始/" itemprop="url">
+                  git指令上传项目到远程仓库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T14:10:47+08:00">
+                2017-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git学习/" itemprop="url" rel="index">
+                    <span itemprop="name">git学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如何上传代码到gitHub？ 本文有详细的使用介绍 </p>
+<!---->
+<h2 id="利用git上传本地项目到gitHub上面"><a href="#利用git上传本地项目到gitHub上面" class="headerlink" title="利用git上传本地项目到gitHub上面"></a>利用git上传本地项目到gitHub上面</h2><h3 id="先提交到本地仓库"><a href="#先提交到本地仓库" class="headerlink" title="先提交到本地仓库"></a>先提交到本地仓库</h3><blockquote>
+<p>首先本地创建一段代码</p>
+<p>登录你的gitHub的账号</p>
+</blockquote>
+<p><strong>打开你的终端， cd 你的代码在电脑所在的位置</strong></p>
+<p>1.初始化<strong>本地</strong>仓库</p>
+<blockquote>
+<p>$ git init</p>
+</blockquote>
+<p>2.添加文件到<strong>暂缓区</strong></p>
+<blockquote>
+<p>$ git add .</p>
+</blockquote>
+<p>这里友情提示一下，如何知道自己的文件是否上传到<strong>暂缓区</strong>了呢？</p>
+<blockquote>
+<p>$ git status // 如果有绿色的文字在终端显示， 说明上传成功</p>
+</blockquote>
+<p>3.从暂缓区提交到<strong>本地仓库</strong></p>
+<blockquote>
+<p>$ git commit -m ‘听说这个是注释？’</p>
+</blockquote>
+<p>当然可以去掉 -m 后面的内容</p>
+<p>4.打<strong>本地</strong>标签（给当前版本的代码做一个版本控制）</p>
+<blockquote>
+<p>$ git tag -a ‘输入你的版本号（按照标准标签格式即可）’ -m ‘打标签标注标签功能’</p>
+</blockquote>
+<p>5.查看<strong>本地</strong>标签时候录用成功</p>
+<blockquote>
+<p>$ git tag</p>
+</blockquote>
+<h2 id="以上才做仅仅是提交到本地仓库里面"><a href="#以上才做仅仅是提交到本地仓库里面" class="headerlink" title="以上才做仅仅是提交到本地仓库里面"></a>以上才做仅仅是提交到<strong>本地仓库里面</strong></h2><h3 id="提交到gitHub仓库"><a href="#提交到gitHub仓库" class="headerlink" title="提交到gitHub仓库"></a>提交到gitHub仓库</h3><ol>
+<li><p>关联到远程仓库</p>
+<blockquote>
+<p>$ git remote add origin 你的远程仓库的地址</p>
+</blockquote>
+</li>
+<li><p>上传代码到远程仓库</p>
+<blockquote>
+<p>$ git push origin master  // 注意上步操作之后，如果是第一次创建仓库，需要填写账户的一下信息 已经密码 依次填写就好</p>
+</blockquote>
+</li>
+<li><p>如有标签上传 许上传本地标签</p>
+<blockquote>
+<p>$ git push –tags</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h3 id="如果你的项目的代码有更新了-需要重新上传，以及递增你的新标签"><a href="#如果你的项目的代码有更新了-需要重新上传，以及递增你的新标签" class="headerlink" title="如果你的项目的代码有更新了~ 需要重新上传，以及递增你的新标签"></a>如果你的项目的代码有更新了~ 需要重新上传，以及递增你的新标签</h3><p>首先查看你项目的代码是否真的被更改过(可以忽略)</p>
+<blockquote>
+<p>$ git status // 如果你的终端上 出现了红色的字体， 说明有更新</p>
+</blockquote>
+<p>更新代码到你的本地<strong>暂缓区</strong></p>
+<blockquote>
+<p>$ git add .</p>
+</blockquote>
+<p>提交代码到<strong>本地仓库</strong></p>
+<blockquote>
+<p>$ git commit -m ‘注释，可以不写’</p>
+</blockquote>
+<p>打标签 </p>
+<blockquote>
+<p> $ git tag ‘0.0.2’</p>
+</blockquote>
+<p>上传标签定义的代码</p>
+<blockquote>
+<p>$ git push –tags</p>
+</blockquote>
+<h3 id="如果你觉得你之前的上传的代码有严重的BUG-或者-其他原因想要删除你之前的标签"><a href="#如果你觉得你之前的上传的代码有严重的BUG-或者-其他原因想要删除你之前的标签" class="headerlink" title="如果你觉得你之前的上传的代码有严重的BUG 或者 其他原因想要删除你之前的标签"></a>如果你觉得你之前的上传的代码有严重的BUG 或者 其他原因想要删除你之前的标签</h3><blockquote>
+<p>git push origin :标签  // 注意 是冒号</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/24/iOS项目部分功能汇总-新特性篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/24/iOS项目部分功能汇总-新特性篇/" itemprop="url">
+                  iOS项目部分功能汇总-新特性篇
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-24T17:06:32+08:00">
+                2017-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>新特性：每个产品迭代的时候，一般情况下都会有新的功能展示， 而新特性的产生就是为了让用户知道这一次的更新有什么具体的内容</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/24/iOS项目部分功能汇总-新特性篇/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/24/iOS项目开发大部分功能汇总一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/24/iOS项目开发大部分功能汇总一/" itemprop="url">
+                  iOS项目部分功能汇总-介绍
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-24T16:38:51+08:00">
+                2017-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/项目汇总系列/" itemprop="url" rel="index">
+                    <span itemprop="name">项目汇总系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://ww4.sinaimg.cn/large/006tNc79ly1fexv6w24sfj30zq14gwi4.jpg" alt="Alt text"></p>
+<p> 打算从上到下，我能想到的知识点能写的都写一遍，可能里面有没有提到也会在后面的文章补充，这样一来目的是为了自己巩固一下知识,扩大自己的知识范围,二来方便后来着的开发吧！</p>
+<p><strong><em>本系列按照一个模块一个模块来进行开发，以及讲解。 可能会有一些第三方库进入到本系列中，如有侵权联系作者QQ：398905579  标明你的来意~ 我会及时更新</em></strong></p>
+<p><strong>另外，本系列的所有的代码我都会在未来的时间内上传至GitHub上面，敬请期待</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/20/RxSwift序列的基本操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1274,447 +1760,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/17/Swift不常见的函数方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Joey | A ridiculous programmer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/17/Swift不常见的函数方法/" itemprop="url">
-                  Swift不常见的函数方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-17T22:03:11+08:00">
-                2017-02-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>介绍几种比较特殊的函数定义以及使用</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/02/17/Swift不常见的函数方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/28/移动端SQlite学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Joey | A ridiculous programmer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/28/移动端SQlite学习/" itemprop="url">
-                  移动端SQlite学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T11:42:32+08:00">
-                2016-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS技术/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p> 移动端SQLite的基本使用 - 基础篇（iOS版本）</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/08/28/移动端SQlite学习/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/28/移动端SQLite学习-FMDB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Joey | A ridiculous programmer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/28/移动端SQLite学习-FMDB/" itemprop="url">
-                  移动端SQLite学习 - FMDB
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T11:02:52+08:00">
-                2016-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS技术/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>运用到iOS项目中 - OC篇</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/08/28/移动端SQLite学习-FMDB/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1764,7 +1809,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1775,7 +1820,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1786,7 +1831,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
