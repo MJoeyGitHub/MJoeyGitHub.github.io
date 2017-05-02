@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="一个可笑的程序员, A ridiculous programmer" />
+  <meta name="keywords" content="过了几年了," />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="本文介绍cocoapods与Xcode结合使用的两种使用方式">
+<meta name="description" content="开发框架到cocoapods里面给他人使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cocococoapods结合Xcode的两种使用方式">
-<meta property="og:url" content="http://yoursite.com/2017/04/26/cocococoapods结合Xcode的两种使用方式/index.html">
+<meta property="og:title" content="开发框架到cocoapods里面给他人使用">
+<meta property="og:url" content="http://yoursite.com/2017/04/26/开发框架到cocoapods里面给他人使用/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
-<meta property="og:description" content="本文介绍cocoapods与Xcode结合使用的两种使用方式">
-<meta property="og:updated_time" content="2017-04-26T08:31:26.000Z">
+<meta property="og:description" content="开发框架到cocoapods里面给他人使用">
+<meta property="og:updated_time" content="2017-04-26T13:42:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cocococoapods结合Xcode的两种使用方式">
-<meta name="twitter:description" content="本文介绍cocoapods与Xcode结合使用的两种使用方式">
+<meta name="twitter:title" content="开发框架到cocoapods里面给他人使用">
+<meta name="twitter:description" content="开发框架到cocoapods里面给他人使用">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/26/cocococoapods结合Xcode的两种使用方式/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/26/开发框架到cocoapods里面给他人使用/"/>
 
 
 
 
 
-  <title> cocococoapods结合Xcode的两种使用方式 | Joey | A ridiculous programmer </title>
+  <title> 开发框架到cocoapods里面给他人使用 | Joey | A ridiculous programmer </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -251,7 +251,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/26/cocococoapods结合Xcode的两种使用方式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/26/开发框架到cocoapods里面给他人使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joey">
@@ -272,7 +272,7 @@
             
             
               
-                cocococoapods结合Xcode的两种使用方式
+                开发框架到cocoapods里面给他人使用
               
             
           </h1>
@@ -287,7 +287,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T16:26:27+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T16:54:35+08:00">
                 2017-04-26
               </time>
             
@@ -297,6 +297,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git学习/" itemprop="url" rel="index">
+                    <span itemprop="name">git学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -323,27 +345,41 @@
       
 
       
-        <p>本文介绍cocoapods与Xcode结合使用的两种使用方式</p>
+        <p>开发框架到cocoapods里面给他人使用</p>
 <a id="more"></a>
-<h2 id="第一种"><a href="#第一种" class="headerlink" title="第一种"></a>第一种</h2><blockquote>
-<p>创建一个Podfile文件，输入你想要的第三方的代码</p>
-</blockquote>
-<p>格式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">source &apos;https://github.com/CocoaPods/Specs.git&apos;</div><div class="line">platform :ios, ‘8.1’</div><div class="line">use_frameworks!</div><div class="line"></div><div class="line">target &apos;你的项目名称&apos; do</div><div class="line">pod &apos;你想pod的框架&apos;</div><div class="line">end</div></pre></td></tr></table></figure>
+<h3 id="搭建好本地的环境"><a href="#搭建好本地的环境" class="headerlink" title="搭建好本地的环境"></a>搭建好本地的环境</h3><ol>
+<li>首先把自己写好的代码上传到原远程仓库内<br><a href="https://mjoeygithub.github.io/2017/04/26/git指令上传项目到远程仓库/" target="_blank" rel="external">如何上传？</a></li>
+</ol>
+<ol>
+<li>创建一个关于这个仓库的描述文件   格式为 spec</li>
+</ol>
 <blockquote>
-<p>右键你的工程文件 选择第二个选项  在终端上面输入</p>
-<p>pod update –no-repo-update</p>
+<p>$ cd 到你项目的文件夹<br>$ pod spec create 你的项目名称</p>
 </blockquote>
-<h2 id="第二种（推荐）"><a href="#第二种（推荐）" class="headerlink" title="第二种（推荐）"></a>第二种（推荐）</h2><p> 在终端上 </p>
+<p>如上步操作完之后， 你会发现在你的项目文件内多了一个spec文件， 右键用Xcode 打开</p>
+<pre><code>
+  s.name         = &quot;MyLib&quot;                          -&gt; 你的框架的名称
+  s.version      = &quot;0.0.1&quot;                          -&gt;  版本号
+  s.summary      = &quot;A short description of MyLib.&quot;  -&gt;  这个是你的项目的简介
+   s.description  = 这个是这个项目的详细描述 ， 注意一定要比summary字数多才可以正常使用
+
+
+  s.homepage     = &quot;http://EXAMPLE/MyLib&quot;  -&gt; 这里添加你项目仓库的地址 注意后面是没有 .git的地址
+
+ s.source       = { :git =&gt; &quot;http://EXAMPLE/MyLib.git&quot;, :tag =&gt; &quot;#{s.version}&quot; }  -&gt;  这里要填写你的仓库的地址  注意是后面带.git的     tag是填写你打标签的版本号
+
+s.source_files  = &quot;Classes&quot;, &quot;Classes/**/*.{h,m}&quot;  -&gt;   这个是让别人pod的你代码的时候只pod 能用到项目上的文件， 去掉没用的代码
+s.exclude_files = &quot;Classes/Exclude&quot;  -&gt;   这个一般不会用 用 #注释  注释就行了
+</code></pre><hr>
+<h3 id="上传你设置后的spec"><a href="#上传你设置后的spec" class="headerlink" title="上传你设置后的spec"></a>上传你设置后的spec</h3><blockquote>
+<p>设置Trunk <a href="https://guides.cocoapods.org/making/getting-setup-with-trunk.html" target="_blank" rel="external">这是官方文档</a></p>
+<p>$ pod trunk register 你的邮箱（能用的，因为要发送验证邮件） ‘你的用户名’  –verbose</p>
+</blockquote>
+<p>提示： ACE， YOU’RE SET UP!!!!!1</p>
 <blockquote>
-<p>cd 你的项目存储绝对路径</p>
-<p>pod init </p>
-<p>在你的项目文件出现的Podfile文件  ，填写内容 </p>
+<p>$ pod trunk push 你的spec名字</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># platform :ios, &apos;9.0&apos;</div><div class="line"></div><div class="line">target &apos;test&apos; do</div><div class="line"> use_frameworks!</div><div class="line"></div><div class="line">pod &apos;你想pod的框架&apos;</div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure>
-<blockquote>
-<p>pod install </p>
-</blockquote>
+<p>如果操作成功，  就会进入审核阶段！ 审核成功之后， 就可以用cocoapods 来使用你的代码啦~</p>
 
       
     </div>
@@ -371,6 +407,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/过了几年了/" rel="tag"># 过了几年了</a>
+          
+        </div>
+      
 
       
         
@@ -380,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/26/git指令上传项目到远程仓库/" rel="next" title="git指令上传项目到远程仓库">
-                <i class="fa fa-chevron-left"></i> git指令上传项目到远程仓库
+              <a href="/2017/04/26/cocococoapods结合Xcode的两种使用方式/" rel="next" title="cocococoapods结合Xcode的两种使用方式">
+                <i class="fa fa-chevron-left"></i> cocococoapods结合Xcode的两种使用方式
               </a>
             
           </div>
@@ -390,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/26/开发框架到cocoapods里面给他人使用/" rel="prev" title="开发框架到cocoapods里面给他人使用">
-                开发框架到cocoapods里面给他人使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/26/cocoapods本地私有库的使用/" rel="prev" title="cocoapods本地私有库的使用">
+                cocoapods本地私有库的使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -521,7 +563,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一种"><span class="nav-number">1.</span> <span class="nav-text">第一种</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二种（推荐）"><span class="nav-number">2.</span> <span class="nav-text">第二种（推荐）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建好本地的环境"><span class="nav-number">1.</span> <span class="nav-text">搭建好本地的环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传你设置后的spec"><span class="nav-number">2.</span> <span class="nav-text">上传你设置后的spec</span></a></li></ol></div>
             
 
           </div>
