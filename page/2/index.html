@@ -252,7 +252,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/20/TCP-IP三次握手/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/20/关于网络传输协议的知识点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joey">
@@ -274,8 +274,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/20/TCP-IP三次握手/" itemprop="url">
-                  TCP/IP三次握手
+                <a class="post-title-link" href="/2017/04/20/关于网络传输协议的知识点/" itemprop="url">
+                  关于网络传输协议的知识点
                 </a>
               
             
@@ -350,14 +350,26 @@
 
       
         
-          <p>用形象的个人理解举了一个小例子来解释TCP的三次握手！</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/20/TCP-IP三次握手/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <a id="more"></a>
+<h3 id="Http-amp-amp-Https"><a href="#Http-amp-amp-Https" class="headerlink" title="Http &amp;&amp; Https"></a>Http &amp;&amp; Https</h3><p>http和Https在传输数据的时候都  数据的接收方和发送发  都要有Socket套接字作为“媒介”  通过Tcp/IP 这个通信管道进行数据的传递与接收</p>
+<h3 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h3><p>用形象的个人理解举了一个小例子来解释TCP的三次握手！</p>
+<p>手机能够使用联网功能是因为手机底层实现了TCP/IP协议，可以使手机终端通过无线网络建立TCP连接。TCP协议可以对上层网络提供接口，使上层网络数据的传输建立在“无差别”的网络之上。<br>建立起一个TCP连接需要经过“三次握手”：</p>
+<blockquote>
+<p>第一次握手：客户端发送syn包(syn=j)到服务器，并进入SYN_SEND状态，等待服务器确认；</p>
+<p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
+<p>第三次握手：客户端收到服务器的SYN＋ACK包，向服务器发送确认包ACK(ack=k+1)，此包发送完毕，客户端和服务器进入ESTABLISHED状态，完成三次握手。</p>
+</blockquote>
+<p>上面说的那么啰嗦， 那么怎么才能理解呢？ 说一下我个人的想法：</p>
+<p>建立一个场景，小A 去自定提款机 提款</p>
+<blockquote>
+<p>第一次握手： 小A 到提款机面前，把银行卡插进去 等待提款机相应</p>
+<p>第二次握手： 提款机 让小A输入密码 ，  提款机进入链接状态</p>
+<p>第三次握手： 小A输入密码 ， 提款机审核成功之后， 准备数钱~</p>
+</blockquote>
+<p>握手过程中传送的包里不包含数据，三次握手完毕后，客户端与服务器才正式开始传送数据。理想状态下，TCP连接一旦建立，在通信双方中的任何一方主 动关闭连接之前，TCP 连接都将被一直保持下去。断开连接时服务器和客户端均可以主动发起断开TCP连接的请求，断开过程需要经过“四次握手”（过程就不细写了，就是服务器和客 户端交互，最终确定断开）</p>
+
+          
         
       
     </div>
@@ -1731,7 +1743,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1776,7 +1788,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
