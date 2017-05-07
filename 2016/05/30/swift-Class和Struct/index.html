@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/30/swift-Class和Struct/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
 <meta property="og:description" content="谈谈什么是Class，Struct。 以及两者直接的差异。以及适用环境">
-<meta property="og:updated_time" content="2017-04-19T09:28:49.000Z">
+<meta property="og:updated_time" content="2017-05-07T01:12:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="swift Class和Struct">
 <meta name="twitter:description" content="谈谈什么是Class，Struct。 以及两者直接的差异。以及适用环境">
@@ -377,6 +377,10 @@
 <p>class 是可以继承,也可以被继承 struct不能被继承</p>
 <p>struct和class都可以遵守protocol协议</p>
 </blockquote>
+<h3 id="那么到底什么时候用Class-什么时候用Struct呢？"><a href="#那么到底什么时候用Class-什么时候用Struct呢？" class="headerlink" title="那么到底什么时候用Class 什么时候用Struct呢？"></a>那么到底什么时候用Class 什么时候用Struct呢？</h3><p>Class 是引用语义，是动态的操作堆里面的数据，只是复制引用对象，并没有复制真正的值</p>
+<p>Struct 是值语义， 是直接操做栈里面的源数据，是复制了一块新的值</p>
+<p>Class更重量级， 他能完成Struct几乎所有的操作，Struct更轻量级</p>
+<p>用小东西 完成大事情！！</p>
 <p>tps： 想清楚我们究竟想表达一个对象，还是一个引用的值 就可以灵活的运用在项目上了</p>
 
       
@@ -561,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Class"><span class="nav-number">1.</span> <span class="nav-text">Class</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型"><span class="nav-number">1.1.</span> <span class="nav-text">引用类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-和-Struct的区别"><span class="nav-number">1.2.</span> <span class="nav-text">Class 和 Struct的区别</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Class"><span class="nav-number">1.</span> <span class="nav-text">Class</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型"><span class="nav-number">1.1.</span> <span class="nav-text">引用类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-和-Struct的区别"><span class="nav-number">1.2.</span> <span class="nav-text">Class 和 Struct的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么到底什么时候用Class-什么时候用Struct呢？"><span class="nav-number">1.3.</span> <span class="nav-text">那么到底什么时候用Class 什么时候用Struct呢？</span></a></li></ol></li></ol></div>
             
 
           </div>
