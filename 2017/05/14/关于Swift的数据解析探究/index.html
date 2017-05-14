@@ -1,0 +1,768 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="从那个雨天," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="最近研究了几种“偷懒”的 JSON映射Model的映射的方案， 分享一下。
+注意： 本文不重点研究具体的实现， 只谈用法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于Swift的数据解析探究">
+<meta property="og:url" content="http://yoursite.com/2017/05/14/关于Swift的数据解析探究/index.html">
+<meta property="og:site_name" content="Joey | A ridiculous programmer">
+<meta property="og:description" content="最近研究了几种“偷懒”的 JSON映射Model的映射的方案， 分享一下。
+注意： 本文不重点研究具体的实现， 只谈用法">
+<meta property="og:updated_time" content="2017-05-14T11:10:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于Swift的数据解析探究">
+<meta name="twitter:description" content="最近研究了几种“偷懒”的 JSON映射Model的映射的方案， 分享一下。
+注意： 本文不重点研究具体的实现， 只谈用法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/14/关于Swift的数据解析探究/"/>
+
+
+
+
+
+  <title> 关于Swift的数据解析探究 | Joey | A ridiculous programmer </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joey | A ridiculous programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JMoey</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/14/关于Swift的数据解析探究/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于Swift的数据解析探究
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T17:20:01+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近研究了几种“偷懒”的 JSON映射Model的映射的方案， 分享一下。</p>
+<p><strong>注意： 本文不重点研究具体的实现， 只谈用法</strong></p>
+<a id="more"></a>
+<p>以前一直都是用<a href="https://github.com/Hearst-DD/ObjectMapper" target="_blank" rel="external">ObjectMapper</a>，还记得刚用的时候才几百颗Star，现如今都5500+了。 </p>
+<h2 id="1-先介绍star分数最多的SwiftyJSON"><a href="#1-先介绍star分数最多的SwiftyJSON" class="headerlink" title="1.先介绍star分数最多的SwiftyJSON"></a>1.先介绍star分数最多的<a href="https://github.com/SwiftyJSON/SwiftyJSON" target="_blank" rel="external">SwiftyJSON</a></h2><blockquote>
+<p>其实很多新手看见这么多的Star都会直接拿来用，但是殊不知他并不是直接拿来映射Model的， 他是一个方便大家从JSON<strong>直接</strong>取数据，<strong>直接</strong>取数据，<strong>直接</strong>取数据！重要的事情说三遍，之后还需要我没自己去拿数据 例如</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> json = <span class="type">JSON</span>(data: jsonData)</div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> number = json[<span class="number">0</span>][<span class="string">"phones"</span>][<span class="number">0</span>][<span class="string">"number"</span>].string &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"第一个联系人的第一个电话号码："</span>,number)</div><div class="line">&#125;<span class="keyword">else</span> &#123;</div><div class="line">    <span class="comment">// 打印错误信息</span></div><div class="line">    <span class="built_in">print</span>(json[<span class="number">0</span>][<span class="string">"phones"</span>][<span class="number">0</span>][<span class="string">"number"</span>])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其实SwiftyJSON被广泛使用的最大的原因还是他的optional类型转换问题， 不会轻易的Crash，而且能轻易的获取任意层级的数据</p>
+<p> 有一些“狡猾”的网友，用这个和映射Model的框架混合使用~</p>
+<h3 id="SwiftyJSON和OC的某某映射框架混合开发"><a href="#SwiftyJSON和OC的某某映射框架混合开发" class="headerlink" title="SwiftyJSON和OC的某某映射框架混合开发"></a>SwiftyJSON和OC的某某映射框架混合开发</h3><blockquote>
+<p>先用SwiftyJSON把接口返回的JSON解析成字典， 然后用OC的某某映射框架在转模型 o(╯□╰)o~   就不上代码了， 很简单！ 但是混编有没有哇~ 我的想法是，能用Swift的就不要混编了吧~   转码消耗性能啊（我听说的！） 人家大公司都不用Xib，SB呢~ so 在看看别的吧！</p>
+</blockquote>
+<h2 id="2-再说说-ObjectMapper"><a href="#2-再说说-ObjectMapper" class="headerlink" title="2. 再说说 ObjectMapper"></a>2. 再说说 <a href="https://github.com/Hearst-DD/ObjectMapper" target="_blank" rel="external">ObjectMapper</a></h2><blockquote>
+<p>既然这个东西是我一直主用的， 我就多说几句吧， 首先ObjectMapper和网络框架Alamonfire能够“挺好”的在一起使用 也有热心的大神， 为两个框架之间写了一个桥接专用的<a href="https://github.com/tristanhimmelman/AlamofireObjectMapper" target="_blank" rel="external">AlamofireObjectMapper</a>  用法简单， 虽然说用法简单但是作为爱学习的我们，要明白起运作原理，给大家提个醒， 建议大家研究研究ObjectMapper、Alamofire 这2个是怎么统统AlamofireObjectMapper实现桥接的</p>
+</blockquote>
+<p>ObjectMapper是用来把JSON转成Model的一个映射第三方</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> ObjectMapper</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Model</span>: <span class="title">Mappable</span></span></div></pre></td></tr></table></figure>
+<h3 id="先说说Model层"><a href="#先说说Model层" class="headerlink" title="先说说Model层"></a>先说说Model层</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span>: <span class="title">Mappable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> username: <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> age: <span class="type">Int</span>?</div><div class="line">    <span class="keyword">var</span> weight: <span class="type">Double</span>!</div><div class="line">    <span class="keyword">var</span> array: [<span class="type">AnyObject</span>]?</div><div class="line">    <span class="keyword">var</span> dictionary: [<span class="type">String</span> : <span class="type">AnyObject</span>] = [:]</div><div class="line">    <span class="keyword">var</span> bestFriend: <span class="type">User</span>?                       <span class="comment">// Nested User object</span></div><div class="line">    <span class="keyword">var</span> friends: [<span class="type">User</span>]?                        <span class="comment">// Array of Users</span></div><div class="line">    <span class="keyword">var</span> birthday: <span class="type">Date</span>?</div><div class="line"></div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Mappable</span></div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;</div><div class="line">        username    &lt;- <span class="built_in">map</span>[<span class="string">"username"</span>]</div><div class="line">        age         &lt;- <span class="built_in">map</span>[<span class="string">"age"</span>]</div><div class="line">        weight      &lt;- <span class="built_in">map</span>[<span class="string">"weight"</span>]</div><div class="line">        array       &lt;- <span class="built_in">map</span>[<span class="string">"arr"</span>]</div><div class="line">        dictionary  &lt;- <span class="built_in">map</span>[<span class="string">"dict"</span>]</div><div class="line">        bestFriend  &lt;- <span class="built_in">map</span>[<span class="string">"best_friend"</span>]</div><div class="line">        friends     &lt;- <span class="built_in">map</span>[<span class="string">"friends"</span>]</div><div class="line">        birthday    &lt;- (<span class="built_in">map</span>[<span class="string">"birthday"</span>], <span class="type">DateTransform</span>())</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然也支持struct</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Temperature</span>: <span class="title">Mappable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> celsius: <span class="type">Double</span>?</div><div class="line">    <span class="keyword">var</span> fahrenheit: <span class="type">Double</span>?</div><div class="line"></div><div class="line">    <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;</div><div class="line">        celsius 	&lt;- <span class="built_in">map</span>[<span class="string">"celsius"</span>]</div><div class="line">        fahrenheit 	&lt;- <span class="built_in">map</span>[<span class="string">"fahrenheit"</span>]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p><strong>Tips: required修饰符的使用规则</strong></p>
+<blockquote>
+<p>required修饰符只能用于修饰类初始化方法。</p>
+<p>当子类含有异于父类的初始化方法时（初始化方法参数类型和数量异于父类），子类必须要实现父类的required初始化方法，并且也要使用required修饰符而不是override。</p>
+<p>当子类没有初始化方法时，可以不用实现父类的required初始化方法。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> str:<span class="type">String</span></div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>(str:<span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.str = str</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&gt;&gt; <span class="class"><span class="keyword">class</span> <span class="title">MySubClass</span>:<span class="title">MyClass</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>(str:<span class="type">String</span>) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(str: str)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&gt;&gt;     <span class="keyword">init</span>(i:<span class="type">Int</span>) &#123;</div><div class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(str:<span class="type">String</span>(i))</div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+<hr>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span></div></pre></td></tr></table></figure>
+<p>这个函数是所有映射定义应该去的地方。当解析JSON时,这个函数是对象创建成功之后执行。</p>
+<hr>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>)</div></pre></td></tr></table></figure>
+<p>上面这个函数一般用来处理值里面出现空的情况，例如：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>)&#123;</div><div class="line">	<span class="comment">// check if a required "name" property exists within the JSON.</span></div><div class="line">	<span class="keyword">if</span> <span class="built_in">map</span>.<span class="type">JSON</span>[<span class="string">"name"</span>] == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Alamofire-与-AlamofireObjectMapper"><a href="#Alamofire-与-AlamofireObjectMapper" class="headerlink" title="Alamofire 与 AlamofireObjectMapper"></a>Alamofire 与 AlamofireObjectMapper</h3><p><strong>Alamofire</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="type">Alamofire</span>.request(<span class="string">"https://httpbin.org/get"</span>).responseJSON &#123; response <span class="keyword">in</span></div><div class="line">    <span class="built_in">debugPrint</span>(response)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> json = response.result.value &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"JSON: <span class="subst">\(json)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Alamofire的原始用法</p>
+<hr>
+<p><strong>AlamofireObjectMapper</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="type">Alamofire</span>.request(<span class="type">URL</span>).responseObject &#123; (response: <span class="type">DataResponse</span>&lt;<span class="type">WeatherResponse</span>&gt;) <span class="keyword">in</span></div><div class="line"></div><div class="line">    <span class="keyword">let</span> weatherResponse = response.result.value</div><div class="line">    <span class="built_in">print</span>(weatherResponse?.location)</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> threeDayForecast = weatherResponse?.threeDayForecast &#123;</div><div class="line">        <span class="keyword">for</span> forecast <span class="keyword">in</span> threeDayForecast &#123;</div><div class="line">            <span class="built_in">print</span>(forecast.day)</div><div class="line">            <span class="built_in">print</span>(forecast.temperature)           </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="下面为AlamofireObjectMapper映射Model的方法，做一个小栗子。"><a href="#下面为AlamofireObjectMapper映射Model的方法，做一个小栗子。" class="headerlink" title="下面为AlamofireObjectMapper映射Model的方法，做一个小栗子。"></a>下面为AlamofireObjectMapper映射Model的方法，做一个小栗子。</h3><p>JSON结构如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;status&quot;: 0,</div><div class="line">  &quot;msg&quot;: &quot;success&quot;,</div><div class="line">  &quot;data&quot;: &#123;</div><div class="line">    &quot;informationList&quot;: [</div><div class="line">      &#123;</div><div class="line">        &quot;informationUuid&quot;: &quot;1eb7edf8ef5511e6b2e700163e0024fd&quot;,</div><div class="line">        &quot;content&quot;: &quot;成立于2008年，以提供“亿万中国女性优质生活的首选入口”为目标，是中国第一家拥...&quot;,</div><div class="line">        &quot;image&quot;: &quot;/download/information/14867059531828914.jpg&quot;,</div><div class="line">        &quot;status&quot;: 1,</div><div class="line">        &quot;createTime&quot;: 1486705954000,</div><div class="line">        &quot;smallImage&quot;: &quot;/download/information/small14867059531828914.jpg&quot;,</div><div class="line">        &quot;meddiumImage&quot;: &quot;/download/information/meddium14867059531828914.jpg&quot;,</div><div class="line">        &quot;largeImage&quot;: &quot;/download/information/large14867059531828914.jpg&quot;,</div><div class="line">        &quot;title&quot;: &quot;看见的咖啡机的疯狂&quot;,</div><div class="line">        &quot;infoType&quot;: 1</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        &quot;informationUuid&quot;: &quot;f7cb9528cdc811e6b2e700163e0024fd&quot;,</div><div class="line">        &quot;content&quot;: &quot;2015年9月，活动一期会议在全国各省遍地开花...&quot;,</div><div class="line">        &quot;image&quot;: &quot;/download/information/14842758500422791.jpg&quot;,</div><div class="line">        &quot;status&quot;: 1,</div><div class="line">        &quot;createTime&quot;: 1483017371000,</div><div class="line">        &quot;smallImage&quot;: &quot;/download/information/small14842758500422791.jpg&quot;,</div><div class="line">        &quot;meddiumImage&quot;: &quot;/download/information/meddium14842758500422791.jpg&quot;,</div><div class="line">        &quot;largeImage&quot;: &quot;/download/information/large14842758500422791.jpg&quot;,</div><div class="line">        &quot;title&quot;: &quot;本草心天药人&quot;,</div><div class="line">        &quot;infoType&quot;: 1</div><div class="line">      &#125;,</div><div class="line">      ......此处省略多条</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  &quot;message&quot;: &quot;&quot;,</div><div class="line">  &quot;sign&quot;: &quot;106533B010F0A815A1A548BE27DA55EC&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Model层代码如下</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Foundation</div><div class="line"><span class="keyword">import</span> ObjectMapper</div><div class="line"></div><div class="line"><span class="comment">/// 总Model</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeModel</span>  <span class="title">Mappable</span> </span>&#123;</div><div class="line">    <span class="keyword">var</span> data : <span class="type">DataModel</span>?</div><div class="line">    <span class="keyword">var</span> message : <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> msg : <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> sign : <span class="type">String</span>?</div><div class="line">    <span class="keyword">var</span> status : <span class="type">Int</span>?</div><div class="line">    </div><div class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>)&#123;&#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span></div><div class="line">    &#123;</div><div class="line">        data &lt;- <span class="built_in">map</span>[<span class="string">"data"</span>]</div><div class="line">        message &lt;- <span class="built_in">map</span>[<span class="string">"message"</span>]</div><div class="line">        msg &lt;- <span class="built_in">map</span>[<span class="string">"msg"</span>]</div><div class="line">        sign &lt;- <span class="built_in">map</span>[<span class="string">"sign"</span>]</div><div class="line">        status &lt;- <span class="built_in">map</span>[<span class="string">"status"</span>]</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// DataModel</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataModel</span>: <span class="title">Mappable</span> </span>&#123;</div><div class="line">        <span class="keyword">var</span> informationList : [<span class="type">InformationList</span>]?</div><div class="line">        <span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>)&#123;&#125;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span></div><div class="line">        &#123;</div><div class="line">            informationList &lt;- <span class="built_in">map</span>[<span class="string">"informationList"</span>]  </div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/// InformationListModel</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">InformationList</span>: <span class="title">Mappable</span></span>&#123;</div><div class="line">        </div><div class="line">        <span class="keyword">var</span> content : <span class="type">String</span>?</div><div class="line">        <span class="keyword">var</span> createTime : <span class="type">Int</span>?</div><div class="line">        <span class="keyword">var</span> image : <span class="type">String</span>?</div><div class="line">        <span class="keyword">var</span> informationUuid : <span class="type">String</span>?</div><div class="line">        <span class="keyword">var</span> largeImage : <span class="type">String</span>?</div><div class="line">        <span class="keyword">var</span> meddiumImage : <span class="type">String</span>?</div><div class="line">        <span class="keyword">var</span> smallImage : <span class="type">String</span>?</div><div class="line">        <span class="keyword">var</span> status : <span class="type">Int</span>?</div><div class="line">        <span class="keyword">var</span> title : <span class="type">String</span>?</div><div class="line">    </div><div class="line">        <span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>)&#123;&#125;</div><div class="line">        </div><div class="line">        <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span></div><div class="line">        &#123;</div><div class="line">            content &lt;- <span class="built_in">map</span>[<span class="string">"content"</span>]</div><div class="line">            createTime &lt;- <span class="built_in">map</span>[<span class="string">"createTime"</span>]</div><div class="line">            image &lt;- <span class="built_in">map</span>[<span class="string">"image"</span>]</div><div class="line">            informationUuid &lt;- <span class="built_in">map</span>[<span class="string">"informationUuid"</span>]</div><div class="line">            largeImage &lt;- <span class="built_in">map</span>[<span class="string">"largeImage"</span>]</div><div class="line">            meddiumImage &lt;- <span class="built_in">map</span>[<span class="string">"meddiumImage"</span>]</div><div class="line">            smallImage &lt;- <span class="built_in">map</span>[<span class="string">"smallImage"</span>]</div><div class="line">            status &lt;- <span class="built_in">map</span>[<span class="string">"status"</span>]</div><div class="line">            title &lt;- <span class="built_in">map</span>[<span class="string">"title"</span>]</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>请求</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="type">Alamofire</span>.request(<span class="type">URL</span>, method: .post, parameters: params).responseObject &#123; [<span class="keyword">unowned</span> <span class="keyword">self</span>] (response: <span class="type">DataResponse</span>&lt;<span class="type">HomeModel</span>&gt;) <span class="keyword">in</span></div><div class="line">            </div><div class="line">    <span class="keyword">let</span> dataResponse = response.result.value</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> informationList = dataResponse?.data?.informationList &#123;</div><div class="line">        <span class="keyword">for</span> information <span class="keyword">in</span> informationList &#123;</div><div class="line">            <span class="keyword">self</span>.informationArr.append(information)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Tips: [unowned self]防止clouser循环引用的  跟我读！ unowned unowned 这个词儿 我总是拼错！ 还没有智能提示~  ORZ</p>
+</blockquote>
+<p>有的同学说 这是TableView 或者是CollectionView 为什么不刷新表格？</p>
+<p>我们说说informationArr 这个东西</p>
+<pre><code class="swift"><span class="keyword">var</span> informationArr = [<span class="type">InformationList</span>]()  {
+    <span class="keyword">didSet</span>{
+        tableView.reloadData()
+    }
+}
+</code></pre>
+<blockquote>
+<p>tips: didSet属性观察， 当此属性已经“遭受”赋值的时候，就会调用didSet。 他上边还有一个大哥 willSet， 是当此属性将要“遭受”赋值的时候调用</p>
+</blockquote>
+<h2 id="end-鼓掌！👏👏👏"><a href="#end-鼓掌！👏👏👏" class="headerlink" title="end 鼓掌！👏👏👏"></a>end 鼓掌！👏👏👏</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/从那个雨天/" rel="tag"># 从那个雨天</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/26/cocoapods远程私有库的使用/" rel="next" title="cocoapods远程私有库的使用">
+                <i class="fa fa-chevron-left"></i> cocoapods远程私有库的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg"
+               alt="Joey" />
+          <p class="site-author-name" itemprop="name">Joey</p>
+           
+              <p class="site-description motion-element" itemprop="description">昆仑罗彩霞，为我独尊</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-先介绍star分数最多的SwiftyJSON"><span class="nav-number">1.</span> <span class="nav-text">1.先介绍star分数最多的SwiftyJSON</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SwiftyJSON和OC的某某映射框架混合开发"><span class="nav-number">1.1.</span> <span class="nav-text">SwiftyJSON和OC的某某映射框架混合开发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-再说说-ObjectMapper"><span class="nav-number">2.</span> <span class="nav-text">2. 再说说 ObjectMapper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先说说Model层"><span class="nav-number">2.1.</span> <span class="nav-text">先说说Model层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Alamofire-与-AlamofireObjectMapper"><span class="nav-number">2.2.</span> <span class="nav-text">Alamofire 与 AlamofireObjectMapper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下面为AlamofireObjectMapper映射Model的方法，做一个小栗子。"><span class="nav-number">2.3.</span> <span class="nav-text">下面为AlamofireObjectMapper映射Model的方法，做一个小栗子。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#end-鼓掌！👏👏👏"><span class="nav-number">3.</span> <span class="nav-text">end 鼓掌！👏👏👏</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joey</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
