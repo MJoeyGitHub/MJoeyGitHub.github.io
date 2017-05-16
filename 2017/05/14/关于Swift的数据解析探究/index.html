@@ -387,7 +387,7 @@
 <p>上面这个函数一般用来处理值里面出现空的情况，例如：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>)&#123;</div><div class="line">	<span class="comment">// check if a required "name" property exists within the JSON.</span></div><div class="line">	<span class="keyword">if</span> <span class="built_in">map</span>.<span class="type">JSON</span>[<span class="string">"name"</span>] == <span class="literal">nil</span> &#123;</div><div class="line">		<span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Alamofire-与-AlamofireObjectMapper"><a href="#Alamofire-与-AlamofireObjectMapper" class="headerlink" title="Alamofire 与 AlamofireObjectMapper"></a>Alamofire 与 AlamofireObjectMapper</h3><p><strong>Alamofire</strong></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="type">Alamofire</span>.request(<span class="string">"https://httpbin.org/get"</span>).responseJSON &#123; response <span class="keyword">in</span></div><div class="line">    <span class="built_in">debugPrint</span>(response)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> json = response.result.value &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"JSON: <span class="subst">\(json)</span>"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="type">Alamofire</span>.request(<span class="string">"https://httpbin.org/get"</span>).responseJSON &#123; response <span class="keyword">in</span></div><div class="line">    <span class="built_in">debugPrint</span>(response)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> <span class="keyword">let</span> json = response.result.value &#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"JSON: \(json)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>Alamofire的原始用法</p>
 <hr>
 <p><strong>AlamofireObjectMapper</strong></p>
@@ -535,7 +535,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -546,7 +546,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

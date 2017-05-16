@@ -1440,6 +1440,153 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/15/设计模式 - 简单工厂模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/15/设计模式 - 简单工厂模式/" itemprop="url">
+                  设计模式 - 简单工厂模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-15T20:58:50+08:00">
+                2016-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近读大话设计模式， 写一下Swift版本的Demo吧</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/05/15/设计模式 - 简单工厂模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/04/iOS访问系统通讯录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1539,138 +1686,13 @@
 <blockquote>
 <p>This app has crashed because it attempted to access privacy-sensitive data without a usage description.  The app’s Info.plist must contain an NSContactsUsageDescription key with a string value explaining to the user how the app uses this data.</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="keyword">import</span> Contacts</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">        </div><div class="line">        <span class="type">CNContactStore</span>().requestAccess(<span class="keyword">for</span>: .contacts) &#123; (isRight, error) <span class="keyword">in</span></div><div class="line">            <span class="keyword">if</span> isRight &#123;</div><div class="line">                <span class="comment">//授权成功加载数据。</span></div><div class="line">                <span class="keyword">self</span>.loadContactsData()</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">loadContactsData</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="comment">//获取授权状态</span></div><div class="line">        <span class="keyword">let</span> status = <span class="type">CNContactStore</span>.authorizationStatus(<span class="keyword">for</span>: .contacts)</div><div class="line">        <span class="comment">//判断当前授权状态</span></div><div class="line">        <span class="keyword">guard</span> status == .authorized <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//创建通讯录对象</span></div><div class="line">        <span class="keyword">let</span> store = <span class="type">CNContactStore</span>()</div><div class="line">        </div><div class="line">        <span class="comment">//获取Fetch,并且指定要获取联系人中的什么属性</span></div><div class="line">        <span class="keyword">let</span> keys = [<span class="type">CNContactFamilyNameKey</span>, <span class="type">CNContactGivenNameKey</span>, <span class="type">CNContactNicknameKey</span>,</div><div class="line">                    <span class="type">CNContactOrganizationNameKey</span>, <span class="type">CNContactJobTitleKey</span>,</div><div class="line">                    <span class="type">CNContactDepartmentNameKey</span>, <span class="type">CNContactNoteKey</span>, <span class="type">CNContactPhoneNumbersKey</span>,</div><div class="line">                    <span class="type">CNContactEmailAddressesKey</span>, <span class="type">CNContactPostalAddressesKey</span>,</div><div class="line">                    <span class="type">CNContactDatesKey</span>, <span class="type">CNContactInstantMessageAddressesKey</span></div><div class="line">        ]</div><div class="line">        </div><div class="line">        <span class="comment">//创建请求对象，需要传入一个(keysToFetch: [CNKeyDescriptor]) 包含'CNKeyDescriptor'类型的数组</span></div><div class="line">        <span class="keyword">let</span> request = <span class="type">CNContactFetchRequest</span>(keysToFetch: keys <span class="keyword">as</span> [<span class="type">CNKeyDescriptor</span>])</div><div class="line">        </div><div class="line">        <span class="comment">//遍历所有联系人</span></div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            <span class="keyword">try</span> store.enumerateContacts(with: request, usingBlock: &#123;</div><div class="line">                (contact : <span class="type">CNContact</span>, stop : <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">ObjCBool</span>&gt;) -&gt; <span class="type">Void</span> <span class="keyword">in</span></div><div class="line">                </div><div class="line">                <span class="comment">//获取姓名</span></div><div class="line">                <span class="keyword">let</span> lastName = contact.familyName</div><div class="line">                <span class="keyword">let</span> firstName = contact.givenName</div><div class="line">                <span class="built_in">print</span>(<span class="string">"姓名：<span class="subst">\(lastName)</span><span class="subst">\(firstName)</span>"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取昵称</span></div><div class="line">                <span class="keyword">let</span> nikeName = contact.nickname</div><div class="line">                <span class="built_in">print</span>(<span class="string">"昵称：<span class="subst">\(nikeName)</span>"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取公司（组织）</span></div><div class="line">                <span class="keyword">let</span> organization = contact.organizationName</div><div class="line">                <span class="built_in">print</span>(<span class="string">"公司（组织）：<span class="subst">\(organization)</span>"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取职位</span></div><div class="line">                <span class="keyword">let</span> jobTitle = contact.jobTitle</div><div class="line">                <span class="built_in">print</span>(<span class="string">"职位：<span class="subst">\(jobTitle)</span>"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取部门</span></div><div class="line">                <span class="keyword">let</span> department = contact.departmentName</div><div class="line">                <span class="built_in">print</span>(<span class="string">"部门：<span class="subst">\(department)</span>"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取备注</span></div><div class="line">                <span class="keyword">let</span> note = contact.note</div><div class="line">                <span class="built_in">print</span>(<span class="string">"备注：<span class="subst">\(note)</span>"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取电话号码</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"电话："</span>)</div><div class="line">                <span class="keyword">for</span> phone <span class="keyword">in</span> contact.phoneNumbers &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名，比如work、home）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: phone.label!)</div><div class="line">                    <span class="comment">//获取号码</span></div><div class="line">                    <span class="keyword">let</span> value = phone.value.stringValue</div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t<span class="subst">\(label)</span>：<span class="subst">\(value)</span>"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="comment">//获取Email</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"Email："</span>)</div><div class="line">                <span class="keyword">for</span> email <span class="keyword">in</span> contact.emailAddresses &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: email.label!)</div><div class="line">                    <span class="comment">//获取值</span></div><div class="line">                    <span class="keyword">let</span> value = email.value</div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t<span class="subst">\(label)</span>：<span class="subst">\(value)</span>"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="comment">//获取地址</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"地址："</span>)</div><div class="line">                <span class="keyword">for</span> address <span class="keyword">in</span> contact.postalAddresses &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: address.label!)</div><div class="line">                    <span class="comment">//获取值</span></div><div class="line">                    <span class="keyword">let</span> detail = address.value</div><div class="line">                    <span class="keyword">let</span> contry = detail.value(forKey: <span class="type">CNPostalAddressCountryKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> state = detail.value(forKey: <span class="type">CNPostalAddressStateKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> city = detail.value(forKey: <span class="type">CNPostalAddressCityKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> street = detail.value(forKey: <span class="type">CNPostalAddressStreetKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> code = detail.value(forKey: <span class="type">CNPostalAddressPostalCodeKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> str = <span class="string">"国家:<span class="subst">\(contry)</span> 省:<span class="subst">\(state)</span> 城市:<span class="subst">\(city)</span> 街道:<span class="subst">\(street)</span> 邮编:<span class="subst">\(code)</span>"</span></div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t<span class="subst">\(label)</span>：<span class="subst">\(str)</span>"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="comment">//获取纪念日</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"纪念日："</span>)</div><div class="line">                <span class="keyword">for</span> date <span class="keyword">in</span> contact.dates &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: date.label!)</div><div class="line">                    <span class="comment">//获取值</span></div><div class="line">                    <span class="keyword">let</span> dateComponents = date.value <span class="keyword">as</span> <span class="type">DateComponents</span></div><div class="line">                    <span class="keyword">let</span> value = <span class="type">NSCalendar</span>.current.date(from: dateComponents)</div><div class="line">                    <span class="keyword">let</span> dateFormatter = <span class="type">DateFormatter</span>()</div><div class="line">                    dateFormatter.dateFormat = <span class="string">"yyyy年MM月dd日 HH:mm:ss"</span></div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t<span class="subst">\(label)</span>：<span class="subst">\(dateFormatter.string(from: value!)</span>)"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="comment">//获取即时通讯(IM)</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"即时通讯(IM)："</span>)</div><div class="line">                <span class="keyword">for</span> im <span class="keyword">in</span> contact.instantMessageAddresses &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: im.label!)</div><div class="line">                    <span class="comment">//获取值</span></div><div class="line">                    <span class="keyword">let</span> detail = im.value</div><div class="line">                    <span class="keyword">let</span> username = detail.value(forKey: <span class="type">CNInstantMessageAddressUsernameKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> service = detail.value(forKey: <span class="type">CNInstantMessageAddressServiceKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t<span class="subst">\(label)</span>：<span class="subst">\(username)</span> 服务:<span class="subst">\(service)</span>"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="built_in">print</span>(<span class="string">"----------------"</span>)</div><div class="line">                </div><div class="line">            &#125;)</div><div class="line">        &#125; <span class="keyword">catch</span> &#123;</div><div class="line">            <span class="built_in">print</span>(error)</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> UIKit</div><div class="line"><span class="keyword">import</span> Contacts</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">        </div><div class="line">        <span class="type">CNContactStore</span>().requestAccess(<span class="keyword">for</span>: .contacts) &#123; (isRight, error) <span class="keyword">in</span></div><div class="line">            <span class="keyword">if</span> isRight &#123;</div><div class="line">                <span class="comment">//授权成功加载数据。</span></div><div class="line">                <span class="keyword">self</span>.loadContactsData()</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">loadContactsData</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="comment">//获取授权状态</span></div><div class="line">        <span class="keyword">let</span> status = <span class="type">CNContactStore</span>.authorizationStatus(<span class="keyword">for</span>: .contacts)</div><div class="line">        <span class="comment">//判断当前授权状态</span></div><div class="line">        <span class="keyword">guard</span> status == .authorized <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</div><div class="line">        </div><div class="line">        <span class="comment">//创建通讯录对象</span></div><div class="line">        <span class="keyword">let</span> store = <span class="type">CNContactStore</span>()</div><div class="line">        </div><div class="line">        <span class="comment">//获取Fetch,并且指定要获取联系人中的什么属性</span></div><div class="line">        <span class="keyword">let</span> keys = [<span class="type">CNContactFamilyNameKey</span>, <span class="type">CNContactGivenNameKey</span>, <span class="type">CNContactNicknameKey</span>,</div><div class="line">                    <span class="type">CNContactOrganizationNameKey</span>, <span class="type">CNContactJobTitleKey</span>,</div><div class="line">                    <span class="type">CNContactDepartmentNameKey</span>, <span class="type">CNContactNoteKey</span>, <span class="type">CNContactPhoneNumbersKey</span>,</div><div class="line">                    <span class="type">CNContactEmailAddressesKey</span>, <span class="type">CNContactPostalAddressesKey</span>,</div><div class="line">                    <span class="type">CNContactDatesKey</span>, <span class="type">CNContactInstantMessageAddressesKey</span></div><div class="line">        ]</div><div class="line">        </div><div class="line">        <span class="comment">//创建请求对象，需要传入一个(keysToFetch: [CNKeyDescriptor]) 包含'CNKeyDescriptor'类型的数组</span></div><div class="line">        <span class="keyword">let</span> request = <span class="type">CNContactFetchRequest</span>(keysToFetch: keys <span class="keyword">as</span> [<span class="type">CNKeyDescriptor</span>])</div><div class="line">        </div><div class="line">        <span class="comment">//遍历所有联系人</span></div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            <span class="keyword">try</span> store.enumerateContacts(with: request, usingBlock: &#123;</div><div class="line">                (contact : <span class="type">CNContact</span>, stop : <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">ObjCBool</span>&gt;) -&gt; <span class="type">Void</span> <span class="keyword">in</span></div><div class="line">                </div><div class="line">                <span class="comment">//获取姓名</span></div><div class="line">                <span class="keyword">let</span> lastName = contact.familyName</div><div class="line">                <span class="keyword">let</span> firstName = contact.givenName</div><div class="line">                <span class="built_in">print</span>(<span class="string">"姓名：\(lastName)\(firstName)"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取昵称</span></div><div class="line">                <span class="keyword">let</span> nikeName = contact.nickname</div><div class="line">                <span class="built_in">print</span>(<span class="string">"昵称：\(nikeName)"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取公司（组织）</span></div><div class="line">                <span class="keyword">let</span> organization = contact.organizationName</div><div class="line">                <span class="built_in">print</span>(<span class="string">"公司（组织）：\(organization)"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取职位</span></div><div class="line">                <span class="keyword">let</span> jobTitle = contact.jobTitle</div><div class="line">                <span class="built_in">print</span>(<span class="string">"职位：\(jobTitle)"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取部门</span></div><div class="line">                <span class="keyword">let</span> department = contact.departmentName</div><div class="line">                <span class="built_in">print</span>(<span class="string">"部门：\(department)"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取备注</span></div><div class="line">                <span class="keyword">let</span> note = contact.note</div><div class="line">                <span class="built_in">print</span>(<span class="string">"备注：\(note)"</span>)</div><div class="line">                </div><div class="line">                <span class="comment">//获取电话号码</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"电话："</span>)</div><div class="line">                <span class="keyword">for</span> phone <span class="keyword">in</span> contact.phoneNumbers &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名，比如work、home）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: phone.label!)</div><div class="line">                    <span class="comment">//获取号码</span></div><div class="line">                    <span class="keyword">let</span> value = phone.value.stringValue</div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t\(label)：\(value)"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="comment">//获取Email</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"Email："</span>)</div><div class="line">                <span class="keyword">for</span> email <span class="keyword">in</span> contact.emailAddresses &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: email.label!)</div><div class="line">                    <span class="comment">//获取值</span></div><div class="line">                    <span class="keyword">let</span> value = email.value</div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t\(label)：\(value)"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="comment">//获取地址</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"地址："</span>)</div><div class="line">                <span class="keyword">for</span> address <span class="keyword">in</span> contact.postalAddresses &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: address.label!)</div><div class="line">                    <span class="comment">//获取值</span></div><div class="line">                    <span class="keyword">let</span> detail = address.value</div><div class="line">                    <span class="keyword">let</span> contry = detail.value(forKey: <span class="type">CNPostalAddressCountryKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> state = detail.value(forKey: <span class="type">CNPostalAddressStateKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> city = detail.value(forKey: <span class="type">CNPostalAddressCityKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> street = detail.value(forKey: <span class="type">CNPostalAddressStreetKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> code = detail.value(forKey: <span class="type">CNPostalAddressPostalCodeKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> str = <span class="string">"国家:\(contry) 省:\(state) 城市:\(city) 街道:\(street) 邮编:\(code)"</span></div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t\(label)：\(str)"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="comment">//获取纪念日</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"纪念日："</span>)</div><div class="line">                <span class="keyword">for</span> date <span class="keyword">in</span> contact.dates &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: date.label!)</div><div class="line">                    <span class="comment">//获取值</span></div><div class="line">                    <span class="keyword">let</span> dateComponents = date.value <span class="keyword">as</span> <span class="type">DateComponents</span></div><div class="line">                    <span class="keyword">let</span> value = <span class="type">NSCalendar</span>.current.date(from: dateComponents)</div><div class="line">                    <span class="keyword">let</span> dateFormatter = <span class="type">DateFormatter</span>()</div><div class="line">                    dateFormatter.dateFormat = <span class="string">"yyyy年MM月dd日 HH:mm:ss"</span></div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t\(label)：\(dateFormatter.string(from: value!))"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="comment">//获取即时通讯(IM)</span></div><div class="line">                <span class="built_in">print</span>(<span class="string">"即时通讯(IM)："</span>)</div><div class="line">                <span class="keyword">for</span> im <span class="keyword">in</span> contact.instantMessageAddresses &#123;</div><div class="line">                    <span class="comment">//获得标签名（转为能看得懂的本地标签名）</span></div><div class="line">                    <span class="keyword">let</span> label = <span class="type">CNLabeledValue</span>&lt;<span class="type">NSString</span>&gt;.localizedString(forLabel: im.label!)</div><div class="line">                    <span class="comment">//获取值</span></div><div class="line">                    <span class="keyword">let</span> detail = im.value</div><div class="line">                    <span class="keyword">let</span> username = detail.value(forKey: <span class="type">CNInstantMessageAddressUsernameKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="keyword">let</span> service = detail.value(forKey: <span class="type">CNInstantMessageAddressServiceKey</span>) ?? <span class="string">""</span></div><div class="line">                    <span class="built_in">print</span>(<span class="string">"\t\(label)：\(username) 服务:\(service)"</span>)</div><div class="line">                &#125;</div><div class="line">                </div><div class="line">                <span class="built_in">print</span>(<span class="string">"----------------"</span>)</div><div class="line">                </div><div class="line">            &#125;)</div><div class="line">        &#125; <span class="keyword">catch</span> &#123;</div><div class="line">            <span class="built_in">print</span>(error)</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p><strong>授权操作  如下操作，把所有可能出现的情况列入了， 如果有其他控制器层面的操作， 找到自己想要的枚举状态值即可</strong></p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">     </div><div class="line">     </div><div class="line">     <span class="comment">// 获取授权状态</span></div><div class="line">     <span class="keyword">let</span> status = <span class="type">CNContactStore</span>.authorizationStatus(<span class="keyword">for</span>: .contacts)</div><div class="line">     </div><div class="line">     <span class="keyword">if</span> status == .notDetermined &#123;</div><div class="line">         <span class="comment">/// 请求授权</span></div><div class="line">         <span class="comment">// 创建CNContactStore对象</span></div><div class="line">         <span class="keyword">let</span> store = <span class="type">CNContactStore</span>()</div><div class="line">         </div><div class="line">         <span class="comment">// 请求授权</span></div><div class="line">         store.requestAccess(<span class="keyword">for</span>: .contacts, completionHandler: &#123; (granted, error) <span class="keyword">in</span></div><div class="line">             </div><div class="line">             <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</div><div class="line">                 <span class="built_in">print</span>(error!)</div><div class="line">                 <span class="keyword">return</span></div><div class="line">             &#125;</div><div class="line">             </div><div class="line">             <span class="keyword">if</span> granted &#123;</div><div class="line">                 <span class="built_in">print</span>(<span class="string">"授权成功"</span>)</div><div class="line">             &#125;</div><div class="line">             <span class="keyword">else</span> &#123;</div><div class="line">                 <span class="built_in">print</span>(<span class="string">"授权失败"</span>)</div><div class="line">             &#125;</div><div class="line">             </div><div class="line">         &#125;)</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">else</span> <span class="keyword">if</span> status == .authorized &#123;</div><div class="line">         </div><div class="line">         <span class="comment">//The application is authorized to access contact data.(用户授权应用程序访问联系人数据)</span></div><div class="line">        <span class="built_in">print</span>(<span class="string">"用户授权应用程序访问联系人数据"</span>)</div><div class="line">         </div><div class="line">     &#125;<span class="keyword">else</span> <span class="keyword">if</span> status == .denied &#123;</div><div class="line">         </div><div class="line">         <span class="comment">//The user explicitly denied access to contact data for the application.(用户明确拒绝应用程序访问联系人数据。)</span></div><div class="line">          <span class="built_in">print</span>(<span class="string">"用户明确拒绝应用程序访问联系人数据"</span>)</div><div class="line">         </div><div class="line">     &#125;<span class="keyword">else</span> <span class="keyword">if</span> status == .restricted &#123;</div><div class="line">         </div><div class="line">         <span class="comment">//The application is not authorized to access contact data.The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.(应用程序没有权限访问联系人数据.并且用户无法更改应用程序的权限状态,可能是由于某种活动限制)</span></div><div class="line">          <span class="built_in">print</span>(<span class="string">"应用程序没有权限访问联系人数据.并且用户无法更改应用程序的权限状态,可能是由于某种活动限制"</span>)</div><div class="line">     &#125;</div><div class="line">     </div><div class="line">     </div><div class="line">     <span class="keyword">return</span> <span class="literal">true</span></div><div class="line"> &#125;</div></pre></td></tr></table></figure>
 <p>通常上面这种获取数据，然后把数据进行包装，传给后台， 后台在把信息返给我们， 这样如果用户对某一个联系人进行操作之后方便记录</p>
-<h3 id="ContactsUI调用系统界面"><a href="#ContactsUI调用系统界面" class="headerlink" title="ContactsUI调用系统界面"></a>ContactsUI调用系统界面</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> ContactsUI</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">        </div><div class="line">        present(<span class="keyword">self</span>.cpvc, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> cpvc: <span class="type">CNContactPickerViewController</span> = &#123;</div><div class="line">        <span class="keyword">let</span> cpvc = <span class="type">CNContactPickerViewController</span>()</div><div class="line">        cpvc.delegate = <span class="keyword">self</span></div><div class="line">        <span class="keyword">return</span> cpvc</div><div class="line">    &#125;()</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ViewController</span>: <span class="title">CNContactPickerDelegate</span></span></div><div class="line">&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">contactPicker</span><span class="params">(<span class="number">_</span> picker: CNContactPickerViewController, didSelect contact: CNContact)</span></span> &#123;</div><div class="line"><span class="comment">//        let lastName = contact.familyName</span></div><div class="line"><span class="comment">//        let firstName = contact.givenName</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span>  labelValue <span class="keyword">in</span> contact.phoneNumbers &#123;</div><div class="line">            <span class="keyword">let</span> nodel = labelValue.value </div><div class="line">            <span class="built_in">print</span>(<span class="string">"电话号是：<span class="subst">\(nodel )</span> "</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="ContactsUI调用系统界面"><a href="#ContactsUI调用系统界面" class="headerlink" title="ContactsUI调用系统界面"></a>ContactsUI调用系统界面</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> ContactsUI</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">super</span>.viewDidLoad()</div><div class="line">        </div><div class="line">        present(<span class="keyword">self</span>.cpvc, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> cpvc: <span class="type">CNContactPickerViewController</span> = &#123;</div><div class="line">        <span class="keyword">let</span> cpvc = <span class="type">CNContactPickerViewController</span>()</div><div class="line">        cpvc.delegate = <span class="keyword">self</span></div><div class="line">        <span class="keyword">return</span> cpvc</div><div class="line">    &#125;()</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ViewController</span>: <span class="title">CNContactPickerDelegate</span></span></div><div class="line">&#123;</div><div class="line">    <span class="function"><span class="keyword">func</span> <span class="title">contactPicker</span><span class="params">(<span class="number">_</span> picker: CNContactPickerViewController, didSelect contact: CNContact)</span></span> &#123;</div><div class="line"><span class="comment">//        let lastName = contact.familyName</span></div><div class="line"><span class="comment">//        let firstName = contact.givenName</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span>  labelValue <span class="keyword">in</span> contact.phoneNumbers &#123;</div><div class="line">            <span class="keyword">let</span> nodel = labelValue.value </div><div class="line">            <span class="built_in">print</span>(<span class="string">"电话号是：\(nodel ) "</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/28/Objective-C中的Block的使用详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Joey | A ridiculous programmer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/28/Objective-C中的Block的使用详解/" itemprop="url">
-                  Objective-C中的Block的使用详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-28T15:13:44+08:00">
-                2016-04-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>对于那些block总是迷糊的同学， 看我篇就够了， 看本文之前 首先你得了解一下block  请自行谷歌或百度</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/04/28/Objective-C中的Block的使用详解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1752,7 +1774,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1763,7 +1785,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="人生路漫漫," />
+  <meta name="keywords" content="一个可笑的程序员, A ridiculous programmer" />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="UIRefreshControl的简单使用，不说了直接上代码！！！">
+<meta name="description" content="最近读大话设计模式， 写一下Swift版本的Demo吧">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS系统原生的UIRefreshControl简单使用">
-<meta property="og:url" content="http://yoursite.com/2016/04/14/iOS系统原生的UIRefreshControl简单使用/index.html">
+<meta property="og:title" content="设计模式 - 简单工厂模式">
+<meta property="og:url" content="http://yoursite.com/2016/05/15/设计模式 - 简单工厂模式/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
-<meta property="og:description" content="UIRefreshControl的简单使用，不说了直接上代码！！！">
-<meta property="og:updated_time" content="2017-05-05T05:41:17.000Z">
+<meta property="og:description" content="最近读大话设计模式， 写一下Swift版本的Demo吧">
+<meta property="og:updated_time" content="2017-05-16T14:36:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS系统原生的UIRefreshControl简单使用">
-<meta name="twitter:description" content="UIRefreshControl的简单使用，不说了直接上代码！！！">
+<meta name="twitter:title" content="设计模式 - 简单工厂模式">
+<meta name="twitter:description" content="最近读大话设计模式， 写一下Swift版本的Demo吧">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/04/14/iOS系统原生的UIRefreshControl简单使用/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/05/15/设计模式 - 简单工厂模式/"/>
 
 
 
 
 
-  <title> iOS系统原生的UIRefreshControl简单使用 | Joey | A ridiculous programmer </title>
+  <title> 设计模式 - 简单工厂模式 | Joey | A ridiculous programmer </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -251,7 +251,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/14/iOS系统原生的UIRefreshControl简单使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/15/设计模式 - 简单工厂模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joey">
@@ -272,7 +272,7 @@
             
             
               
-                iOS系统原生的UIRefreshControl简单使用
+                设计模式 - 简单工厂模式
               
             
           </h1>
@@ -287,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-14T10:14:09+08:00">
-                2016-04-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-15T20:58:50+08:00">
+                2016-05-15
               </time>
             
 
@@ -310,8 +310,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS技术/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS技术</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -345,9 +345,10 @@
       
 
       
-        <p>UIRefreshControl的简单使用，不说了直接上代码！！！</p>
+        <p>最近读大话设计模式， 写一下Swift版本的Demo吧</p>
 <a id="more"></a>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> () &lt;<span class="title">UITableViewDelegate</span>, <span class="title">UITableViewDataSource</span>&gt;</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITableView</span> *tableView;</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span> ,<span class="keyword">strong</span>) <span class="built_in">UIRefreshControl</span> *refreshControl;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    </div><div class="line">    <span class="keyword">self</span>.tableView.delegate = <span class="keyword">self</span>;</div><div class="line">    <span class="keyword">self</span>.tableView.dataSource = <span class="keyword">self</span>;</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span> setUpRefreshController];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)setUpRefreshController &#123;</div><div class="line">    <span class="keyword">self</span>.refreshControl = [[<span class="built_in">UIRefreshControl</span> alloc] init];</div><div class="line">    <span class="keyword">self</span>.refreshControl.attributedTitle = [[<span class="built_in">NSAttributedString</span> alloc] initWithString:<span class="string">@"正在加载..."</span>];</div><div class="line">    <span class="keyword">self</span>.refreshControl.tintColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">    [<span class="keyword">self</span>.refreshControl addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(refresh) forControlEvents:<span class="built_in">UIControlEventValueChanged</span>];</div><div class="line">    [<span class="keyword">self</span>.tableView addSubview:<span class="keyword">self</span>.refreshControl];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)refresh &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"正在加载中..."</span>);</div><div class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">2.0</span> * <span class="built_in">NSEC_PER_SEC</span>)), dispatch_get_main_queue(), ^&#123;</div><div class="line">        [<span class="keyword">self</span>.refreshControl endRefreshing];</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"结束刷新...请求最新数据"</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">#pragma mark - UITableViewDelegate, UITableViewDataSource</span></div><div class="line">- (<span class="built_in">NSInteger</span>)tableView:(<span class="built_in">UITableView</span> *)tableView numberOfRowsInSection:(<span class="built_in">NSInteger</span>)section</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> <span class="number">12</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath</div><div class="line">&#123;</div><div class="line">    <span class="keyword">static</span> <span class="built_in">NSString</span> * <span class="keyword">const</span> ID = <span class="string">@"cellID"</span>;</div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:ID];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (cell == <span class="literal">nil</span>) &#123;</div><div class="line">        cell = [[<span class="built_in">UITableViewCell</span> alloc] initWithStyle:<span class="built_in">UITableViewCellStyleValue1</span> reuseIdentifier:ID];</div><div class="line">    &#125;</div><div class="line">    cell.textLabel.text = <span class="string">@"UIRefreshControl基本实用"</span>;</div><div class="line">    <span class="keyword">return</span> cell;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Foundation</div><div class="line"></div><div class="line"><span class="comment">// 计算的根类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Operation</span>: <span class="title">NSObject</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> numberA: <span class="type">Double</span>?</div><div class="line">    <span class="keyword">var</span> numberB: <span class="type">Double</span>?</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">getResult</span><span class="params">()</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">let</span> result: <span class="type">Double</span>  = <span class="number">0</span></div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 计算符操作类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationAdd</span>: <span class="title">Operation</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">getResult</span><span class="params">()</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">var</span> result = <span class="number">0.0</span></div><div class="line">        result = numberA! + numberB!</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationMulyi</span>: <span class="title">Operation</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">getResult</span><span class="params">()</span></span> -&gt; <span class="type">Double</span> &#123;</div><div class="line">        <span class="keyword">var</span> result = <span class="number">0.0</span></div><div class="line">        result = numberA! * numberB!</div><div class="line">        <span class="keyword">return</span> result</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"> .</div><div class="line"> . 多种运算类</div><div class="line"> .</div><div class="line"> **/</div><div class="line"></div><div class="line"><span class="comment">// 简单工厂模式</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationFactory</span>: <span class="title">NSObject</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">createOperate</span>(<span class="title">operate</span>: <span class="title">String</span>) -&gt; <span class="title">Operation</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">var</span> oper = <span class="type">Operation</span>()</div><div class="line">        </div><div class="line">        <span class="keyword">switch</span> operate &#123;</div><div class="line">        <span class="keyword">case</span> <span class="string">"+"</span>:</div><div class="line">            oper = <span class="type">OperationAdd</span>()</div><div class="line">        <span class="keyword">case</span> <span class="string">"*"</span>:</div><div class="line">            oper = <span class="type">OperationMulyi</span>()</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">break</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">return</span> oper</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 计算</span></div><div class="line"><span class="keyword">var</span> op = <span class="type">Operation</span>()</div><div class="line">op = <span class="type">OperationFactory</span>.createOperate(operate: <span class="string">"+"</span>)</div><div class="line">op.numberA = <span class="number">1.0</span></div><div class="line">op.numberB = <span class="number">2.0</span></div><div class="line"><span class="keyword">let</span> result = op.getResult()</div></pre></td></tr></table></figure>
+<p>想一下如果这样写代码， 我们又要加上一些其他的操作符，这样仅仅在创建一个类，继承一下Operation，在工厂里面添加一行代码 即可简单创建了，  今后想一下我们是否需要抽出一个抽象类来进行实体运算！</p>
 
       
     </div>
@@ -375,12 +376,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/人生路漫漫/" rel="tag"># 人生路漫漫</a>
-          
-        </div>
-      
 
       
         
@@ -390,14 +385,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/04/iOS访问系统通讯录/" rel="next" title="iOS访问系统通讯录">
+                <i class="fa fa-chevron-left"></i> iOS访问系统通讯录
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/21/Hexo的基本设置/" rel="prev" title="Hexo的基本设置">
-                Hexo的基本设置 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/30/swift-Class和Struct/" rel="prev" title="swift Class和Struct">
+                swift Class和Struct <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
