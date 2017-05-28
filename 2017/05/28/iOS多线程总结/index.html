@@ -1,0 +1,774 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="一个可笑的程序员, A ridiculous programmer" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文介绍GCD多线程的一些特殊的情况">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS多线程一些特殊的情况">
+<meta property="og:url" content="http://yoursite.com/2017/05/28/iOS多线程总结/index.html">
+<meta property="og:site_name" content="Joey | A ridiculous programmer">
+<meta property="og:description" content="本文介绍GCD多线程的一些特殊的情况">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/006tKfTcly1fg0z5pq7xcj30yq06cabc.jpg">
+<meta property="og:updated_time" content="2017-05-28T06:39:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS多线程一些特殊的情况">
+<meta name="twitter:description" content="本文介绍GCD多线程的一些特殊的情况">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/006tKfTcly1fg0z5pq7xcj30yq06cabc.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/28/iOS多线程总结/"/>
+
+
+
+
+
+  <title> iOS多线程一些特殊的情况 | Joey | A ridiculous programmer </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joey | A ridiculous programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JMoey</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/28/iOS多线程总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS多线程一些特殊的情况
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-28T11:47:21+08:00">
+                2017-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS技术/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文介绍GCD多线程的一些特殊的情况</p>
+<a id="more"></a>
+<p>原本以为多线程的知识，我个人了解的差不多了， 但是发现我还差的很远， so， 在此记录今后遇到的有关多线程的相关知识！</p>
+<h2 id="一、任务和队列"><a href="#一、任务和队列" class="headerlink" title="一、任务和队列"></a>一、任务和队列</h2><h3 id="1-GCD中有2个核心概念"><a href="#1-GCD中有2个核心概念" class="headerlink" title="1. GCD中有2个核心概念"></a>1. GCD中有2个核心概念</h3><blockquote>
+<p>（1）任务：执行什么操作</p>
+<p>（2）队列：用来存放任务</p>
+</blockquote>
+<h3 id="2-执行任务"><a href="#2-执行任务" class="headerlink" title="2. 执行任务"></a>2. 执行任务</h3><p> 用同步的方式执行任务 </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_sync</span>(<span class="built_in">dispatch_queue_t</span> queue, dispatch_block_t block);</div></pre></td></tr></table></figure>
+<p> 用异步的方式执行任务 </p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_async</span>(<span class="built_in">dispatch_queue_t</span> queue, dispatch_block_t block);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>参数说明：</p>
+<blockquote>
+<p>queue：队列</p>
+<p>block：任务</p>
+</blockquote>
+</blockquote>
+<p>任务：即操作，你想要干什么，说白了就是一段代码，在 GCD 中就是一个 Block，所以添加任务十分方便。任务有两种执行方式： <strong>同步执行</strong> 和 <strong>异步执行</strong>，他们之间的区别是 <strong><em>是否会创建新的线程</em></strong>。</p>
+<h3 id="任务两种方式"><a href="#任务两种方式" class="headerlink" title="任务两种方式"></a>任务两种方式</h3><p><strong>1、同步（sync）</strong> </p>
+<p>定义： 会阻塞当前正在使用的线程， 等待Block内部的代码执行完毕之后，才会继续往下执行。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// 同步</span></div><div class="line"><span class="built_in">dispatch_sync</span>(queue, ^&#123;</div><div class="line">    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><strong>2、异步（async）</strong></p>
+<p>定义： 不会阻塞当前正在使用的线程了，会继续向下执行代码，于此同时也开辟了另一条新的“路线” 同时执行Block内部的代码</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// 异步</span></div><div class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="队列两种方式"><a href="#队列两种方式" class="headerlink" title="队列两种方式"></a>队列两种方式</h3><p><strong>1、串行队列</strong></p>
+<p>定义： 一个任务一个任务的执行，FIFO原则</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">    </div><div class="line"><span class="comment">/// 串行队列</span></div><div class="line"><span class="comment">// 创建串行队列</span></div><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"cString"</span>, <span class="literal">NULL</span>);</div><div class="line"><span class="comment">// NULL可更换成DISPATCH_QUEUE_SERIAL</span></div><div class="line"></div><div class="line">    </div><div class="line"><span class="comment">// 主队列（GCD自带的一种特殊的串行队列， 放到主队列的任务都会放到主线程中去执行！）</span></div><div class="line"><span class="built_in">dispatch_queue_t</span> mainQueue = dispatch_get_main_queue();</div></pre></td></tr></table></figure>
+<p>提示：如果把任务放到主队列中进行处理，那么不论处理函数是异步的还是同步的都不会开启新的线程。</p>
+<hr>
+<p><strong>2、并发队列</strong></p>
+<p>定义：多条任务同时执行</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// 并行队列</span></div><div class="line"><span class="comment">// GCD提供了一个全局并发队列 (只要是并行任务一般都加入到这个队列。这是系统提供的一个并发队列)</span></div><div class="line"><span class="comment">// dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span></div></pre></td></tr></table></figure>
+<hr>
+<h3 id="当混合使用的时候"><a href="#当混合使用的时候" class="headerlink" title="当混合使用的时候"></a>当混合使用的时候</h3><p><img src="http://ww2.sinaimg.cn/large/006tKfTcly1fg0z5pq7xcj30yq06cabc.jpg" alt="Alt text"></p>
+<h2 id="主队列介绍："><a href="#主队列介绍：" class="headerlink" title="主队列介绍："></a>主队列介绍：</h2><p>主队列： 是和主线程相关联的队列， 主队列是GCD自带的一种特殊的<strong>串行队列</strong>， 放到主队列中的任务， 都会放到主线程中去执行</p>
+<p>提示：如果把任务放到主队列中进行处理，那么不论处理函数是异步的还是同步的都不会开启新的线程。</p>
+<p>获取主队列的方式：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue=dispatch_get_main_queue();</div></pre></td></tr></table></figure>
+<p>注意： 使用同步函数，在主线程中执行执行主队列的任务，会发上死循环，任务无法向下执行</p>
+<p>看下面的小栗子： 在ViewController里面创建一个按钮， 并且监听按钮的点击事件， 请问会发生什么？ （某陌面试题）</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)btnclick &#123;</div><div class="line">    <span class="built_in">dispatch_sync</span>(dispatch_get_main_queue(), ^&#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"按钮被点击了"</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>答案是： 按钮可以只能被点击一次，之后不能再点击， 且从始至终无任何打印结果</p>
+<p>分析： 按钮在被点击之前， 没有任何异议，就是一个普通的按钮， 当被点击的时候 由于是dispatch_get_main_queue是主队列（放在主队列中得任务，都会放到主线程中执行） dispatch_sync 会立即阻塞当前的主线程，然后把 Block 中的任务放到 main_queue 中，可是 main_queue 中的任务会被取出来放到主线程中执行，但主线程这个时候已经被阻塞了，所以 Block 中的任务就不能完成，它不完成，dispatch_sync 就会一直阻塞主线程，这就是死锁现象。导致主线程一直卡死。</p>
+<p>在多举几个例子</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue1 = dispatch_queue_create(<span class="string">"qweqwe"</span>, DISPATCH_QUEUE_SERIAL);</div><div class="line">    </div><div class="line"><span class="built_in">dispatch_sync</span>(queue1, ^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"12312312312312"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面的答案是： 有打印结果，就是普通的同步函数在串行队列执行任务， 如果打印非常耗时的话 会阻塞主线程， 其实上面的代码一点意义都没有，  还不如不创建多线程，就是混淆作用</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"qweqwe"</span>, DISPATCH_QUEUE_SERIAL);</div><div class="line">    </div><div class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"dispatch_async------"</span>);</div><div class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"dispatch_sync------"</span>);</div><div class="line">    &#125;);</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"dispatch_sync------after"</span>);</div><div class="line">&#125;);</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"dispatch_async------after"</span>);</div></pre></td></tr></table></figure>
+<p>打印结果：<br>dispatch_async——after</p>
+<p>dispatch_async——</p>
+<p>同理， 这回阻塞的不是主线程了  而是一个子线程内部死锁</p>
+<h2 id="队列组"><a href="#队列组" class="headerlink" title="队列组"></a>队列组</h2><p>队列组可以将很多队列添加到一个组里，这样做的好处是，当这个组里所有的任务都执行完了，队列组会通过一个方法通知我们。下面是使用方法，这是一个很实用的功能</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.创建队列组</span></div><div class="line">dispatch_group_t group = dispatch_group_create();</div><div class="line"><span class="comment">//2.创建队列</span></div><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="comment">//3.多次使用队列组的方法执行任务, 只有异步方法</span></div><div class="line"><span class="comment">//3.1.执行3次循环</span></div><div class="line">dispatch_group_async(group, queue, ^&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"group-01 - %@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//3.2.主队列执行8次循环</span></div><div class="line">dispatch_group_async(group, dispatch_get_main_queue(), ^&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"group-02 - %@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//3.3.执行5次循环</span></div><div class="line">dispatch_group_async(group, queue, ^&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"group-03 - %@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//4.都完成后会自动通知</span></div><div class="line">dispatch_group_notify(group, dispatch_get_main_queue(), ^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成 - %@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>打印结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">2017-05-28 14:26:19.326 多线程的基本上测试[8110:3590256] group-03 - &lt;NSThread: 0x6000000710c0&gt;&#123;number = 4, name = (null)&#125;</div><div class="line">2017-05-28 14:26:19.326 多线程的基本上测试[8110:3590259] group-01 - &lt;NSThread: 0x600000071340&gt;&#123;number = 3, name = (null)&#125;</div><div class="line">2017-05-28 14:26:19.326 多线程的基本上测试[8110:3590256] group-03 - &lt;NSThread: 0x6000000710c0&gt;&#123;number = 4, name = (null)&#125;</div><div class="line">2017-05-28 14:26:19.326 多线程的基本上测试[8110:3590259] group-01 - &lt;NSThread: 0x600000071340&gt;&#123;number = 3, name = (null)&#125;</div><div class="line">2017-05-28 14:26:19.327 多线程的基本上测试[8110:3590256] group-03 - &lt;NSThread: 0x6000000710c0&gt;&#123;number = 4, name = (null)&#125;</div><div class="line">2017-05-28 14:26:19.327 多线程的基本上测试[8110:3590259] group-01 - &lt;NSThread: 0x600000071340&gt;&#123;number = 3, name = (null)&#125;</div><div class="line">2017-05-28 14:26:19.327 多线程的基本上测试[8110:3590256] group-03 - &lt;NSThread: 0x6000000710c0&gt;&#123;number = 4, name = (null)&#125;</div><div class="line">2017-05-28 14:26:19.327 多线程的基本上测试[8110:3590144] group-02 - &lt;NSThread: 0x6080000685c0&gt;&#123;number = 1, name = main&#125;</div><div class="line">2017-05-28 14:26:19.328 多线程的基本上测试[8110:3590256] group-03 - &lt;NSThread: 0x6000000710c0&gt;&#123;number = 4, name = (null)&#125;</div><div class="line">2017-05-28 14:26:19.328 多线程的基本上测试[8110:3590144] group-02 - &lt;NSThread: 0x6080000685c0&gt;&#123;number = 1, name = main&#125;</div><div class="line">2017-05-28 14:26:19.378 多线程的基本上测试[8110:3590144] group-02 - &lt;NSThread: 0x6080000685c0&gt;&#123;number = 1, name = main&#125;</div><div class="line">2017-05-28 14:26:19.379 多线程的基本上测试[8110:3590144] group-02 - &lt;NSThread: 0x6080000685c0&gt;&#123;number = 1, name = main&#125;</div><div class="line">2017-05-28 14:26:19.379 多线程的基本上测试[8110:3590144] group-02 - &lt;NSThread: 0x6080000685c0&gt;&#123;number = 1, name = main&#125;</div><div class="line">2017-05-28 14:26:19.379 多线程的基本上测试[8110:3590144] group-02 - &lt;NSThread: 0x6080000685c0&gt;&#123;number = 1, name = main&#125;</div><div class="line">2017-05-28 14:26:19.379 多线程的基本上测试[8110:3590144] group-02 - &lt;NSThread: 0x6080000685c0&gt;&#123;number = 1, name = main&#125;</div><div class="line">2017-05-28 14:26:19.379 多线程的基本上测试[8110:3590144] group-02 - &lt;NSThread: 0x6080000685c0&gt;&#123;number = 1, name = main&#125;</div><div class="line">2017-05-28 14:26:19.380 多线程的基本上测试[8110:3590144] 完成 - &lt;NSThread: 0x6080000685c0&gt;&#123;number = 1, name = main&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="线程安全-线程同步"><a href="#线程安全-线程同步" class="headerlink" title="线程安全(线程同步)"></a>线程安全(线程同步)</h2><h3 id="1-什么是线程安全？"><a href="#1-什么是线程安全？" class="headerlink" title="1.什么是线程安全？"></a>1.什么是线程安全？</h3><p>所谓线程同步就是为了防止多个线程抢夺同一个资源造成的数据安全问题，所采取的一种措施。</p>
+<p>多条线程同时访问一段代码，不会造成数据混乱的情况</p>
+<p>互斥锁使用格式</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@synchronized</span>(锁对象) &#123; <span class="comment">// 需要锁定的代码  &#125;</span></div><div class="line">注意：锁定<span class="number">1</span>份代码只用<span class="number">1</span>把锁，用多把锁是无效的</div><div class="line"></div><div class="line">Tips: 互斥锁的优缺点</div><div class="line">优点：能有效防止因多线程抢夺资源造成的数据安全问题</div><div class="line">缺点：需要消耗大量的CPU资源</div><div class="line"> </div><div class="line">互斥锁的使用前提：多条线程抢夺同一块资源 </div><div class="line">相关专业术语：线程同步,多条线程按顺序地执行任务</div><div class="line">互斥锁，就是使用了线程同步技术</div><div class="line"> </div><div class="line">Objective-C中的原子和非原子属性</div><div class="line">OC在定义属性时有<span class="keyword">nonatomic</span>和atomic两种选择</div><div class="line">atomic：原子属性，为<span class="keyword">setter</span>方法加锁（默认就是atomic）</div><div class="line"><span class="keyword">nonatomic</span>：非原子属性，不会为<span class="keyword">setter</span>方法加锁</div><div class="line"> </div><div class="line">atomic加锁原理:</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">assign</span>, atomic) <span class="keyword">int</span> age;</div><div class="line"> - (<span class="keyword">void</span>)setAge:(<span class="keyword">int</span>)age</div><div class="line">&#123; </div><div class="line">    <span class="keyword">@synchronized</span>(<span class="keyword">self</span>) &#123;  </div><div class="line">       _age = age;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">原子和非原子属性的选择</div><div class="line"><span class="keyword">nonatomic</span>和atomic对比</div><div class="line">atomic：线程安全，需要消耗大量的资源</div><div class="line"><span class="keyword">nonatomic</span>：非线程安全，适合内存小的移动设备</div><div class="line"> </div><div class="line">iOS开发的建议</div><div class="line">所有属性都声明为<span class="keyword">nonatomic</span></div><div class="line">尽量避免多线程抢夺同一块资源</div><div class="line">尽量将加锁、资源抢夺的业务逻辑交给服务器端处理，减小移动客户端的压力</div></pre></td></tr></table></figure>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Tool</span> : <span class="title">NSObject</span> &lt;<span class="title">NSCopying</span>&gt;</span></div><div class="line"></div><div class="line">+ (<span class="keyword">instancetype</span>)sharedTool;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Tool</span></span></div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="keyword">id</span> _instance;</div><div class="line"></div><div class="line">+ (<span class="keyword">instancetype</span>)sharedTool &#123;</div><div class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</div><div class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</div><div class="line">        _instance = [[Tool alloc] init];</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> _instance;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<h2 id="dispatch-suspend-dispatchp-resume"><a href="#dispatch-suspend-dispatchp-resume" class="headerlink" title="dispatch_suspend/dispatchp_resume"></a>dispatch_suspend/dispatchp_resume</h2><p>dispatch_suspend，dispatch_resume提供了“挂起、恢复”队列的功能，简单来说，就是可以暂停、恢复队列上的任务。但是这里的“挂起”，并不能保证可以立即停止队列上正在运行的block</p>
+<blockquote>
+<p>挂起指定队列</p>
+<blockquote>
+<p>dispatch_suspend(queue);</p>
+</blockquote>
+</blockquote>
+<p>.</p>
+<blockquote>
+<p>恢复指定队列</p>
+<blockquote>
+<p>dispatchp_resume(queue);</p>
+</blockquote>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"com.test.gcd"</span>, DISPATCH_QUEUE_SERIAL);</div><div class="line"><span class="comment">//提交第一个block，延时5秒打印。</span></div><div class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">    sleep(<span class="number">5</span>);</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"After 5 seconds..."</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">//提交第二个block，也是延时5秒打印</span></div><div class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">    sleep(<span class="number">5</span>);</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"After 5 seconds again..."</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">//延时一秒</span></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"sleep 1 second..."</span>);</div><div class="line">sleep(<span class="number">1</span>);</div><div class="line"><span class="comment">//挂起队列</span></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"suspend..."</span>);</div><div class="line">dispatch_suspend(queue);</div><div class="line"><span class="comment">//延时10秒</span></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"sleep 10 second..."</span>);</div><div class="line">sleep(<span class="number">10</span>);</div><div class="line"><span class="comment">//恢复队列</span></div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"resume..."</span>);</div><div class="line">dispatch_resume(queue);</div></pre></td></tr></table></figure>
+<p>打印</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">sleep 1 second...</div><div class="line">suspend...</div><div class="line">sleep 10 second...</div><div class="line">After 5 seconds...</div><div class="line">resume...</div><div class="line">After 5 seconds again...</div></pre></td></tr></table></figure>
+<p>上面代码是某历软件的笔试题</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/17/加快数据库SQLite的插入速度/" rel="next" title="加快数据库SQLite的插入速度">
+                <i class="fa fa-chevron-left"></i> 加快数据库SQLite的插入速度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg"
+               alt="Joey" />
+          <p class="site-author-name" itemprop="name">Joey</p>
+           
+              <p class="site-description motion-element" itemprop="description">昆仑罗彩霞，为我独尊</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、任务和队列"><span class="nav-number">1.</span> <span class="nav-text">一、任务和队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-GCD中有2个核心概念"><span class="nav-number">1.1.</span> <span class="nav-text">1. GCD中有2个核心概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-执行任务"><span class="nav-number">1.2.</span> <span class="nav-text">2. 执行任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务两种方式"><span class="nav-number">1.3.</span> <span class="nav-text">任务两种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列两种方式"><span class="nav-number">1.4.</span> <span class="nav-text">队列两种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当混合使用的时候"><span class="nav-number">1.5.</span> <span class="nav-text">当混合使用的时候</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主队列介绍："><span class="nav-number">2.</span> <span class="nav-text">主队列介绍：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列组"><span class="nav-number">3.</span> <span class="nav-text">队列组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程安全-线程同步"><span class="nav-number">4.</span> <span class="nav-text">线程安全(线程同步)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是线程安全？"><span class="nav-number">4.1.</span> <span class="nav-text">1.什么是线程安全？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">5.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dispatch-suspend-dispatchp-resume"><span class="nav-number">6.</span> <span class="nav-text">dispatch_suspend/dispatchp_resume</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joey</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
