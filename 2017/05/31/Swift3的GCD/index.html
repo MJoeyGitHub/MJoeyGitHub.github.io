@@ -1,0 +1,745 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="一个可笑的程序员, A ridiculous programmer" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Swift3以后苹果把多线程GCD弄得更像Swift了~ so 记录一下两个语言之间的差距和用法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift3的GCD">
+<meta property="og:url" content="http://yoursite.com/2017/05/31/Swift3的GCD/index.html">
+<meta property="og:site_name" content="Joey | A ridiculous programmer">
+<meta property="og:description" content="Swift3以后苹果把多线程GCD弄得更像Swift了~ so 记录一下两个语言之间的差距和用法">
+<meta property="og:updated_time" content="2017-05-31T06:00:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift3的GCD">
+<meta name="twitter:description" content="Swift3以后苹果把多线程GCD弄得更像Swift了~ so 记录一下两个语言之间的差距和用法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/31/Swift3的GCD/"/>
+
+
+
+
+
+  <title> Swift3的GCD | Joey | A ridiculous programmer </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joey | A ridiculous programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JMoey</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/31/Swift3的GCD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Swift3的GCD
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T09:09:49+08:00">
+                2017-05-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Swift3以后苹果把多线程GCD弄得更像Swift了~ so 记录一下两个语言之间的差距和用法</p>
+<a id="more"></a>
+<h2 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h2><p>常见的操作， 在全局并发队列创建子线程， 然后回到主线程更新UI</p>
+<h3 id="OC"><a href="#OC" class="headerlink" title="OC"></a>OC</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</div><div class="line"></div><div class="line">    </div><div class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    </div><div class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">&#125;);</div><div class="line">```   </div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">### swift</span></div><div class="line"></div><div class="line">```swift</div><div class="line">DispatchQueue.global().async &#123; </div><div class="line">    print(<span class="string">"\(Thread.current)"</span>)</div><div class="line">    </div><div class="line">    DispatchQueue.main.sync &#123;</div><div class="line">        print(<span class="string">"\(Thread.current)"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>打印：</p>
+<blockquote>
+<p>number = 3, name = (null)</p>
+<p>number = 1, name = main</p>
+</blockquote>
+<p>global()是一个有着默认参数的静态函数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DispatchQueue</span> : <span class="title">DispatchObject</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">var</span> <span class="title">main</span>: <span class="title">DispatchQueue</span> </span></div><div class="line">    <span class="title">public</span> <span class="title">class</span> <span class="title">func</span> <span class="title">global</span>(<span class="title">qos</span>: <span class="title">DispatchQoS</span>.<span class="title">QoSClass</span> = <span class="title">default</span>) -&gt; <span class="title">DispatchQueue</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="创建队列"><a href="#创建队列" class="headerlink" title="创建队列"></a>创建队列</h2><h3 id="1-创建串行队列"><a href="#1-创建串行队列" class="headerlink" title="1. 创建串行队列"></a>1. 创建串行队列</h3><h3 id="OC-1"><a href="#OC-1" class="headerlink" title="OC"></a>OC</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"CStrng"</span>, DISPATCH_QUEUE_SERIAL);</div></pre></td></tr></table></figure>
+<h3 id="swift"><a href="#swift" class="headerlink" title="swift"></a>swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> <span class="number">_</span> = <span class="type">DispatchQueue</span>(label: <span class="string">"默认是串行队列"</span>)</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="2-创建并行队列"><a href="#2-创建并行队列" class="headerlink" title="2. 创建并行队列"></a>2. 创建并行队列</h3><h3 id="OC-2"><a href="#OC-2" class="headerlink" title="OC"></a>OC</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<h3 id="swift-1"><a href="#swift-1" class="headerlink" title="swift"></a>swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> concurrentQueue = <span class="type">DispatchQueue</span>(label: <span class="string">"mkiltech.com"</span>,attributes: .concurrent)</div></pre></td></tr></table></figure>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建并发队列</span></div><div class="line"><span class="keyword">let</span> concurrentQueue = <span class="type">DispatchQueue</span>(label: <span class="string">"我是并发标识符"</span>,attributes: .concurrent)</div><div class="line"><span class="comment">//创建串行队列</span></div><div class="line"><span class="keyword">let</span> serialQueue = <span class="type">DispatchQueue</span>(label: <span class="string">"我是串行标识符"</span>)</div><div class="line"></div><div class="line"><span class="comment">//串行异步</span></div><div class="line">serialQueue.async &#123;</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    <span class="built_in">print</span>(<span class="string">"serialTask 1"</span> + <span class="string">"<span class="subst">\(Thread.current)</span> "</span>)</div><div class="line">&#125;</div><div class="line">serialQueue.async &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"serialTask 2"</span> + <span class="string">"<span class="subst">\(Thread.current)</span> "</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//并发异步</span></div><div class="line">concurrentQueue.async &#123;</div><div class="line">    sleep(<span class="number">2</span>)</div><div class="line">    <span class="built_in">print</span>(<span class="string">"concurrentTask 1"</span> + <span class="string">"<span class="subst">\(Thread.current)</span> "</span>)</div><div class="line">&#125;</div><div class="line">concurrentQueue.async &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"concurrentTask 2"</span> + <span class="string">"<span class="subst">\(Thread.current)</span> "</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 打印结果</span></div><div class="line">concurrentTask <span class="number">2</span>&lt;<span class="type">NSThread</span>: <span class="number">0x60800007d640</span>&gt;&#123;number = <span class="number">3</span>, name = (null)&#125; </div><div class="line">concurrentTask <span class="number">1</span>&lt;<span class="type">NSThread</span>: <span class="number">0x60800007e340</span>&gt;&#123;number = <span class="number">4</span>, name = (null)&#125; </div><div class="line">serialTask <span class="number">1</span>&lt;<span class="type">NSThread</span>: <span class="number">0x600000078f00</span>&gt;&#123;number = <span class="number">5</span>, name = (null)&#125; </div><div class="line">serialTask <span class="number">2</span>&lt;<span class="type">NSThread</span>: <span class="number">0x600000078f00</span>&gt;&#123;number = <span class="number">5</span>, name = (null)&#125;</div></pre></td></tr></table></figure>
+<p>可以看出，默认情况下创建的是串行队列，指定.concurrent为并发队列。</p>
+<h3 id="队列完整的初始化方法"><a href="#队列完整的初始化方法" class="headerlink" title="队列完整的初始化方法"></a>队列完整的初始化方法</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">convenience</span> <span class="keyword">init</span>(label: <span class="type">String</span>, qos: <span class="type">DispatchQoS</span> = <span class="keyword">default</span>, attributes: <span class="type">DispatchQueue</span>.<span class="type">Attributes</span> = <span class="keyword">default</span>, autoreleaseFrequency: <span class="type">DispatchQueue</span>.<span class="type">AutoreleaseFrequency</span> = <span class="keyword">default</span>, target: <span class="type">DispatchQueue</span>? = <span class="keyword">default</span>)</div></pre></td></tr></table></figure>
+<p>参数详解： </p>
+<blockquote>
+<p>1、label 指定标识符，可任意填写字符串</p>
+<p>2、qos 队列的优先级，由常用的OC的DISPATCH_QUEUE_PRIORITY_DEFAULT转变而来， 现在则改为了QoSClass枚举</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">QoSClass</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">case</span> background</div><div class="line"></div><div class="line">        <span class="keyword">case</span> utility</div><div class="line"></div><div class="line">        <span class="keyword">case</span> `<span class="keyword">default</span>`</div><div class="line"></div><div class="line">        <span class="keyword">case</span> userInitiated</div><div class="line"></div><div class="line">        <span class="keyword">case</span> userInteractive</div><div class="line"></div><div class="line">        <span class="keyword">case</span> unspecified</div><div class="line"></div><div class="line">        <span class="keyword">public</span> <span class="keyword">init</span>?(rawValue: qos_class_t)</div><div class="line"></div><div class="line">        <span class="keyword">public</span> <span class="keyword">var</span> rawValue: qos_class_t &#123; <span class="keyword">get</span> &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>和原有的对应关系是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">DISPATCH_QUEUE_PRIORITY_HIGH:         .userInitiated</div><div class="line">DISPATCH_QUEUE_PRIORITY_DEFAULT:      .default</div><div class="line">DISPATCH_QUEUE_PRIORITY_LOW:          .utility</div><div class="line">DISPATCH_QUEUE_PRIORITY_BACKGROUND:   .background</div></pre></td></tr></table></figure>
+<blockquote>
+<p>3、attributes 是指明串行或是并发队列标识符（.concurrent为并发队列）</p>
+<p>4、autoreleaseFrequency为如下三个枚举值  </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">AutoreleaseFrequency</span> </span>&#123;</div><div class="line">        <span class="keyword">case</span> inherit</div><div class="line"></div><div class="line">        <span class="keyword">case</span> workItem</div><div class="line"></div><div class="line">        <span class="keyword">case</span> never</div><div class="line">    &#125;</div><div class="line">.inherit：不确定，之前默认的行为也是现在的默认值</div><div class="line">.workItem：为每个执行的项目创建和排除自动释放池,项目完成时清理临时对象</div><div class="line">.never：<span class="type">GCD</span>不为您管理自动释放池</div></pre></td></tr></table></figure>
+<h3 id="延时执行"><a href="#延时执行" class="headerlink" title="延时执行"></a>延时执行</h3><p>例如延时5秒执行</p>
+<h3 id="OC-3"><a href="#OC-3" class="headerlink" title="OC"></a>OC</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(<span class="number">5.0</span> * <span class="built_in">NSEC_PER_SEC</span>)), dispatch_get_main_queue(), ^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"延时5秒"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="swift-2"><a href="#swift-2" class="headerlink" title="swift"></a>swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="type">DispatchQueue</span>.main.asyncAfter(deadline: <span class="type">DispatchTime</span>.now() + <span class="number">5</span>) &#123; </div><div class="line">    <span class="built_in">print</span>(<span class="string">"延时5秒"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="DispatchGroup"><a href="#DispatchGroup" class="headerlink" title="DispatchGroup"></a>DispatchGroup</h3><p>如果想在dispatch_queue中所有的任务执行完成后再做某种操作可以使用DispatchGroup。原先的dispatch_group_t由现在的DispatchGroup对象代替。</p>
+<h3 id="swift-3"><a href="#swift-3" class="headerlink" title="swift"></a>swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> group = <span class="type">DispatchGroup</span>()</div><div class="line"></div><div class="line"><span class="keyword">let</span> queueDownload1 = <span class="type">DispatchQueue</span>(label: <span class="string">"com.Download1"</span>)</div><div class="line">queueDownload1.async(group: group) &#123;</div><div class="line">    <span class="comment">// up task 1</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> queueDownload2 = <span class="type">DispatchQueue</span>(label: <span class="string">"com.Download2"</span>)</div><div class="line">queueDownload2.async(group: group) &#123;</div><div class="line">    <span class="comment">// up task 2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">group.notify(queue: <span class="type">DispatchQueue</span>.main) &#123;</div><div class="line">    <span class="comment">// 等待下载完成</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>DispatchGroup会在组里的操作都完成后执行notify。</p>
+<hr>
+<h3 id="dispatch-once"><a href="#dispatch-once" class="headerlink" title="dispatch_once"></a>dispatch_once</h3><p>在Swift3中,dispatch_once被废弃了,应该被替换成了其他全局或者静态变量和常量.</p>
+<p>但是可以通过扩展来实现dispatch_once的掉过</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">extension</span> <span class="title">DispatchQueue</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">var</span> _onceTracker = [<span class="type">String</span>]()</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     Executes a block of code, associated with a unique token, only once.  The code is thread safe and will</div><div class="line">     only execute the code once even in the presence of multithreaded calls.</div><div class="line"></div><div class="line">     - parameter token: A unique reverse DNS style name such as com.vectorform.&lt;name&gt; or a GUID</div><div class="line">     - parameter block: Block to execute once</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">once</span>(<span class="title">token</span>: <span class="title">String</span>, <span class="title">block</span>:()-&gt;<span class="title">Void</span>) </span>&#123;</div><div class="line">        objc_sync_enter(<span class="keyword">self</span>)</div><div class="line">        <span class="keyword">defer</span> &#123; objc_sync_exit(<span class="keyword">self</span>) &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> _onceTracker.<span class="built_in">contains</span>(token) &#123;</div><div class="line">            <span class="keyword">return</span></div><div class="line">        &#125;</div><div class="line"></div><div class="line">        _onceTracker.append(token)</div><div class="line">        block()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用字符串token作为once的ID，执行once的时候加了一个锁，避免多线程下的token判断不准确的问题。<br>使用的时候可以传token</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="type">DispatchQueue</span>.once(token: <span class="string">"com.vectorform.test"</span>) &#123;</div><div class="line">    <span class="built_in">print</span>( <span class="string">"Do This Once!"</span> )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>或者使用UUID也可以：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">let</span> _onceToken = <span class="type">NSUUID</span>().uuidString</div><div class="line"></div><div class="line"><span class="type">DispatchQueue</span>.once(token: _onceToken) &#123;</div><div class="line">    <span class="built_in">print</span>( <span class="string">"Do This Once!"</span> )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>创建单例</strong> </p>
+<h3 id="OC-4"><a href="#OC-4" class="headerlink" title="OC"></a>OC</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype</span>)shareInstance &#123;</div><div class="line">    </div><div class="line">    <span class="keyword">static</span> ViewController *vc;</div><div class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</div><div class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</div><div class="line">        vc = [[ViewController alloc] init];</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> vc;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="swift-4"><a href="#swift-4" class="headerlink" title="swift"></a>swift</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyManager</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> <span class="keyword">let</span> shareInstance = <span class="type">MyManager</span>()</div><div class="line">    <span class="keyword">private</span> <span class="keyword">init</span>() &#123; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="封装开发中小工具"><a href="#封装开发中小工具" class="headerlink" title="封装开发中小工具"></a>封装开发中小工具</h2><h3 id="念念不忘dispatchAfter"><a href="#念念不忘dispatchAfter" class="headerlink" title="念念不忘dispatchAfter"></a>念念不忘dispatchAfter</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">dispatchAfter</span><span class="params">(callBack: @escaping <span class="params">()</span></span></span> -&gt; <span class="type">Void</span> ) &#123;</div><div class="line">    <span class="type">DispatchQueue</span>.main.asyncAfter(deadline: <span class="type">DispatchTime</span>.now() + <span class="number">3</span>) &#123; </div><div class="line">        callBack()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/28/iOS开发小记/" rel="next" title="iOS开发小记">
+                <i class="fa fa-chevron-left"></i> iOS开发小记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg"
+               alt="Joey" />
+          <p class="site-author-name" itemprop="name">Joey</p>
+           
+              <p class="site-description motion-element" itemprop="description">昆仑罗彩霞，为我独尊</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小试牛刀"><span class="nav-number">1.</span> <span class="nav-text">小试牛刀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OC"><span class="nav-number">1.1.</span> <span class="nav-text">OC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建队列"><span class="nav-number">2.</span> <span class="nav-text">创建队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-创建串行队列"><span class="nav-number">2.1.</span> <span class="nav-text">1. 创建串行队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC-1"><span class="nav-number">2.2.</span> <span class="nav-text">OC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swift"><span class="nav-number">2.3.</span> <span class="nav-text">swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建并行队列"><span class="nav-number">2.4.</span> <span class="nav-text">2. 创建并行队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC-2"><span class="nav-number">2.5.</span> <span class="nav-text">OC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swift-1"><span class="nav-number">2.6.</span> <span class="nav-text">swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例"><span class="nav-number">2.7.</span> <span class="nav-text">举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列完整的初始化方法"><span class="nav-number">2.8.</span> <span class="nav-text">队列完整的初始化方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延时执行"><span class="nav-number">2.9.</span> <span class="nav-text">延时执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC-3"><span class="nav-number">2.10.</span> <span class="nav-text">OC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swift-2"><span class="nav-number">2.11.</span> <span class="nav-text">swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DispatchGroup"><span class="nav-number">2.12.</span> <span class="nav-text">DispatchGroup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swift-3"><span class="nav-number">2.13.</span> <span class="nav-text">swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dispatch-once"><span class="nav-number">2.14.</span> <span class="nav-text">dispatch_once</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC-4"><span class="nav-number">2.15.</span> <span class="nav-text">OC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swift-4"><span class="nav-number">2.16.</span> <span class="nav-text">swift</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装开发中小工具"><span class="nav-number">3.</span> <span class="nav-text">封装开发中小工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#念念不忘dispatchAfter"><span class="nav-number">3.1.</span> <span class="nav-text">念念不忘dispatchAfter</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joey</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
