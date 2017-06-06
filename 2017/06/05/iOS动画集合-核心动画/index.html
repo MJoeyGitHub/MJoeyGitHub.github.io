@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="会让你慢慢想起我," />
+  <meta name="keywords" content="一个可笑的程序员, A ridiculous programmer" />
 
 
 
@@ -87,16 +87,30 @@
 
 
 
-<meta name="description" content="由于我的cocoapods 忽然出现问题了~  于是我找了几篇大牛的博客  最终总结下来2017年04月11日 的可以使用的版本~">
+<meta name="description" content="简介Core Animation的动画执行过程都是在后台操作的，不会阻塞主线程。不阻塞主线程，可以理解为在执行动画的时候还能点击（按钮）。
+Core Animation是直接作用在CALayer上的，并非UIView
+基本使用
+通过调用CALayer的addAnimation:forKey:方法增加CAAnimation对象到CALayer中，这样就能开始执行动画了
+通过调用CALayer的rem">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CocoaPods最新重装-2017.4.11">
-<meta property="og:url" content="http://yoursite.com/2017/04/11/CocoaPods最新重装-2017-4-11/index.html">
+<meta property="og:title" content="iOS动画集合-核心动画">
+<meta property="og:url" content="http://yoursite.com/2017/06/05/iOS动画集合-核心动画/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
-<meta property="og:description" content="由于我的cocoapods 忽然出现问题了~  于是我找了几篇大牛的博客  最终总结下来2017年04月11日 的可以使用的版本~">
-<meta property="og:updated_time" content="2017-04-12T02:47:45.000Z">
+<meta property="og:description" content="简介Core Animation的动画执行过程都是在后台操作的，不会阻塞主线程。不阻塞主线程，可以理解为在执行动画的时候还能点击（按钮）。
+Core Animation是直接作用在CALayer上的，并非UIView
+基本使用
+通过调用CALayer的addAnimation:forKey:方法增加CAAnimation对象到CALayer中，这样就能开始执行动画了
+通过调用CALayer的rem">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1644426-7d5b97696b996ed5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-06-05T13:15:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CocoaPods最新重装-2017.4.11">
-<meta name="twitter:description" content="由于我的cocoapods 忽然出现问题了~  于是我找了几篇大牛的博客  最终总结下来2017年04月11日 的可以使用的版本~">
+<meta name="twitter:title" content="iOS动画集合-核心动画">
+<meta name="twitter:description" content="简介Core Animation的动画执行过程都是在后台操作的，不会阻塞主线程。不阻塞主线程，可以理解为在执行动画的时候还能点击（按钮）。
+Core Animation是直接作用在CALayer上的，并非UIView
+基本使用
+通过调用CALayer的addAnimation:forKey:方法增加CAAnimation对象到CALayer中，这样就能开始执行动画了
+通过调用CALayer的rem">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1644426-7d5b97696b996ed5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -124,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/11/CocoaPods最新重装-2017-4-11/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/06/05/iOS动画集合-核心动画/"/>
 
 
 
 
 
-  <title> CocoaPods最新重装-2017.4.11 | Joey | A ridiculous programmer </title>
+  <title> iOS动画集合-核心动画 | Joey | A ridiculous programmer </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -251,7 +265,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/CocoaPods最新重装-2017-4-11/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/05/iOS动画集合-核心动画/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joey">
@@ -272,7 +286,7 @@
             
             
               
-                CocoaPods最新重装-2017.4.11
+                iOS动画集合-核心动画
               
             
           </h1>
@@ -287,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T17:35:50+08:00">
-                2017-04-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-05T19:05:30+08:00">
+                2017-06-05
               </time>
             
 
@@ -310,8 +324,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CocoaPods/" itemprop="url" rel="index">
-                    <span itemprop="name">CocoaPods</span>
+                  <a href="/categories/iOS技术/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS技术</span>
                   </a>
                 </span>
 
@@ -345,83 +359,31 @@
       
 
       
-        <p>由于我的cocoapods 忽然出现问题了~  于是我找了几篇大牛的博客  最终总结下来2017年04月11日 的可以使用的版本~ </p>
-<a id="more"></a>
-<h2 id="卸载cocoapods"><a href="#卸载cocoapods" class="headerlink" title="卸载cocoapods"></a>卸载cocoapods</h2><p>1.在装之前最好先卸载点老版本</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Core Animation的动画执行过程都是在后台操作的，不会阻塞主线程。不阻塞主线程，可以理解为在执行动画的时候还能点击（按钮）。</p>
+<p>Core Animation是直接作用在CALayer上的，并非UIView</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><blockquote>
+<p>通过调用CALayer的addAnimation:forKey:方法增加CAAnimation对象到CALayer中，这样就能开始执行动画了</p>
+<p>通过调用CALayer的removeAnimationForKey:方法可以停止CALayer中的动画</p>
+</blockquote>
+<h3 id="图结构"><a href="#图结构" class="headerlink" title="图结构"></a>图结构</h3><p><img src="http://upload-images.jianshu.io/upload_images/1644426-7d5b97696b996ed5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Alt text"></p>
 <blockquote>
-<p> $ sudo gem uninstall cocoapods</p>
-</blockquote>
-<p>2.查看本地安装过的cocopods相关东西</p>
+<p>CAAnimation是所有动画类的父类，但是它不能直接使用，应该使用它的子类。</p>
+<p> 常见属性有：</p>
 <blockquote>
-<p>$ gem list –local | grep cocoapods</p>
+<p>duration：动画的持续时间</p>
+<p>repeatCount：动画的重复次数</p>
+<p>timingFunction：控制动画运行的节奏</p>
+<p>( timingFunctionName的enum值如下：<br>     kCAMediaTimingFunctionLinear 匀速<br>     kCAMediaTimingFunctionEaseIn 慢进<br>     kCAMediaTimingFunctionEaseOut 慢出<br>     kCAMediaTimingFunctionEaseInEaseOut 慢进慢出<br>     kCAMediaTimingFunctionDefault 默认值（慢进慢出）)</p>
 </blockquote>
-<p>3.然后使用命令逐个删除</p>
-<blockquote>
-<p>$ sudo gem uninstall cocoapods-core</p>
-<p>$ sudo gem uninstall cocoapods-deintegrate</p>
 </blockquote>
-<h2 id="安装RVM"><a href="#安装RVM" class="headerlink" title="安装RVM"></a>安装RVM</h2><p>不管需不需要升级ruby，rvm可以让你拥有多个版本的Ruby，并且可以在多个版本之间自由切换。如果已经安装过跳到第2步（rvm -v 查看是否安装）</p>
-<blockquote>
-<p>curl -L get.rvm.io | bash -s stable (需要等一会)</p>
-<p>source ~/.bashrc</p>
-<p>source ~/.bash_profile</p>
-</blockquote>
-<p>等待终端加载完毕,后输入</p>
-<blockquote>
-<p>rvm -v</p>
-</blockquote>
-<p>如果能显示版本号则安装成功了。</p>
-<h3 id="第二步：安装ruby"><a href="#第二步：安装ruby" class="headerlink" title="第二步：安装ruby"></a>第二步：安装ruby</h3><p>CocoaPods目前安装需要Ruby的版本大于2.2.2,不然会报错：Error installing pods: activesupport requires Rubyversion &gt;= 2.2.2。目前Mac系统默认自带是2.0，所以需要升级。<br>查看已安装的ruby:</p>
-<blockquote>
-<p>rvm list</p>
-</blockquote>
-<p>如果已安装版本大于2.2.2，直接到第3步。</p>
-<blockquote>
-<p>ruby -v  //也可以查看ruby版本</p>
-</blockquote>
-<p>//列出ruby可安装的版本信息</p>
-<blockquote>
-<p>rvm list known</p>
-<p>rvm install 2.2.2  //安装一个ruby版本</p>
-<p>rvm use 2.2.2 –default</p>
-</blockquote>
-<h3 id="第三步：更换源"><a href="#第三步：更换源" class="headerlink" title="第三步：更换源"></a>第三步：更换源</h3><p>我们需要来修改更换源（由于国内被墙）所以要把源切换至ruby-china在终端执行以下命令</p>
-<p>目前网上文章大都是这面这种：</p>
-<h1 id="现在大错特错"><a href="#现在大错特错" class="headerlink" title="现在大错特错"></a>现在大错特错</h1><p>~~ sudo gem update –system ~~</p>
-<p>~~ gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a> ~~ </p>
-<p>~~ //等有反应之后再敲入以下命令 ~~ </p>
-<p>~~ gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a> ~~ </p>
-<p>~~  这里是个大坑：会报错_connect returned=1 errno=0 state=SSLv3 read servercertificateB:certificate verify failed (<a href="https://ruby.taobao.org/specs.4.8.gz" target="_blank" rel="external">https://ruby.taobao.org/specs.4.8.gz</a>) ~~ </p>
-<h1 id="下面才是对的！！！"><a href="#下面才是对的！！！" class="headerlink" title="下面才是对的！！！"></a>下面才是对的！！！</h1><p>这是因为taobao Gems 源已停止维护，现由 ruby-china 提供镜像服务，正确的操作是：</p>
-<blockquote>
-<p>sudo gem update –system</p>
-<p>gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a></p>
-<p>gem sources –remove <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a>       //如果安装了淘宝的镜像</p>
-</blockquote>
-<p>//等有反应之后再敲入以下命令</p>
-<blockquote>
-<p>gem sources -a <a href="https://gems.ruby-china.org/" target="_blank" rel="external">https://gems.ruby-china.org/</a></p>
-</blockquote>
-<p>为了验证你的Ruby镜像是并且仅是ruby-china，可以用以下命令查看：</p>
-<blockquote>
-<p>gem sources -l</p>
-</blockquote>
-<p>只有在终端中出现下面文字才表明你上面的命令是成功的：</p>
-<p><strong><em> CURRENT SOURCES </em></strong></p>
-<blockquote>
-<p><a href="https://gems.ruby-china.org/" target="_blank" rel="external">https://gems.ruby-china.org/</a></p>
-</blockquote>
-<h2 id="安装-coocapods"><a href="#安装-coocapods" class="headerlink" title="安装 coocapods"></a>安装 coocapods</h2><blockquote>
-<p>sudo gem install -n /usr/local/bin cocoapods</p>
-<p>pod setup</p>
-</blockquote>
-<p>这个过程会很慢，反正我挂了一天最后还是跟远端连接失败挂掉了，据说大多都是挂机一晚上才装好的，继续往下看吧，总有更好的。</p>
-<p>2）、执行：</p>
-<blockquote>
-<p>git clone <a href="https://git.coding.net/CocoaPods/Specs.git" target="_blank" rel="external">https://git.coding.net/CocoaPods/Specs.git</a> ~/.cocoapods/repos/master</p>
-<p>pod repo update</p>
-</blockquote>
-<h1 id="OK结束-祝大家升职加薪"><a href="#OK结束-祝大家升职加薪" class="headerlink" title="OK结束~ 祝大家升职加薪~"></a>OK结束~ 祝大家升职加薪~</h1>
+<p> 能用的动画类只有4个子类：CABasicAnimation、CAKeyframeAnimation、CATransition、CAAnimationGroup</p>
+<p> CAPropertyAnimation是CAAnimation的子类，但是不能直接使用，要想创建动画对象，应该使用它的两个子类：CABasicAnimation和CAKeyframeAnimation</p>
+<p>它有个NSString类型的keyPath属性，你可以指定CALayer的某个属性名为keyPath，并且对CALayer的这个属性的值进行修改，达到相应的动画效果。比如，指定@”position”为keyPath，就会修改CALayer的position属性的值，以达到平移的动画效果</p>
+<h3 id="核心动画类的常用属性"><a href="#核心动画类的常用属性" class="headerlink" title="核心动画类的常用属性"></a>核心动画类的常用属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//CATransform3D Key Paths : (example)transform.rotation.z</div><div class="line">     //rotation.x</div><div class="line">     //rotation.y</div><div class="line">     //rotation.z</div><div class="line">     //rotation 旋轉</div><div class="line">     //scale.x</div><div class="line">     //scale.y</div><div class="line">     //scale.z</div><div class="line">     //scale 缩放</div><div class="line">     //translation.x</div><div class="line">     //translation.y</div><div class="line">     //translation.z</div><div class="line">     //translation 平移</div><div class="line"></div><div class="line">     //CGPoint Key Paths : (example)position.x</div><div class="line">     //x</div><div class="line">     //y</div><div class="line"></div><div class="line">     //CGRect Key Paths : (example)bounds.size.width</div><div class="line">     //origin.x</div><div class="line">     //origin.y</div><div class="line">     //origin</div><div class="line">     //size.width</div><div class="line">     //size.height</div><div class="line">     //size</div><div class="line"></div><div class="line">     //opacity</div><div class="line">     //backgroundColor</div><div class="line">     //cornerRadius </div><div class="line">     //borderWidth</div><div class="line">     //contents </div><div class="line"></div><div class="line">     //Shadow Key Path:</div><div class="line">     //shadowColor </div><div class="line">     //shadowOffset </div><div class="line">     //shadowOpacity </div><div class="line">     //shadowRadius</div></pre></td></tr></table></figure>
+<p>代码样例</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">action</span><span class="params">()</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">    <span class="keyword">let</span> ani = <span class="type">CATransition</span>()</div><div class="line">    ani.type = kCATransitionMoveIn</div><div class="line">    ani.subtype = kCATransitionFromLeft</div><div class="line">    ani.duration = <span class="number">2.45</span></div><div class="line">    <span class="keyword">self</span>.view1.backgroundColor = <span class="type">UIColor</span>.black</div><div class="line">    <span class="keyword">self</span>.view1.layer.add(ani, forKey: <span class="string">"321"</span>)</div><div class="line">    </div><div class="line"><span class="comment">//        let ani = CABasicAnimation(keyPath: "translation.x")</span></div><div class="line"><span class="comment">//        ani.toValue = NSValue(cgPoint: self.view2.center)</span></div><div class="line"><span class="comment">//        ani.isRemovedOnCompletion = false</span></div><div class="line"><span class="comment">//        ani.fillMode = kCAFillModeForwards</span></div><div class="line"><span class="comment">//        ani.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)</span></div><div class="line"><span class="comment">//        self.view1.layer.add(ani, forKey: "123")</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>CAAnimationGroup用法大同小异</p>
+
       
     </div>
 
@@ -448,12 +410,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/会让你慢慢想起我/" rel="tag"># 会让你慢慢想起我</a>
-          
-        </div>
-      
 
       
         
@@ -463,8 +419,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/06/面试整理/" rel="next" title="面试整理">
-                <i class="fa fa-chevron-left"></i> 面试整理
+              <a href="/2017/05/31/Swift3的GCD/" rel="next" title="Swift3的GCD">
+                <i class="fa fa-chevron-left"></i> Swift3的GCD
               </a>
             
           </div>
@@ -472,10 +428,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/20/关于网络传输协议的知识点/" rel="prev" title="关于网络传输协议的知识点">
-                关于网络传输协议的知识点 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -604,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载cocoapods"><span class="nav-number">1.</span> <span class="nav-text">卸载cocoapods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装RVM"><span class="nav-number">2.</span> <span class="nav-text">安装RVM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：安装ruby"><span class="nav-number">2.1.</span> <span class="nav-text">第二步：安装ruby</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：更换源"><span class="nav-number">2.2.</span> <span class="nav-text">第三步：更换源</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#现在大错特错"><span class="nav-number"></span> <span class="nav-text">现在大错特错</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下面才是对的！！！"><span class="nav-number"></span> <span class="nav-text">下面才是对的！！！</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-coocapods"><span class="nav-number">1.</span> <span class="nav-text">安装 coocapods</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OK结束-祝大家升职加薪"><span class="nav-number"></span> <span class="nav-text">OK结束~ 祝大家升职加薪~</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本使用"><span class="nav-number">1.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图结构"><span class="nav-number">1.2.</span> <span class="nav-text">图结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心动画类的常用属性"><span class="nav-number">1.3.</span> <span class="nav-text">核心动画类的常用属性</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -252,6 +252,172 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/05/iOS动画集合-核心动画/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/05/iOS动画集合-核心动画/" itemprop="url">
+                  iOS动画集合-核心动画
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-05T19:05:30+08:00">
+                2017-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS技术/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Core Animation的动画执行过程都是在后台操作的，不会阻塞主线程。不阻塞主线程，可以理解为在执行动画的时候还能点击（按钮）。</p>
+<p>Core Animation是直接作用在CALayer上的，并非UIView</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><blockquote>
+<p>通过调用CALayer的addAnimation:forKey:方法增加CAAnimation对象到CALayer中，这样就能开始执行动画了</p>
+<p>通过调用CALayer的removeAnimationForKey:方法可以停止CALayer中的动画</p>
+</blockquote>
+<h3 id="图结构"><a href="#图结构" class="headerlink" title="图结构"></a>图结构</h3><p><img src="http://upload-images.jianshu.io/upload_images/1644426-7d5b97696b996ed5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Alt text"></p>
+<blockquote>
+<p>CAAnimation是所有动画类的父类，但是它不能直接使用，应该使用它的子类。</p>
+<p> 常见属性有：</p>
+<blockquote>
+<p>duration：动画的持续时间</p>
+<p>repeatCount：动画的重复次数</p>
+<p>timingFunction：控制动画运行的节奏</p>
+<p>( timingFunctionName的enum值如下：<br>     kCAMediaTimingFunctionLinear 匀速<br>     kCAMediaTimingFunctionEaseIn 慢进<br>     kCAMediaTimingFunctionEaseOut 慢出<br>     kCAMediaTimingFunctionEaseInEaseOut 慢进慢出<br>     kCAMediaTimingFunctionDefault 默认值（慢进慢出）)</p>
+</blockquote>
+</blockquote>
+<p> 能用的动画类只有4个子类：CABasicAnimation、CAKeyframeAnimation、CATransition、CAAnimationGroup</p>
+<p> CAPropertyAnimation是CAAnimation的子类，但是不能直接使用，要想创建动画对象，应该使用它的两个子类：CABasicAnimation和CAKeyframeAnimation</p>
+<p>它有个NSString类型的keyPath属性，你可以指定CALayer的某个属性名为keyPath，并且对CALayer的这个属性的值进行修改，达到相应的动画效果。比如，指定@”position”为keyPath，就会修改CALayer的position属性的值，以达到平移的动画效果</p>
+<h3 id="核心动画类的常用属性"><a href="#核心动画类的常用属性" class="headerlink" title="核心动画类的常用属性"></a>核心动画类的常用属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//CATransform3D Key Paths : (example)transform.rotation.z</div><div class="line">     //rotation.x</div><div class="line">     //rotation.y</div><div class="line">     //rotation.z</div><div class="line">     //rotation 旋轉</div><div class="line">     //scale.x</div><div class="line">     //scale.y</div><div class="line">     //scale.z</div><div class="line">     //scale 缩放</div><div class="line">     //translation.x</div><div class="line">     //translation.y</div><div class="line">     //translation.z</div><div class="line">     //translation 平移</div><div class="line"></div><div class="line">     //CGPoint Key Paths : (example)position.x</div><div class="line">     //x</div><div class="line">     //y</div><div class="line"></div><div class="line">     //CGRect Key Paths : (example)bounds.size.width</div><div class="line">     //origin.x</div><div class="line">     //origin.y</div><div class="line">     //origin</div><div class="line">     //size.width</div><div class="line">     //size.height</div><div class="line">     //size</div><div class="line"></div><div class="line">     //opacity</div><div class="line">     //backgroundColor</div><div class="line">     //cornerRadius </div><div class="line">     //borderWidth</div><div class="line">     //contents </div><div class="line"></div><div class="line">     //Shadow Key Path:</div><div class="line">     //shadowColor </div><div class="line">     //shadowOffset </div><div class="line">     //shadowOpacity </div><div class="line">     //shadowRadius</div></pre></td></tr></table></figure>
+<p>代码样例</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">action</span><span class="params">()</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">    <span class="keyword">let</span> ani = <span class="type">CATransition</span>()</div><div class="line">    ani.type = kCATransitionMoveIn</div><div class="line">    ani.subtype = kCATransitionFromLeft</div><div class="line">    ani.duration = <span class="number">2.45</span></div><div class="line">    <span class="keyword">self</span>.view1.backgroundColor = <span class="type">UIColor</span>.black</div><div class="line">    <span class="keyword">self</span>.view1.layer.add(ani, forKey: <span class="string">"321"</span>)</div><div class="line">    </div><div class="line"><span class="comment">//        let ani = CABasicAnimation(keyPath: "translation.x")</span></div><div class="line"><span class="comment">//        ani.toValue = NSValue(cgPoint: self.view2.center)</span></div><div class="line"><span class="comment">//        ani.isRemovedOnCompletion = false</span></div><div class="line"><span class="comment">//        ani.fillMode = kCAFillModeForwards</span></div><div class="line"><span class="comment">//        ani.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)</span></div><div class="line"><span class="comment">//        self.view1.layer.add(ani, forKey: "123")</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>CAAnimationGroup用法大同小异</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/31/Swift3的GCD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1550,153 +1716,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/26/git指令上传项目到远程仓库/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Joey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Joey | A ridiculous programmer">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/26/git指令上传项目到远程仓库/" itemprop="url">
-                  git指令上传项目到远程仓库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T14:10:47+08:00">
-                2017-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>如何上传代码到gitHub？ 本文有详细的使用介绍 </p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/26/git指令上传项目到远程仓库/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1746,7 +1765,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
