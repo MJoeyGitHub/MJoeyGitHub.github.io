@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
 <meta property="og:description" content="本文记载一些开发项目中一些小技巧">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006tKfTcly1fg186d6q9gj31kw0f3wk0.jpg">
-<meta property="og:updated_time" content="2017-06-01T07:27:41.000Z">
+<meta property="og:updated_time" content="2017-06-07T01:08:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发小记">
 <meta name="twitter:description" content="本文记载一些开发项目中一些小技巧">
@@ -352,6 +352,9 @@
 <h3 id="给appDelegate创建categtory-明确AppDelegate的业务逻辑"><a href="#给appDelegate创建categtory-明确AppDelegate的业务逻辑" class="headerlink" title="给appDelegate创建categtory 明确AppDelegate的业务逻辑"></a>给appDelegate创建categtory 明确AppDelegate的业务逻辑</h3><p><img src="http://ww1.sinaimg.cn/large/006tKfTcly1fg186d6q9gj31kw0f3wk0.jpg" alt="Alt text"></p>
 <p>其中一个分类的代码样例</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// .h</span></div><div class="line"><span class="meta">#import <span class="meta-string">"AppDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">AppDelegate</span> (<span class="title">UM</span>)</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)loadUM;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// .m</span></div><div class="line"><span class="meta">#import <span class="meta-string">"AppDelegate+UM.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">AppDelegate</span> (<span class="title">UM</span>)</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)loadUM &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"加载UM"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<h3 id="IBOutlet-的-didSet-（摘自喵神博客）"><a href="#IBOutlet-的-didSet-（摘自喵神博客）" class="headerlink" title="@IBOutlet 的 didSet （摘自喵神博客）"></a>@IBOutlet 的 didSet （摘自喵神博客）</h3><p>虽然这个小技巧并不会对 IB 或者 SB 的使用带来实质性的改善，但是我觉得还是值得一提。如果我们由于某种原因，确实需要在代码中设置一些 view 的属性，在连接 @IBOutlet 后，不少开发者会选择在 viewDidLoad 中进行设置。其实个人认为一个更合适的地方是在该 @IBoutlet 的 didSet 中进行。@IBoutlet 所修饰的也是一个属性，这个关键词所做的仅只是将属性暴露给 IB，所以它的各种属性观察方法 (willSet，didSet 等) 也会被正常调用。比如，下面我们实际项目中的一段代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@IBOutlet</span> <span class="keyword">var</span> myTextField: <span class="type">UITextField</span>! &#123;</div><div class="line">    <span class="keyword">didSet</span> &#123;</div><div class="line">        myTextField.layer.borderWidth = <span class="number">1.0</span></div><div class="line">        myTextField.layer.borderColor = <span class="type">UIColor</span>.lineGreen.cgColor</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这么做可以让设置 view 的代码和 view 本身相对集中，也可以使 viewDidLoad 更加干净。</p>
 <p><a href="http://www.jianshu.com/p/4523eafb4cd4" target="_blank" rel="external">技巧集合传送门</a></p>
 
       
@@ -530,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#给appDelegate创建categtory-明确AppDelegate的业务逻辑"><span class="nav-number">1.</span> <span class="nav-text">给appDelegate创建categtory 明确AppDelegate的业务逻辑</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#给appDelegate创建categtory-明确AppDelegate的业务逻辑"><span class="nav-number">1.</span> <span class="nav-text">给appDelegate创建categtory 明确AppDelegate的业务逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IBOutlet-的-didSet-（摘自喵神博客）"><span class="nav-number">2.</span> <span class="nav-text">@IBOutlet 的 didSet （摘自喵神博客）</span></a></li></ol></div>
             
 
           </div>
