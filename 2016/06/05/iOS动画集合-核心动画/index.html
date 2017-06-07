@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="全世界尽在眼底," />
+  <meta name="keywords" content="一个可笑的程序员, A ridiculous programmer" />
 
 
 
@@ -87,16 +87,18 @@
 
 
 
-<meta name="description" content="一直也没有一个像样的博客, 偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so 在此记录一下">
+<meta name="description" content="本文介绍基本属性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo的基本设置">
-<meta property="og:url" content="http://yoursite.com/2016/04/21/Hexo的基本设置/index.html">
+<meta property="og:title" content="iOS动画集合-核心动画">
+<meta property="og:url" content="http://yoursite.com/2016/06/05/iOS动画集合-核心动画/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
-<meta property="og:description" content="一直也没有一个像样的博客, 偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so 在此记录一下">
-<meta property="og:updated_time" content="2017-05-22T02:34:09.000Z">
+<meta property="og:description" content="本文介绍基本属性">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1644426-7d5b97696b996ed5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-06-07T00:47:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo的基本设置">
-<meta name="twitter:description" content="一直也没有一个像样的博客, 偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so 在此记录一下">
+<meta name="twitter:title" content="iOS动画集合-核心动画">
+<meta name="twitter:description" content="本文介绍基本属性">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1644426-7d5b97696b996ed5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -124,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/04/21/Hexo的基本设置/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/06/05/iOS动画集合-核心动画/"/>
 
 
 
 
 
-  <title> Hexo的基本设置 | Joey | A ridiculous programmer </title>
+  <title> iOS动画集合-核心动画 | Joey | A ridiculous programmer </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -251,7 +253,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/21/Hexo的基本设置/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/05/iOS动画集合-核心动画/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joey">
@@ -272,7 +274,7 @@
             
             
               
-                Hexo的基本设置
+                iOS动画集合-核心动画
               
             
           </h1>
@@ -287,8 +289,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-21T11:18:12+08:00">
-                2016-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-05T19:05:30+08:00">
+                2016-06-05
               </time>
             
 
@@ -310,8 +312,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/其他/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
+                  <a href="/categories/iOS技术/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS技术</span>
                   </a>
                 </span>
 
@@ -345,101 +347,32 @@
       
 
       
-        <p>一直也没有一个像样的博客, 偶然机会得知还有此种神奇的博客，遂研究了一番，主要是根据一下两个博文搭建的博客，so 在此记录一下</p>
+        <p>本文介绍基本属性</p>
 <a id="more"></a>
-<h3 id="这个是完美的配置教程"><a href="#这个是完美的配置教程" class="headerlink" title="这个是完美的配置教程"></a><a href="http://baixin.io/2015/08/HEXO搭建个人博客/" target="_blank" rel="external"><strong>这个是完美的配置教程</strong></a></h3><h3 id="这个是如何去写博客的基本语法"><a href="#这个是如何去写博客的基本语法" class="headerlink" title="这个是如何去写博客的基本语法"></a><a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external"><strong>这个是如何去写博客的基本语法</strong></a></h3><hr>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><blockquote>
-<ul>
-<li>安装node.js</li>
-<li>安装配置hexo</li>
-</ul>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Core Animation的动画执行过程都是在后台操作的，不会阻塞主线程。不阻塞主线程，可以理解为在执行动画的时候还能点击（按钮）。</p>
+<p>Core Animation是直接作用在CALayer上的，并非UIView</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><blockquote>
+<p>通过调用CALayer的addAnimation:forKey:方法增加CAAnimation对象到CALayer中，这样就能开始执行动画了</p>
+<p>通过调用CALayer的removeAnimationForKey:方法可以停止CALayer中的动画</p>
 </blockquote>
-<hr>
-<h3 id="终端指令下载Hexo"><a href="#终端指令下载Hexo" class="headerlink" title="终端指令下载Hexo"></a>终端指令下载Hexo</h3><blockquote>
-<ul>
-<li>npm install -g hexo-cli</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="如果出现问题-重新再前面加上-sudo-npm-install-g-hexo-cli"><a href="#如果出现问题-重新再前面加上-sudo-npm-install-g-hexo-cli" class="headerlink" title="如果出现问题  重新再前面加上 sudo npm install -g hexo-cli"></a>如果出现问题  重新再前面加上 sudo npm install -g hexo-cli</h3><blockquote>
-<ul>
-<li>hexo init blog （你的博客名字）</li>
-<li>cd blog （你的博客名字）</li>
-<li>npm install</li>
-<li>hexo server</li>
-</ul>
-</blockquote>
-<hr>
+<h3 id="图结构"><a href="#图结构" class="headerlink" title="图结构"></a>图结构</h3><p><img src="http://upload-images.jianshu.io/upload_images/1644426-7d5b97696b996ed5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Alt text"></p>
 <blockquote>
-<ul>
-<li>以上操作会弹出一个网址<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></li>
-<li>复制这个网址 到你的网页  发现你的博客搭建好了</li>
-</ul>
-</blockquote>
-<h3 id="创建你的博客"><a href="#创建你的博客" class="headerlink" title="创建你的博客"></a>创建你的博客</h3><blockquote>
-<ul>
-<li>hexo new “创建我的题材”</li>
-<li>hexo server 上传的hexo</li>
-<li>再进去 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 看看是否有你创建标题的名字（右上方位）</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="配置Github"><a href="#配置Github" class="headerlink" title="配置Github"></a>配置Github</h3><p>找到你创建博客的文件夹   找到这个文件  用Xcode打开这个 <a href="">vim _config.yml</a><br>翻到最下面，改成我这样子的</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https:<span class="comment">//github.com/你的账户名字/你的账户名字.github.io.git（助注意创建名字的时候 一定要用正好名字创建）</span></div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<p>Warning!!!</p>
+<p>CAAnimation是所有动画类的父类，但是它不能直接使用，应该使用它的子类。</p>
+<p> 常见属性有：</p>
 <blockquote>
-<ul>
-<li>其中上面的域名 是你在github 上面创新仓库的时自己创建的</li>
-<li>切记分号右边都要加空格</li>
-</ul>
+<p>duration：动画的持续时间</p>
+<p>repeatCount：动画的重复次数</p>
+<p>timingFunction：控制动画运行的节奏</p>
+<p>( timingFunctionName的enum值如下：<br>     kCAMediaTimingFunctionLinear 匀速<br>     kCAMediaTimingFunctionEaseIn 慢进<br>     kCAMediaTimingFunctionEaseOut 慢出<br>     kCAMediaTimingFunctionEaseInEaseOut 慢进慢出<br>     kCAMediaTimingFunctionDefault 默认值（慢进慢出）)</p>
 </blockquote>
-<hr>
-<h3 id="关联github仓库URL"><a href="#关联github仓库URL" class="headerlink" title="关联github仓库URL"></a>关联github仓库URL</h3><blockquote>
-<ul>
-<li>hexo generate (hexo g)  </li>
-<li>hexo deploy   (hexo d)</li>
-</ul>
 </blockquote>
-<h3 id="然后再浏览器中输入http-你的账户名字-github-io-就行了"><a href="#然后再浏览器中输入http-你的账户名字-github-io-就行了" class="headerlink" title="然后再浏览器中输入http://你的账户名字.github.io/就行了"></a>然后再浏览器中输入<a href="http://你的账户名字.github.io/就行了" target="_blank" rel="external">http://你的账户名字.github.io/就行了</a></h3><hr>
-<h3 id="关联SSH-key（此步骤是上传到GitHub，-如果只想在本地的话，放弃此步骤）"><a href="#关联SSH-key（此步骤是上传到GitHub，-如果只想在本地的话，放弃此步骤）" class="headerlink" title="关联SSH key（此步骤是上传到GitHub， 如果只想在本地的话，放弃此步骤）"></a>关联SSH key（此步骤是上传到GitHub， 如果只想在本地的话，放弃此步骤）</h3><blockquote>
-<ul>
-<li>git config –global user.name “你的名字”</li>
-<li>git config –global user.email “你的邮箱”</li>
-</ul>
-</blockquote>
-<p>查看配置命令：</p>
-<blockquote>
-<ul>
-<li>git config –list</li>
-</ul>
-</blockquote>
-<p>生成SSH密钥：</p>
-<blockquote>
-<ul>
-<li>ssh-keygen -t rsa -C “voidking@qq.com”</li>
-</ul>
-</blockquote>
-<p>找到id_rsa和id_rsa.pub文件夹 ，打开id_rsa.pub，复制全文。打开<a href="https://github.com/settings/ssh ，Add SSH key，粘贴进去" target="_blank" rel="external">https://github.com/settings/ssh</a> ，Add SSH key，粘贴进去</p>
-<p>再次部署</p>
-<blockquote>
-<ul>
-<li>hexo d，根据提示输入用户名和密码，等待一会儿便成功了</li>
-</ul>
-</blockquote>
-<hr>
-<h3 id="关于主题之NEXT"><a href="#关于主题之NEXT" class="headerlink" title="关于主题之NEXT"></a>关于主题之NEXT</h3><blockquote>
-<ul>
-<li>设置标签和分类的方法  打开主题内部的_config.ym这个文件  打开注释掉的分类 categories和标签 tags</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: Hexo的基本设置</div><div class="line">date: 2017-04-01 11:18:12</div><div class="line">tags: 你的标签</div><div class="line">categories: 你的分类</div><div class="line">---</div></pre></td></tr></table></figure>
-<hr>
-<h3 id="关于写blog的工具"><a href="#关于写blog的工具" class="headerlink" title="关于写blog的工具"></a>关于写blog的工具</h3><blockquote>
-<ul>
-<li>我用的是MacDown（MAC版本），个人觉得还可以</li>
-</ul>
-</blockquote>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><p> <a href="http://wp.huangshiyang.com/hexo" target="_blank" rel="external">常见问题解决方案</a></p>
+<p> 能用的动画类只有4个子类：CABasicAnimation、CAKeyframeAnimation、CATransition、CAAnimationGroup</p>
+<p> CAPropertyAnimation是CAAnimation的子类，但是不能直接使用，要想创建动画对象，应该使用它的两个子类：CABasicAnimation和CAKeyframeAnimation</p>
+<p>它有个NSString类型的keyPath属性，你可以指定CALayer的某个属性名为keyPath，并且对CALayer的这个属性的值进行修改，达到相应的动画效果。比如，指定@”position”为keyPath，就会修改CALayer的position属性的值，以达到平移的动画效果</p>
+<h3 id="核心动画类的常用属性"><a href="#核心动画类的常用属性" class="headerlink" title="核心动画类的常用属性"></a>核心动画类的常用属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">//CATransform3D Key Paths : (example)transform.rotation.z</div><div class="line">     //rotation.x</div><div class="line">     //rotation.y</div><div class="line">     //rotation.z</div><div class="line">     //rotation 旋轉</div><div class="line">     //scale.x</div><div class="line">     //scale.y</div><div class="line">     //scale.z</div><div class="line">     //scale 缩放</div><div class="line">     //translation.x</div><div class="line">     //translation.y</div><div class="line">     //translation.z</div><div class="line">     //translation 平移</div><div class="line"></div><div class="line">     //CGPoint Key Paths : (example)position.x</div><div class="line">     //x</div><div class="line">     //y</div><div class="line"></div><div class="line">     //CGRect Key Paths : (example)bounds.size.width</div><div class="line">     //origin.x</div><div class="line">     //origin.y</div><div class="line">     //origin</div><div class="line">     //size.width</div><div class="line">     //size.height</div><div class="line">     //size</div><div class="line"></div><div class="line">     //opacity</div><div class="line">     //backgroundColor</div><div class="line">     //cornerRadius </div><div class="line">     //borderWidth</div><div class="line">     //contents </div><div class="line"></div><div class="line">     //Shadow Key Path:</div><div class="line">     //shadowColor </div><div class="line">     //shadowOffset </div><div class="line">     //shadowOpacity </div><div class="line">     //shadowRadius</div></pre></td></tr></table></figure>
+<p>代码样例</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">action</span><span class="params">()</span></span> -&gt; <span class="type">Void</span> &#123;</div><div class="line">    <span class="keyword">let</span> ani = <span class="type">CATransition</span>()</div><div class="line">    ani.type = kCATransitionMoveIn</div><div class="line">    ani.subtype = kCATransitionFromLeft</div><div class="line">    ani.duration = <span class="number">2.45</span></div><div class="line">    <span class="keyword">self</span>.view1.backgroundColor = <span class="type">UIColor</span>.black</div><div class="line">    <span class="keyword">self</span>.view1.layer.add(ani, forKey: <span class="string">"321"</span>)</div><div class="line">    </div><div class="line"><span class="comment">//        let ani = CABasicAnimation(keyPath: "translation.x")</span></div><div class="line"><span class="comment">//        ani.toValue = NSValue(cgPoint: self.view2.center)</span></div><div class="line"><span class="comment">//        ani.isRemovedOnCompletion = false</span></div><div class="line"><span class="comment">//        ani.fillMode = kCAFillModeForwards</span></div><div class="line"><span class="comment">//        ani.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)</span></div><div class="line"><span class="comment">//        self.view1.layer.add(ani, forKey: "123")</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>CAAnimationGroup用法大同小异</p>
 
       
     </div>
@@ -467,12 +400,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/全世界尽在眼底/" rel="tag"># 全世界尽在眼底</a>
-          
-        </div>
-      
 
       
         
@@ -482,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/14/iOS系统原生的UIRefreshControl简单使用/" rel="next" title="iOS系统原生的UIRefreshControl简单使用">
-                <i class="fa fa-chevron-left"></i> iOS系统原生的UIRefreshControl简单使用
+              <a href="/2016/06/04/Swift代理模式/" rel="next" title="Swift代理模式">
+                <i class="fa fa-chevron-left"></i> Swift代理模式
               </a>
             
           </div>
@@ -492,8 +419,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/28/Objective-C中的Block的使用详解/" rel="prev" title="Objective-C中的Block的使用详解">
-                Objective-C中的Block的使用详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/06/09/Swift通知/" rel="prev" title="Swift通知">
+                Swift通知 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -623,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#这个是完美的配置教程"><span class="nav-number">1.</span> <span class="nav-text">这个是完美的配置教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这个是如何去写博客的基本语法"><span class="nav-number">2.</span> <span class="nav-text">这个是如何去写博客的基本语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Hexo"><span class="nav-number">3.</span> <span class="nav-text">安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终端指令下载Hexo"><span class="nav-number">4.</span> <span class="nav-text">终端指令下载Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果出现问题-重新再前面加上-sudo-npm-install-g-hexo-cli"><span class="nav-number">5.</span> <span class="nav-text">如果出现问题  重新再前面加上 sudo npm install -g hexo-cli</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建你的博客"><span class="nav-number">6.</span> <span class="nav-text">创建你的博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Github"><span class="nav-number">7.</span> <span class="nav-text">配置Github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联github仓库URL"><span class="nav-number">8.</span> <span class="nav-text">关联github仓库URL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#然后再浏览器中输入http-你的账户名字-github-io-就行了"><span class="nav-number">9.</span> <span class="nav-text">然后再浏览器中输入http://你的账户名字.github.io/就行了</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联SSH-key（此步骤是上传到GitHub，-如果只想在本地的话，放弃此步骤）"><span class="nav-number">10.</span> <span class="nav-text">关联SSH key（此步骤是上传到GitHub， 如果只想在本地的话，放弃此步骤）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于主题之NEXT"><span class="nav-number">11.</span> <span class="nav-text">关于主题之NEXT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于写blog的工具"><span class="nav-number">12.</span> <span class="nav-text">关于写blog的工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tips"><span class="nav-number"></span> <span class="nav-text">tips</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本使用"><span class="nav-number">1.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图结构"><span class="nav-number">1.2.</span> <span class="nav-text">图结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心动画类的常用属性"><span class="nav-number">1.3.</span> <span class="nav-text">核心动画类的常用属性</span></a></li></ol></li></ol></div>
             
 
           </div>
