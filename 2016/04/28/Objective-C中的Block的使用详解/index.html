@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/04/28/Objective-C中的Block的使用详解/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
 <meta property="og:description" content="对于那些block总是迷糊的同学， 看我篇就够了， 看本文之前 首先你得了解一下block  请自行谷歌或百度">
-<meta property="og:updated_time" content="2017-05-22T02:46:11.000Z">
+<meta property="og:updated_time" content="2017-06-10T05:00:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C中的Block的使用详解">
 <meta name="twitter:description" content="对于那些block总是迷糊的同学， 看我篇就够了， 看本文之前 首先你得了解一下block  请自行谷歌或百度">
@@ -389,6 +389,7 @@
 <p>把Block当做参数并不是马上就调用这个block </p>
 </blockquote>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">[<span class="built_in">UIView</span> animateWithDuration:<span class="number">0</span> animations:^&#123;</div><div class="line">    <span class="comment">// 这里面不是你写上了这句代码就马上调用里面的东西的</span></div><div class="line">    <span class="comment">// 具体什么时候调用时有 这个方法内部去实现的！</span></div><div class="line">&#125;];</div><div class="line">```  </div><div class="line"></div><div class="line">**什么时候要把Block当做参数去调用？**</div><div class="line"></div><div class="line">执行的时候是有外界去执行，  但是具体什么时候执行是自己决定的！</div><div class="line"></div><div class="line">说白了，就是Block给你一个平台让你去做， 但是Block是执行者</div><div class="line"></div><div class="line">```objectivec</div><div class="line">[<span class="built_in">UIView</span> animateWithDuration:<span class="number">0</span> animations:^&#123;</div><div class="line">	<span class="comment">// 做你想做的</span></div><div class="line">&#125;];</div><div class="line"></div><div class="line"><span class="comment">// 里面的大概方法的实现是</span></div><div class="line"></div><div class="line">- (Void)animateWithDuration:(<span class="keyword">int</span>)time animations:(Void(^)())animations &#123;</div><div class="line">	<span class="keyword">if</span> (animations) &#123;</div><div class="line">		animations()</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="http://www.imlifengfeng.com/blog/?p=457" target="_blank" rel="external">block很好的文章</a></p>
 
       
     </div>
