@@ -1,0 +1,714 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="一个可笑的程序员, A ridiculous programmer" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="以前总是写一堆堆乱糟糟的头像上传的代码， 现在整理一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发头像上传">
+<meta property="og:url" content="http://yoursite.com/2017/07/26/iOS开发头像上传/index.html">
+<meta property="og:site_name" content="Joey | A ridiculous programmer">
+<meta property="og:description" content="以前总是写一堆堆乱糟糟的头像上传的代码， 现在整理一下">
+<meta property="og:updated_time" content="2017-07-27T01:30:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发头像上传">
+<meta name="twitter:description" content="以前总是写一堆堆乱糟糟的头像上传的代码， 现在整理一下">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/26/iOS开发头像上传/"/>
+
+
+
+
+
+  <title> iOS开发头像上传 | Joey | A ridiculous programmer </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joey | A ridiculous programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JMoey</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/26/iOS开发头像上传/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS开发头像上传
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T15:07:57+08:00">
+                2017-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>以前总是写一堆堆乱糟糟的头像上传的代码， 现在整理一下</p>
+<a id="more"></a>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>调用系统相册/相机</li>
+<li>选取图片压缩格式、转成Data</li>
+<li>网络上传</li>
+</ul>
+<h3 id="调用系统相册-相机"><a href="#调用系统相册-相机" class="headerlink" title="调用系统相册/相机"></a>调用系统相册/相机</h3><blockquote>
+<p>UIAlertController调用<br>一些处理的细节</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImagePickerController</span> *picker = [[<span class="built_in">UIImagePickerController</span> alloc] init];</div><div class="line">picker.delegate = <span class="keyword">self</span>;</div><div class="line">picker.allowsEditing = <span class="literal">YES</span>;</div><div class="line">    </div><div class="line"><span class="comment">/// 修改弹出系统的页面的导航条内部的颜色（）</span></div><div class="line"><span class="comment">// 更改picker的导航条颜色 及item的tintcolor</span></div><div class="line"><span class="keyword">if</span> ([picker.navigationBar respondsToSelector:<span class="keyword">@selector</span>(setBarTintColor:)]) &#123;</div><div class="line">    [picker.navigationBar setBarTintColor:[<span class="built_in">UIColor</span> colorWithARGB:<span class="number">0xFFCE0C</span>]];</div><div class="line">    [picker.navigationBar setTranslucent:<span class="literal">NO</span>];</div><div class="line">    [picker.navigationBar setTintColor:[<span class="built_in">UIColor</span> colorWithARGB:<span class="number">0xFFCE0C</span>]];</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    [picker.navigationBar setBackgroundColor:[<span class="built_in">UIColor</span> colorWithARGB:<span class="number">0xFFCE0C</span>]];</div><div class="line">&#125;</div><div class="line"><span class="comment">// 更改titieview的字体颜色</span></div><div class="line"><span class="comment">//        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];</span></div><div class="line"><span class="comment">//        attrs[NSForegroundColorAttributeName] = [UIColor greenColor];</span></div><div class="line"><span class="comment">//        [picker.navigationBar setTitleTextAttributes:attrs];</span></div><div class="line">    </div><div class="line">    </div><div class="line"><span class="built_in">UIAlertController</span> *alertController = [<span class="built_in">UIAlertController</span> alertControllerWithTitle:LLStr(<span class="string">@"上传头像"</span>) message:<span class="literal">nil</span> preferredStyle: <span class="built_in">UIAlertControllerStyleActionSheet</span>];</div><div class="line">    </div><div class="line"><span class="built_in">UIAlertAction</span> *cancelAction = [<span class="built_in">UIAlertAction</span> actionWithTitle:LLStr(<span class="string">@"取消"</span>) style:<span class="built_in">UIAlertActionStyleCancel</span> handler:<span class="literal">nil</span>];</div><div class="line"><span class="built_in">UIAlertAction</span> *deleteAction = [<span class="built_in">UIAlertAction</span> actionWithTitle:LLStr(<span class="string">@"从相册选择"</span>) style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) &#123;</div><div class="line">    picker.sourceType = <span class="built_in">UIImagePickerControllerSourceTypePhotoLibrary</span>;</div><div class="line">    [<span class="keyword">self</span> presentViewController:picker animated:<span class="literal">YES</span> completion:<span class="literal">NULL</span>];</div><div class="line">&#125;];</div><div class="line"><span class="built_in">UIAlertAction</span> *archiveAction = [<span class="built_in">UIAlertAction</span> actionWithTitle:LLStr(<span class="string">@"拍照"</span>) style:<span class="built_in">UIAlertActionStyleDefault</span> handler:^(<span class="built_in">UIAlertAction</span> * _Nonnull action) &#123;</div><div class="line">    picker.sourceType = <span class="built_in">UIImagePickerControllerSourceTypeCamera</span>;</div><div class="line">    [<span class="keyword">self</span> presentViewController:picker animated:<span class="literal">YES</span> completion:<span class="literal">NULL</span>];</div><div class="line">&#125;];</div><div class="line">[alertController addAction:cancelAction];</div><div class="line">[alertController addAction:deleteAction];</div><div class="line">[alertController addAction:archiveAction];</div><div class="line">    </div><div class="line">[<span class="keyword">self</span> presentViewController:alertController animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>执行代理方法</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)imagePickerController:(<span class="built_in">UIImagePickerController</span> *)picker didFinishPickingMediaWithInfo:(<span class="built_in">NSDictionary</span>&lt;<span class="built_in">NSString</span> *,<span class="keyword">id</span>&gt; *)info&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 通过info字典获取选择的照片</span></div><div class="line">    <span class="built_in">UIImage</span> *image = [info valueForKey:<span class="built_in">UIImagePickerControllerEditedImage</span>];</div><div class="line">    <span class="comment">// 以itemKey为键，将照片存入ImageStore对象中</span></div><div class="line">    [[HeadsPicture sharedHeadsPicture] setImage:image forKey:<span class="string">@"HeadsPicture"</span>];</div><div class="line">    <span class="comment">// 将照片放入UIImageView对象</span></div><div class="line">    <span class="keyword">self</span>.avata = image; <span class="comment">// </span></div><div class="line">    <span class="comment">// 把一张照片保存到图库中，此时无论是这张照片是照相机拍的还是本身从图库中取出的，都会保存到图库中；</span></div><div class="line">    <span class="built_in">UIImageWriteToSavedPhotosAlbum</span>(image, <span class="keyword">self</span>, <span class="literal">nil</span>, <span class="literal">nil</span>);</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">// 压缩图片,如果图片要上传到服务器或者网络，则需要执行该步骤（压缩），第二个参数是压缩比例，转化为NSData类型；</span></div><div class="line">    <span class="built_in">NSData</span> *fileData = <span class="built_in">UIImageJPEGRepresentation</span>(image, <span class="number">0.5</span>);</div><div class="line">    <span class="keyword">self</span>.userImageData = fileData;</div><div class="line">    </div><div class="line">    <span class="comment">// [self.tableView reloadData]; （如果头像是在cell上显示 需要刷新）</span></div><div class="line">    </div><div class="line">    <span class="comment">// 关闭以模态形式显示的UIImagePickerController</span></div><div class="line">    [<span class="keyword">self</span> dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="选取图片压缩格式、转成Data-（实际上上面的代理方法已经处理了，-再次介绍一个封装的Little工具吧）"><a href="#选取图片压缩格式、转成Data-（实际上上面的代理方法已经处理了，-再次介绍一个封装的Little工具吧）" class="headerlink" title="选取图片压缩格式、转成Data （实际上上面的代理方法已经处理了， 再次介绍一个封装的Little工具吧）"></a>选取图片压缩格式、转成Data （实际上上面的代理方法已经处理了， 再次介绍一个封装的Little工具吧）</h3><blockquote>
+<p>HeadsPicture (某网友封装)</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//  .h</span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HeadsPicture</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line">+(<span class="keyword">instancetype</span>)sharedHeadsPicture;</div><div class="line"><span class="comment">/**</span></div><div class="line"> *  设置头像</div><div class="line"> *</div><div class="line"> *  @param image 图片</div><div class="line"> */</div><div class="line">-(<span class="keyword">void</span>)setImage:(<span class="built_in">UIImage</span> *)image forKey:(<span class="built_in">NSString</span> *)key;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> *  读取图片</div><div class="line"> *</div><div class="line"> */</div><div class="line">-(<span class="built_in">UIImage</span> *)imageForKey:(<span class="built_in">NSString</span> *)key;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// .m</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">"HeadsPicture.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">HeadsPicture</span>()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableDictionary</span> *dictionary;</div><div class="line"></div><div class="line">-(<span class="built_in">NSString</span> *)imagePathForKey:(<span class="built_in">NSString</span> *)key;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">HeadsPicture</span></span></div><div class="line"></div><div class="line">+ (<span class="keyword">instancetype</span>)sharedHeadsPicture&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">static</span> HeadsPicture *instance;</div><div class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</div><div class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</div><div class="line">        instance = [[<span class="keyword">self</span> alloc] initPrivate];</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> instance;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)initPrivate&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) &#123;</div><div class="line">        </div><div class="line">        _dictionary = [[<span class="built_in">NSMutableDictionary</span> alloc] init];</div><div class="line">        <span class="comment">//注册为低内存通知的观察者</span></div><div class="line">        <span class="built_in">NSNotificationCenter</span> *nc = [<span class="built_in">NSNotificationCenter</span> defaultCenter];</div><div class="line">        [nc addObserver:<span class="keyword">self</span></div><div class="line">               selector:<span class="keyword">@selector</span>(clearCaches:)</div><div class="line">                   name:<span class="built_in">UIApplicationDidReceiveMemoryWarningNotification</span></div><div class="line">                 object:<span class="literal">nil</span>];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)setImage:(<span class="built_in">UIImage</span> *)image forKey:(<span class="built_in">NSString</span> *)key&#123;</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span>.dictionary setObject:image forKey:key];</div><div class="line">    <span class="comment">//获取保存图片的全路径</span></div><div class="line">    <span class="built_in">NSString</span> *path = [<span class="keyword">self</span> imagePathForKey:key];</div><div class="line">    <span class="comment">//从图片提取JPEG格式的数据,第二个参数为图片压缩参数</span></div><div class="line">    <span class="built_in">NSData</span> *data = <span class="built_in">UIImageJPEGRepresentation</span>(image, <span class="number">0.5</span>);</div><div class="line">    <span class="comment">//以PNG格式提取图片数据</span></div><div class="line">    <span class="comment">//NSData *data = UIImagePNGRepresentation(image);</span></div><div class="line">    </div><div class="line">    <span class="comment">//将图片数据写入文件</span></div><div class="line">    [data writeToFile:path atomically:<span class="literal">YES</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">UIImage</span> *)imageForKey:(<span class="built_in">NSString</span> *)key&#123;</div><div class="line">    <span class="comment">//return [self.dictionary objectForKey:key];</span></div><div class="line">    <span class="built_in">UIImage</span> *image = [<span class="keyword">self</span>.dictionary objectForKey:key];</div><div class="line">    <span class="keyword">if</span> (!image) &#123;</div><div class="line">        <span class="built_in">NSString</span> *path = [<span class="keyword">self</span> imagePathForKey:key];</div><div class="line">        image = [<span class="built_in">UIImage</span> imageWithContentsOfFile:path];</div><div class="line">        <span class="keyword">if</span> (image) &#123;</div><div class="line">            </div><div class="line">            [<span class="keyword">self</span>.dictionary setObject:image forKey:key];</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            </div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"Error: unable to find %@"</span>, [<span class="keyword">self</span> imagePathForKey:key]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> image;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">NSString</span> *)imagePathForKey:(<span class="built_in">NSString</span> *)key&#123;</div><div class="line">    </div><div class="line">    <span class="built_in">NSArray</span> *documentDirectories = <span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>);</div><div class="line">    <span class="built_in">NSString</span> *documentDirectory = [documentDirectories firstObject];</div><div class="line">    <span class="keyword">return</span> [documentDirectory stringByAppendingPathComponent:key];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)clearCaches:(<span class="built_in">NSNotification</span> *)n&#123;</div><div class="line">    </div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Flushing %ld images out of the cache"</span>, (<span class="keyword">unsigned</span> <span class="keyword">long</span>)[<span class="keyword">self</span>.dictionary count]);</div><div class="line">    [<span class="keyword">self</span>.dictionary removeAllObjects];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="网络上传"><a href="#网络上传" class="headerlink" title="网络上传"></a>网络上传</h3><p>待续。。。。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/21/iOS跳转到系统设置页面/" rel="next" title="iOS跳转到系统设置页面">
+                <i class="fa fa-chevron-left"></i> iOS跳转到系统设置页面
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg"
+               alt="Joey" />
+          <p class="site-author-name" itemprop="name">Joey</p>
+           
+              <p class="site-description motion-element" itemprop="description">昆仑罗彩霞，为我独尊</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用系统相册-相机"><span class="nav-number">1.1.</span> <span class="nav-text">调用系统相册/相机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选取图片压缩格式、转成Data-（实际上上面的代理方法已经处理了，-再次介绍一个封装的Little工具吧）"><span class="nav-number">1.2.</span> <span class="nav-text">选取图片压缩格式、转成Data （实际上上面的代理方法已经处理了， 再次介绍一个封装的Little工具吧）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络上传"><span class="nav-number">1.3.</span> <span class="nav-text">网络上传</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joey</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
