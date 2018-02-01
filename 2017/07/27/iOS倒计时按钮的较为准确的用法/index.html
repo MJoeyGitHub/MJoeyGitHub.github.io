@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/27/iOS倒计时按钮的较为准确的用法/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
 <meta property="og:description" content="仅仅用timer开发的倒计时按钮，有的时候会出现一些问题， 比如在部分机型的手机上面  处于倒计时过程中的按钮， 会在锁屏的时候倒计时出现缓慢的甚至停止的情况， 所以总结出一套比较准确的倒计时代码。">
-<meta property="og:updated_time" content="2017-08-25T01:22:17.000Z">
+<meta property="og:updated_time" content="2017-08-28T03:38:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS倒计时按钮的较为准确的用法">
 <meta name="twitter:description" content="仅仅用timer开发的倒计时按钮，有的时候会出现一些问题， 比如在部分机型的手机上面  处于倒计时过程中的按钮， 会在锁屏的时候倒计时出现缓慢的甚至停止的情况， 所以总结出一套比较准确的倒计时代码。">
@@ -359,6 +359,11 @@
 <p>方法配置</p>
 </blockquote>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/// 调用倒计时（Open）</span></div><div class="line">- (<span class="keyword">void</span>)startTimer &#123;</div><div class="line">    [<span class="keyword">self</span> stopTimer];</div><div class="line">    <span class="keyword">self</span>.endDate = [[<span class="built_in">NSDate</span> date] timeIntervalSince1970] + <span class="number">61</span>; <span class="comment">// 60是因为Timer从1开始</span></div><div class="line">    <span class="keyword">self</span>.timer = [<span class="built_in">NSTimer</span> scheduledTimerWithTimeInterval:<span class="number">1</span> target:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(timerHandler) userInfo:<span class="literal">nil</span> repeats:<span class="literal">YES</span>];</div><div class="line">     [[<span class="built_in">NSRunLoop</span> currentRunLoop] addTimer:<span class="keyword">self</span>.timer forMode:<span class="built_in">NSRunLoopCommonModes</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)stopTimer &#123;</div><div class="line">    [<span class="keyword">self</span>.timer invalidate];</div><div class="line">    <span class="keyword">self</span>.timer = <span class="literal">nil</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)timerHandler &#123;</div><div class="line">    <span class="built_in">NSTimeInterval</span> date = [[<span class="built_in">NSDate</span> date] timeIntervalSince1970];</div><div class="line">    <span class="built_in">NSTimeInterval</span> time = <span class="keyword">self</span>.endDate - date;</div><div class="line">    <span class="keyword">if</span> (time &lt;= <span class="number">0</span>) &#123;</div><div class="line">        [<span class="keyword">self</span> stopTimer];</div><div class="line">        <span class="keyword">self</span>.timerButton.userInteractionEnabled = <span class="literal">YES</span>;</div><div class="line">        [<span class="keyword">self</span>.timerButton setTitle:LLStr(<span class="string">@"重新发送"</span>) forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">        </div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        [<span class="keyword">self</span>.timerButton setTitle:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%02d s"</span>, (<span class="keyword">int</span>)time] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="倒计时的时候文字位置来回跳动怎么办？"><a href="#倒计时的时候文字位置来回跳动怎么办？" class="headerlink" title="倒计时的时候文字位置来回跳动怎么办？"></a>倒计时的时候文字位置来回跳动怎么办？</h3><ul>
+<li>Arial 字体</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Label</span></div><div class="line"><span class="keyword">self</span>.numberLabel.font =  [<span class="built_in">UIFont</span> fontWithName:<span class="string">@"Arial"</span> size:<span class="number">90</span>];</div><div class="line"></div><div class="line"><span class="comment">// Button</span></div><div class="line"><span class="keyword">self</span>.numberButton.titleLabel.font =  [<span class="built_in">UIFont</span> fontWithName:<span class="string">@"Arial"</span> size:<span class="number">90</span>];</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -403,6 +408,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/24/蓝牙开发（一）/" rel="prev" title="蓝牙开发（一）">
+                蓝牙开发（一） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -474,7 +483,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -485,7 +494,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -531,7 +540,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#倒计时按钮"><span class="nav-number">1.</span> <span class="nav-text">倒计时按钮</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#倒计时按钮"><span class="nav-number">1.</span> <span class="nav-text">倒计时按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#倒计时的时候文字位置来回跳动怎么办？"><span class="nav-number">2.</span> <span class="nav-text">倒计时的时候文字位置来回跳动怎么办？</span></a></li></ol></div>
             
 
           </div>
@@ -554,7 +563,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
