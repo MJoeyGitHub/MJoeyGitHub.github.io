@@ -90,10 +90,10 @@
 <meta name="description" content="最近出去面试, 做一些面试的总结吧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试整理">
-<meta property="og:url" content="http://yoursite.com/2017/04/06/面试整理/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/04/06/面试整理以及相关面试题/index.html">
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
 <meta property="og:description" content="最近出去面试, 做一些面试的总结吧">
-<meta property="og:updated_time" content="2018-02-27T02:29:26.664Z">
+<meta property="og:updated_time" content="2018-05-22T07:34:18.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试整理">
 <meta name="twitter:description" content="最近出去面试, 做一些面试的总结吧">
@@ -124,7 +124,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/06/面试整理/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/06/面试整理以及相关面试题/"/>
 
 
 
@@ -251,7 +251,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/面试整理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/面试整理以及相关面试题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joey">
@@ -426,7 +426,125 @@
 <blockquote>
 <h3 id="如何保证一个线程永远不死-常驻线程"><a href="#如何保证一个线程永远不死-常驻线程" class="headerlink" title="如何保证一个线程永远不死(常驻线程)"></a>如何保证一个线程永远不死(常驻线程)</h3></blockquote>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 先创建一个线程用于测试</span></div><div class="line"> <span class="built_in">NSThread</span> *thread = [[<span class="built_in">NSThread</span> alloc]  initWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(play) object:<span class="literal">nil</span>];</div><div class="line">   [thread start];</div><div class="line"></div><div class="line">   <span class="comment">// 保证一个线程永远不死</span></div><div class="line">   [[<span class="built_in">NSRunLoop</span> currentRunLoop] addPort:[<span class="built_in">NSPort</span> port] forMode:<span class="built_in">NSDefaultRunLoopMode</span>];</div><div class="line">   [[<span class="built_in">NSRunLoop</span> currentRunLoop] run];</div><div class="line">   </div><div class="line">   </div><div class="line">   <span class="comment">// 在合适的地方处理线程的事件处理</span></div><div class="line">   [<span class="keyword">self</span> performSelector:<span class="keyword">@selector</span>(test) onThread:thread withObject:<span class="literal">nil</span> waitUntilDone:<span class="literal">NO</span>];</div></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="weak属性？"><a href="#weak属性？" class="headerlink" title="weak属性？"></a>weak属性？</h3></blockquote>
+<pre><code>1. 说说你理解weak属性?
+</code></pre><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">	<span class="keyword">weak</span>实现原理:</div><div class="line">	Runtime维护了一个<span class="keyword">weak</span>表，用于存储指向某个对象的所有<span class="keyword">weak</span>指针。</div><div class="line">	<span class="keyword">weak</span>表其实是一个hash（哈希）表，Key是所指对象的地址，</div><div class="line">	Value是<span class="keyword">weak</span>指针的地址（这个地址的值是所指对象的地址）数组。</div><div class="line"></div><div class="line"></div><div class="line"><span class="number">1</span>、初始化时：runtime会调用objc_initWeak函数，</div><div class="line">初始化一个新的<span class="keyword">weak</span>指针指向对象的地址。</div><div class="line"></div><div class="line"><span class="number">2</span>、添加引用时：objc_initWeak函数会调用 objc_storeWeak() 函数， objc_storeWeak() 的作用是更新指针指向，创建对应的弱引用表。</div><div class="line"></div><div class="line"><span class="number">3</span>、释放时，调用clearDeallocating函数。</div><div class="line">clearDeallocating函数首先根据对象地址获取所有<span class="keyword">weak</span>指针地址的数组，</div><div class="line">然后遍历这个数组把其中的数据设为<span class="literal">nil</span>，</div><div class="line">最后把这个entry从<span class="keyword">weak</span>表中删除，最后清理对象的记录。</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span>实现<span class="keyword">weak</span>后，为什么对象释放后会自动为<span class="literal">nil</span>？</div><div class="line"></div><div class="line">runtime 对注册的类， 会进行布局，</div><div class="line">对于 <span class="keyword">weak</span> 对象会放入一个 hash 表中。 </div><div class="line">用 <span class="keyword">weak</span> 指向的对象内存地址作为 key，</div><div class="line">当此对象的引用计数为 <span class="number">0</span> 的时候会 dealloc，</div><div class="line">假如 <span class="keyword">weak</span> 指向的对象内存地址是 a ，</div><div class="line">那么就会以 a 为键， 在这个 <span class="keyword">weak</span> 表中搜索，找到所有以 a 为键的 <span class="keyword">weak</span> 对象，</div><div class="line">从而设置为 <span class="literal">nil</span> 。</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="number">2.</span>当<span class="keyword">weak</span>引用指向的对象被释放时，又是如何去处理<span class="keyword">weak</span>指针的呢？</div><div class="line"></div><div class="line"><span class="number">1</span>、调用objc_release</div><div class="line"></div><div class="line"><span class="number">2</span>、因为对象的引用计数为<span class="number">0</span>，所以执行dealloc</div><div class="line"></div><div class="line"><span class="number">3</span>、在dealloc中，调用了_objc_rootDealloc函数</div><div class="line"></div><div class="line"><span class="number">4</span>、在_objc_rootDealloc中，调用了object_dispose函数</div><div class="line"></div><div class="line"><span class="number">5</span>、调用objc_destructInstance</div><div class="line"></div><div class="line"><span class="number">6</span>、最后调用objc_clear_deallocating,详细过程如下：</div><div class="line"></div><div class="line">a. 从<span class="keyword">weak</span>表中获取废弃对象的地址为键值的记录</div><div class="line"></div><div class="line">b. 将包含在记录中的所有附有 <span class="keyword">weak</span>修饰符变量的地址，赋值为   <span class="literal">nil</span></div><div class="line"></div><div class="line">c. 将<span class="keyword">weak</span>表中该记录删除</div><div class="line"></div><div class="line">d. 从引用计数表中删除废弃对象的地址为键值的记录</div></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<h3 id="相关面试题"><a href="#相关面试题" class="headerlink" title="相关面试题"></a>相关面试题</h3></blockquote>
+<ul>
+<li>如何令自己缩写的对象具有拷贝功能</li>
+</ul>
+<pre><code>需要实现NSCopying协议，如果是自定义的对象分为可变和不可变 那么就要同时实现NSCopying与 NSMutableCopying协议。
 
+具体步骤：
+1. 需要声明该类遵循NSCopying协议
+2. 实现NSCopying协议， 
+3. 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (id)copyWithZone:(NSZone *)zone;方法</div></pre></td></tr></table></figure>
+</code></pre><hr>
+<ul>
+<li><p>Swift mutating关键字的使用？</p>
+<p>  mutating 关键字修饰方法是为了能在该方法中修改<br>  struct 或是 enum 的变量，在设计接口的时候，<br>  也要考虑到使用者程序的扩展性。<br>  所以要多考虑使用mutating来修饰方法。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>UIView和CALayer是什么关系?</li>
+</ul>
+<pre><code> - 两者最明显的区别是 View可以接受并处理事件，而 Layer 不可以；
+ - 每个 UIView 内部都有一个 CALayer 在背后提供内容的绘制和显示，并且 UIView 的尺寸样式都由内部的 Layer 所提供。两者都有树状层级结构，layer 内部有 SubLayers，View 内部有 SubViews.但是 Layer 比 View 多了个AnchorPoint
+- 在 View显示的时候，UIView 做为 Layer 的 CALayerDelegate,View 的显示内容由内部的 CALayer 的 display 
+</code></pre><p>CALayer 是默认修改属性支持隐式动画的，在给 UIView 的 Layer 做动画的时候，View 作为 Layer 的代理，Layer 通过 actionForLayer:forKey:向 View请求相应的 action(动画行为)</p>
+<pre><code>- layer 内部维护着三分 layer tree,分别是 presentLayer Tree(动画树),modeLayer Tree(模型树), Render Tree (渲染树),在做 iOS动画的时候，我们修改动画的属性，在动画的其实是 Layer 的 presentLayer的属性值,而最终展示在界面上的其实是提供 View的modelLayer
+</code></pre><hr>
+<ul>
+<li><p>@synthesize 和 @dynamic 分别有什么作用</p>
+<ul>
+<li>@property有两个对应的词，一个是 @synthesize，一个是 @dynamic。如果 @synthesize和 @dynamic都没写，那么默认的就是@syntheszie var = _var;</li>
+<li><p>@synthesize 的语义是如果你没有手动实现 setter 方法和 getter 方法，那么编译器会自动为你加上这两个方法。</p>
+</li>
+<li><p>@dynamic 告诉编译器：属性的 setter 与 getter 方法由用户自己实现，不自动生成。（当然对于 readonly 的属性只需提供 getter 即可）。假如一个属性被声明为 @dynamic var，然后你没有提供 @setter方法和 @getter 方法，编译的时候没问题，但是当程序运行到 instance.var = someVar，由于缺 setter 方法会导致程序崩溃；或者当运行到 someVar = var 时，由于缺 getter 方法同样会导致崩溃。编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>static有什么作用?</p>
+<p> static关键字可以修饰函数和变量，作用如下：</p>
+<p> <strong>隐藏</strong></p>
+<p> 通过static修饰的函数或者变量，在该文件中，所有位于这条语句之后的函数都可以访问，而其他文件中的方法和函数则不行</p>
+<p> <strong>静态变量</strong></p>
+<p> 类方法不可以访问实例变量（函数），通过static修饰的实例变量（函数），可以被类    方法访问；</p>
+<p> <strong>持久</strong></p>
+<p> static修饰的变量，能且只能被初始化一次；</p>
+<p> <strong>默认初始化</strong></p>
+<p> static修饰的变量，默认初始化为0；</p>
+<hr>
+</li>
+<li><p>objc在向一个对象发送消息时，发生了什么？</p>
+<p>  objc_msgSend(recicver, selecter..)</p>
+<hr>
+</li>
+<li><p>runloop是来做什么的？runloop和线程有什么关系？主线程默认开启了runloop么？子线程呢？</p>
+<ol>
+<li>runloop与线程是一一对应的，一个runloop对应一个核心的线程，为什么说是核心的，是因为runloop是可以嵌套的，但是核心的只能有一个，他们的关系保存在一个全局的字典里。</li>
+<li>runloop是来管理线程的，当线程的runloop被开启后，线程会在执行完任务后进入休眠状态，有了任务就会被唤醒去执行任务。<br>runloop在第一次获取时被创建，在线程结束时被销毁。</li>
+<li>对于主线程来说，runloop在程序一启动就默认创建好了。<br>对于子线程来说，</li>
+<li>runloop是懒加载的，只有当我们使用的时候才会创建，所以在子线程用定时器要注意：确保子线程的runloop被创建，不然定时器不会回调。    </li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>如何手动触发一个value的KVO</li>
+</ul>
+<p>键值观察通知依赖于 NSObject 的两个方法: willChangeValueForKey: 和 didChangevlueForKey: 。在一个被观察属性发生改变之前， willChangeValueForKey: 一定会被调用，这就<br>会记录旧的值。而当改变发生后， didChangeValueForKey: 会被调用，继而 observeValueForKey:ofObject:change:context: 也会被调用。如果可以手动实现这些调用，就可以实现“手动触发”了。</p>
+<hr>
+<ul>
+<li>ViewController生命周期</li>
+</ul>
+<p>按照执行顺序排列：</p>
+<ol>
+<li>initWithCoder：通过nib文件初始化时触发。</li>
+<li>awakeFromNib：nib文件被加载的时候，会发生一个awakeFromNib的消息到nib文件中的每个对象。      </li>
+<li>loadView：开始加载视图控制器自带的view。</li>
+<li>viewDidLoad：视图控制器的view被加载完成。  </li>
+<li>viewWillAppear：视图控制器的view将要显示在window上。</li>
+<li>updateViewConstraints：视图控制器的view开始更新AutoLayout约束。</li>
+<li>viewWillLayoutSubviews：视图控制器的view将要更新内容视图的位置。</li>
+<li>viewDidLayoutSubviews：视图控制器的view已经更新视图的位置。</li>
+<li>viewDidAppear：视图控制器的view已经展示到window上。 </li>
+<li>viewWillDisappear：视图控制器的view将要从window上消失。</li>
+<li>viewDidDisappear：视图控制器的view已经从window上消失。</li>
+</ol>
+<hr>
+<ul>
+<li>服务器能否知道APNS推送后有没有到达客户端的方法？</li>
+</ul>
+<hr>
+<ul>
+<li>OC完整的消息转发机制?    </li>
+<li></li>
+</ul>
+<pre><code><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+</code></pre>
       
     </div>
 
@@ -609,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试第一家-（电话面试）"><span class="nav-number">2.</span> <span class="nav-text">面试第一家 （电话面试）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程安全？"><span class="nav-number">2.1.</span> <span class="nav-text">什么是线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你接触到的项目，哪些场景运用到了线程安全？"><span class="nav-number">2.2.</span> <span class="nav-text">你接触到的项目，哪些场景运用到了线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你实现过单例模式么？-你能用几种实现方案？"><span class="nav-number">2.3.</span> <span class="nav-text">你实现过单例模式么？ 你能用几种实现方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目开发中，你用单例都做了什么？"><span class="nav-number">2.4.</span> <span class="nav-text">项目开发中，你用单例都做了什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忽然自己想到了几个估计会用到的面试题"><span class="nav-number">3.</span> <span class="nav-text">忽然自己想到了几个估计会用到的面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你用过什么调试工具？-调试过程中有什么意外？"><span class="nav-number">3.1.</span> <span class="nav-text">开发过程中， 你用过什么调试工具？ 调试过程中有什么意外？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你是怎么优化项目的，请举例说明？"><span class="nav-number">3.2.</span> <span class="nav-text">开发过程中， 你是怎么优化项目的，请举例说明？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你碰到那些技术难点？是怎么解决的？"><span class="nav-number">3.3.</span> <span class="nav-text">开发过程中， 你碰到那些技术难点？是怎么解决的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APNS的基本原理"><span class="nav-number">3.4.</span> <span class="nav-text">APNS的基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本"><span class="nav-number">3.5.</span> <span class="nav-text">基本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细说明"><span class="nav-number">3.6.</span> <span class="nav-text">详细说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试第二家"><span class="nav-number">4.</span> <span class="nav-text">面试第二家</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#好了言归正传：-说面试！"><span class="nav-number">4.1.</span> <span class="nav-text">好了言归正传： 说面试！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APNS的基本原理？"><span class="nav-number">4.2.</span> <span class="nav-text">APNS的基本原理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用过多线程么？说一说你用到什么地方了？怎么用的！"><span class="nav-number">4.3.</span> <span class="nav-text">用过多线程么？说一说你用到什么地方了？怎么用的！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift中-class和Struct有什么区别！"><span class="nav-number">4.4.</span> <span class="nav-text">Swift中 class和Struct有什么区别！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift中-你用过map么？"><span class="nav-number">4.5.</span> <span class="nav-text">Swift中 你用过map么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift中-你用过泛型么？"><span class="nav-number">4.6.</span> <span class="nav-text">Swift中 你用过泛型么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中你封装过网络请求么"><span class="nav-number">4.7.</span> <span class="nav-text">OC中你封装过网络请求么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中消息传输机制有哪些？"><span class="nav-number">4.8.</span> <span class="nav-text">OC中消息传输机制有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中你最喜欢的Api是哪一个？"><span class="nav-number">4.9.</span> <span class="nav-text">OC中你最喜欢的Api是哪一个？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态库和动态库的问题？"><span class="nav-number">4.10.</span> <span class="nav-text">静态库和动态库的问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#都是Swift是面向协议编程-你用过么？"><span class="nav-number">4.11.</span> <span class="nav-text">都是Swift是面向协议编程 你用过么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人总结"><span class="nav-number">4.12.</span> <span class="nav-text">个人总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说说类目-Categtory"><span class="nav-number">4.13.</span> <span class="nav-text">说说类目 Categtory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说说类目-Categtory-的基本实现原理"><span class="nav-number">4.14.</span> <span class="nav-text">说说类目 Categtory 的基本实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop的基础知识"><span class="nav-number">4.15.</span> <span class="nav-text">RunLoop的基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop模式有哪些？"><span class="nav-number">4.16.</span> <span class="nav-text">RunLoop模式有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop的基本执行原理"><span class="nav-number">4.17.</span> <span class="nav-text">RunLoop的基本执行原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何保证一个线程永远不死-常驻线程"><span class="nav-number">4.18.</span> <span class="nav-text">如何保证一个线程永远不死(常驻线程)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试第一家-（电话面试）"><span class="nav-number">2.</span> <span class="nav-text">面试第一家 （电话面试）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程安全？"><span class="nav-number">2.1.</span> <span class="nav-text">什么是线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你接触到的项目，哪些场景运用到了线程安全？"><span class="nav-number">2.2.</span> <span class="nav-text">你接触到的项目，哪些场景运用到了线程安全？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你实现过单例模式么？-你能用几种实现方案？"><span class="nav-number">2.3.</span> <span class="nav-text">你实现过单例模式么？ 你能用几种实现方案？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目开发中，你用单例都做了什么？"><span class="nav-number">2.4.</span> <span class="nav-text">项目开发中，你用单例都做了什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#忽然自己想到了几个估计会用到的面试题"><span class="nav-number">3.</span> <span class="nav-text">忽然自己想到了几个估计会用到的面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你用过什么调试工具？-调试过程中有什么意外？"><span class="nav-number">3.1.</span> <span class="nav-text">开发过程中， 你用过什么调试工具？ 调试过程中有什么意外？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你是怎么优化项目的，请举例说明？"><span class="nav-number">3.2.</span> <span class="nav-text">开发过程中， 你是怎么优化项目的，请举例说明？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发过程中，-你碰到那些技术难点？是怎么解决的？"><span class="nav-number">3.3.</span> <span class="nav-text">开发过程中， 你碰到那些技术难点？是怎么解决的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APNS的基本原理"><span class="nav-number">3.4.</span> <span class="nav-text">APNS的基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本"><span class="nav-number">3.5.</span> <span class="nav-text">基本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细说明"><span class="nav-number">3.6.</span> <span class="nav-text">详细说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试第二家"><span class="nav-number">4.</span> <span class="nav-text">面试第二家</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#好了言归正传：-说面试！"><span class="nav-number">4.1.</span> <span class="nav-text">好了言归正传： 说面试！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#APNS的基本原理？"><span class="nav-number">4.2.</span> <span class="nav-text">APNS的基本原理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用过多线程么？说一说你用到什么地方了？怎么用的！"><span class="nav-number">4.3.</span> <span class="nav-text">用过多线程么？说一说你用到什么地方了？怎么用的！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift中-class和Struct有什么区别！"><span class="nav-number">4.4.</span> <span class="nav-text">Swift中 class和Struct有什么区别！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift中-你用过map么？"><span class="nav-number">4.5.</span> <span class="nav-text">Swift中 你用过map么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift中-你用过泛型么？"><span class="nav-number">4.6.</span> <span class="nav-text">Swift中 你用过泛型么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中你封装过网络请求么"><span class="nav-number">4.7.</span> <span class="nav-text">OC中你封装过网络请求么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中消息传输机制有哪些？"><span class="nav-number">4.8.</span> <span class="nav-text">OC中消息传输机制有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中你最喜欢的Api是哪一个？"><span class="nav-number">4.9.</span> <span class="nav-text">OC中你最喜欢的Api是哪一个？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态库和动态库的问题？"><span class="nav-number">4.10.</span> <span class="nav-text">静态库和动态库的问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#都是Swift是面向协议编程-你用过么？"><span class="nav-number">4.11.</span> <span class="nav-text">都是Swift是面向协议编程 你用过么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人总结"><span class="nav-number">4.12.</span> <span class="nav-text">个人总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说说类目-Categtory"><span class="nav-number">4.13.</span> <span class="nav-text">说说类目 Categtory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说说类目-Categtory-的基本实现原理"><span class="nav-number">4.14.</span> <span class="nav-text">说说类目 Categtory 的基本实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop的基础知识"><span class="nav-number">4.15.</span> <span class="nav-text">RunLoop的基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop模式有哪些？"><span class="nav-number">4.16.</span> <span class="nav-text">RunLoop模式有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop的基本执行原理"><span class="nav-number">4.17.</span> <span class="nav-text">RunLoop的基本执行原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何保证一个线程永远不死-常驻线程"><span class="nav-number">4.18.</span> <span class="nav-text">如何保证一个线程永远不死(常驻线程)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#weak属性？"><span class="nav-number">4.19.</span> <span class="nav-text">weak属性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关面试题"><span class="nav-number">4.20.</span> <span class="nav-text">相关面试题</span></a></li></ol></li></ol></div>
             
 
           </div>
