@@ -1,0 +1,706 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="一个可笑的程序员, A ridiculous programmer" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="iPhoneX及iOS11适配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iPhoneX及iOS11适配">
+<meta property="og:url" content="http://yoursite.com/2018/03/19/iPhoneX及iOS11适配/index.html">
+<meta property="og:site_name" content="Joey | A ridiculous programmer">
+<meta property="og:description" content="iPhoneX及iOS11适配">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1773988-e245cf546b56ac19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+<meta property="og:updated_time" content="2018-07-19T09:08:48.490Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iPhoneX及iOS11适配">
+<meta name="twitter:description" content="iPhoneX及iOS11适配">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1773988-e245cf546b56ac19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/19/iPhoneX及iOS11适配/"/>
+
+
+
+
+
+  <title> iPhoneX及iOS11适配 | Joey | A ridiculous programmer </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Joey | A ridiculous programmer</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">JMoey</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/19/iPhoneX及iOS11适配/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Joey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Joey | A ridiculous programmer">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iPhoneX及iOS11适配
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-19T10:22:35+08:00">
+                2018-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>iPhoneX及iOS11适配</p>
+<a id="more"></a>
+<h2 id="iPhone-X的屏幕适配"><a href="#iPhone-X的屏幕适配" class="headerlink" title="iPhone X的屏幕适配"></a>iPhone X的屏幕适配</h2><h3 id="iPhone-X和传统iPhone的屏幕差别"><a href="#iPhone-X和传统iPhone的屏幕差别" class="headerlink" title="iPhone X和传统iPhone的屏幕差别"></a>iPhone X和传统iPhone的屏幕差别</h3><p><img src="https://upload-images.jianshu.io/upload_images/1773988-e245cf546b56ac19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700" alt="图片来自网络"></p>
+<p>iPhone X的屏幕尺寸相比传统的iPhone的变化为一下几点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">* 高度增加了145pt变成了812pt。</div><div class="line">* 状态栏的高度有原来的20pt增加到44pt， 增加了24pt的高度，直接导致导航栏由原来的64pt变成88pt。</div><div class="line">* Tabbar由原来的49pt，直接增致83pt，增加量为34pt。</div></pre></td></tr></table></figure>
+<p>总体变化总结： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">* iPhone X ：状态栏44pt， 导航栏44pt， TabBar83pt</div><div class="line">* 非iPhoneX ：状态栏20pt， 导航栏44pt， TabBar49pt</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- iPhone4(s)：分辨率960*640</div><div class="line">- iPhone5(s)：分辨率1136*640</div><div class="line">- iPhone6：分辨率1334*750</div><div class="line">- iPhone6+：分辨率1920*1080</div><div class="line">- iPhone X：分辨率1125*2436</div></pre></td></tr></table></figure>
+<h2 id="—"><a href="#—" class="headerlink" title="—-"></a>—-</h2><p><strong>tps : 屏幕适配用到的宏</strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// status bar height.</span></div><div class="line"><span class="meta">#define  kStatusBarHeight      (IS_iPhoneX ? 44.f : 20.f)</span></div><div class="line"></div><div class="line"><span class="comment">// Navigation bar height.</span></div><div class="line"><span class="meta">#define  kNavigationBarHeight  44.f</span></div><div class="line"></div><div class="line"><span class="comment">// Tabbar height.</span></div><div class="line"><span class="meta">#define  kTabbarHeight        (IS_iPhoneX ? (49.f+34.f) : 49.f)</span></div><div class="line"></div><div class="line"><span class="comment">// Tabbar safe bottom margin.</span></div><div class="line"><span class="meta">#define  kTabbarSafeBottomMargin        (IS_iPhoneX ? 34.f : 0.f)</span></div><div class="line"></div><div class="line"><span class="comment">// Status bar &amp; navigation bar height.</span></div><div class="line"><span class="meta">#define  kStatusBarAndNavigationBarHeight  (IS_iPhoneX ? 88.f : 64.f)</span></div><div class="line"></div><div class="line"><span class="comment">//判断是否iPhone X</span></div><div class="line"><span class="meta">#define IS_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)</span></div></pre></td></tr></table></figure>
+<h2 id="—-1"><a href="#—-1" class="headerlink" title="—-"></a>—-</h2><h3 id="开发中的实际情况解决"><a href="#开发中的实际情况解决" class="headerlink" title="开发中的实际情况解决"></a>开发中的实际情况解决</h3><p><strong><em>一、MJRefresh位置错乱的情况</em></strong></p>
+<p>如果使用了MJRefresh 而且还隐藏了导航栏就会出现错乱的情况。<br>原因是iOS11上面废除了automaticallyAdjustsScrollViewInsets这个属性的使用</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//声明tableView的位置 添加下面代码</span></div><div class="line"><span class="keyword">if</span> (@available(iOS <span class="number">11.0</span>, *)) &#123;</div><div class="line"></div><div class="line">_tableView.contentInsetAdjustmentBehavior = <span class="built_in">UIScrollViewContentInsetAdjustmentNever</span>;</div><div class="line"></div><div class="line">_tableView.contentInset = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">64</span>, <span class="number">0</span>, <span class="number">49</span>, <span class="number">0</span>);</div><div class="line"></div><div class="line">_tableView.scrollIndicatorInsets = _tableView.contentInset;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong><em>二、代码适配iPhone X的TabBar</em></strong></p>
+<p>前文有介绍过，iPhone X的TabBar相比传统的iPhone增加34pt， 我们在设计的过程中也要讲这个多余出来的34pt留出来，所以在我们自定义或者通过KVC的方式更改TabBar的时候，根据机型进行相应的适配， 通常情况下，是TabBar的Item的Height 减去34pt即可。</p>
+<p><strong><em>三、UITableView没有文字的时候显示分割线</em></strong></p>
+<p>// 这些界面以下使用代理方法来设置，发现并没有生效</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">CGFloat</span>)tableView:(<span class="built_in">UITableView</span> *)tableView heightForHeaderInSection:(<span class="built_in">NSInteger</span>)section;</div><div class="line"></div><div class="line">- (<span class="built_in">CGFloat</span>)tableView:(<span class="built_in">UITableView</span> *)tableView heightForFooterInSection:(<span class="built_in">NSInteger</span>)section;</div></pre></td></tr></table></figure>
+<p>// 这样的原理是因为之前只是实现了高度的代理方法，却没有实现View的代理方法，iOS10及以前这么写是没问题的，iOS11开启了行高估算机制引起的bug，因此有以下几种解决方法：</p>
+<p>// 解决方法一：添加实现View的代理方法，只有实现下面两个方法，方法<br>-(CGFloat)tableView: heightForFooterInSection: 才会生效</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">UIView</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView viewForFooterInSection:(<span class="built_in">NSInteger</span>)section &#123;</div><div class="line"></div><div class="line"><span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="built_in">UIView</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView viewForHeaderInSection:(<span class="built_in">NSInteger</span>)section &#123;</div><div class="line"></div><div class="line"><span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>// 解决方法二：直接使用tableView属性进行设置,修复该UI错乱</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.tableView.sectionHeaderHeight = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">self</span>.tableView.sectionFooterHeight = <span class="number">5</span>;</div><div class="line"></div><div class="line">[_optionTableView setContentInset:<span class="built_in">UIEdgeInsetsMake</span>(<span class="number">-35</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)];</div></pre></td></tr></table></figure>
+<p>// 解决方法三：添加以下代码关闭估算行高</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.tableView.estimatedRowHeight = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">self</span>.tableView.estimatedSectionHeaderHeight = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="keyword">self</span>.tableView.estimatedSectionFooterHeight = <span class="number">0</span>;</div></pre></td></tr></table></figure>
+<p><strong><em>四、iPhone的StatusBar的字体颜色无法改变</em></strong></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">*  改变信号栏字体颜色</div><div class="line">*</div><div class="line">*  @param color 颜色参数</div><div class="line">*/</div><div class="line"></div><div class="line">+ (<span class="keyword">void</span>)changeSignalFormatWithColor:(<span class="built_in">UIColor</span> *)color&#123;</div><div class="line">    </div><div class="line">    <span class="built_in">UIApplication</span> * app = [<span class="built_in">UIApplication</span> sharedApplication];</div><div class="line">    <span class="keyword">id</span> obj = [app valueForKeyPath:<span class="string">@"statusBar"</span>];</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (@available(iOS <span class="number">11.0</span>, *)) &#123;</div><div class="line">        <span class="keyword">if</span> (IS_iPhoneX) &#123;</div><div class="line">            <span class="keyword">id</span> obc = [obj valueForKeyPath:<span class="string">@"statusBar"</span>];</div><div class="line">            <span class="keyword">unsigned</span> <span class="keyword">int</span> propertyCount;</div><div class="line">            objc_property_t * properties = class_copyPropertyList([obc <span class="keyword">class</span>],     &amp;propertyCount);</div><div class="line">            <span class="built_in">NSMutableArray</span> * arr = [<span class="built_in">NSMutableArray</span> arrayWithCapacity:<span class="number">1</span>];</div><div class="line">            </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; propertyCount; i++)&#123;</div><div class="line">                objc_property_t property = properties[i];</div><div class="line">                <span class="built_in">NSString</span> * propertyStr = [[<span class="built_in">NSString</span> alloc]     initWithCString:property_getName(property)     encoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line">                <span class="keyword">if</span> ([propertyStr isEqualToString:<span class="string">@"foregroundColor"</span>])&#123;</div><div class="line">                    [obj setValue:color forKey:propertyStr];</div><div class="line">                &#125;</div><div class="line">                [arr sui_addObj:propertyStr];</div><div class="line">                </div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            free(properties);</div><div class="line">            </div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            </div><div class="line">            <span class="keyword">id</span> ob = [obj valueForKeyPath:<span class="string">@"superclass"</span>];</div><div class="line">            </div><div class="line">            <span class="keyword">unsigned</span> <span class="keyword">int</span> propertyCount;</div><div class="line">            </div><div class="line">            objc_property_t * properties = class_copyPropertyList([ob <span class="keyword">class</span>],     &amp;propertyCount);</div><div class="line">            </div><div class="line">            <span class="built_in">NSMutableArray</span> * arr = [<span class="built_in">NSMutableArray</span> arrayWithCapacity:<span class="number">1</span>];</div><div class="line">            </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; propertyCount; i++)&#123;</div><div class="line">                </div><div class="line">                objc_property_t property = properties[i];</div><div class="line">                </div><div class="line">                <span class="built_in">NSString</span> * propertyStr = [[<span class="built_in">NSString</span> alloc]     initWithCString:property_getName(property)     encoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line">                </div><div class="line">                <span class="keyword">if</span> ([propertyStr isEqualToString:<span class="string">@"foregroundColor"</span>])&#123;</div><div class="line">                    </div><div class="line">                    [obj setValue:color forKey:propertyStr];</div><div class="line">                    </div><div class="line">                &#125;</div><div class="line">                [arr sui_addObj:propertyStr];</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            free(properties);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        </div><div class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> propertyCount;</div><div class="line">        </div><div class="line">        objc_property_t * properties = class_copyPropertyList([obj <span class="keyword">class</span>], &amp;propertyCount);</div><div class="line">        </div><div class="line">        <span class="built_in">NSMutableArray</span> * arr = [<span class="built_in">NSMutableArray</span> arrayWithCapacity:<span class="number">1</span>];</div><div class="line">        </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; propertyCount; i++)&#123;</div><div class="line">            </div><div class="line">            objc_property_t property = properties[i];</div><div class="line">            </div><div class="line">            <span class="built_in">NSString</span> * propertyStr = [[<span class="built_in">NSString</span> alloc] initWithCString:property_getName(property) encoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line">            </div><div class="line">            <span class="keyword">if</span> ([propertyStr isEqualToString:<span class="string">@"foregroundColor"</span>])&#123;</div><div class="line">                </div><div class="line">                [obj setValue:color forKey:propertyStr];</div><div class="line">                </div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            [arr sui_addObj:propertyStr];</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        free(properties);</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">调用</div><div class="line">- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated &#123;</div><div class="line"></div><div class="line">	[<span class="keyword">super</span> viewWillAppear:animated];</div><div class="line"></div><div class="line">	[XXXX changeSignalFormatWithColor:[<span class="built_in">UIColor</span> whiteColor]];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/KVO底层机制浅谈/" rel="next" title="KVO底层机制浅谈">
+                <i class="fa fa-chevron-left"></i> KVO底层机制浅谈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/29/几个常用的关键字/" rel="prev" title="几个常用的关键字">
+                几个常用的关键字 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491325442801&di=b77c2707fa228fcfa7307c8429241f64&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%253D580%2Fsign%3D45c5e5064890f60304b09c4f0912b370%2F7de9baaf2edda3ccb39ed11703e93901203f92ea.jpg"
+               alt="Joey" />
+          <p class="site-author-name" itemprop="name">Joey</p>
+           
+              <p class="site-description motion-element" itemprop="description">昆仑罗彩霞，为我独尊</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iPhone-X的屏幕适配"><span class="nav-number">1.</span> <span class="nav-text">iPhone X的屏幕适配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iPhone-X和传统iPhone的屏幕差别"><span class="nav-number">1.1.</span> <span class="nav-text">iPhone X和传统iPhone的屏幕差别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#—"><span class="nav-number">2.</span> <span class="nav-text">—-</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#—-1"><span class="nav-number">3.</span> <span class="nav-text">—-</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开发中的实际情况解决"><span class="nav-number">3.1.</span> <span class="nav-text">开发中的实际情况解决</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Joey</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
