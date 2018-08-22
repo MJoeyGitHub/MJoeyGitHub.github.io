@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="Joey | A ridiculous programmer">
 <meta property="og:description" content="本文记载一些开发项目中一些小技巧">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006tKfTcly1fg186d6q9gj31kw0f3wk0.jpg">
-<meta property="og:updated_time" content="2017-06-08T23:44:48.000Z">
+<meta property="og:updated_time" content="2018-08-22T00:29:50.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发小记">
 <meta name="twitter:description" content="本文记载一些开发项目中一些小技巧">
@@ -372,6 +372,17 @@
 <p><a href="https://github.com/90ck/CKNavSmoothDemo" target="_blank" rel="external">导航条设置2 - 导航条隐藏显示，已经状态栏的颜色变化</a></p>
 <h3 id="UItabelViewCell的中的循环引用"><a href="#UItabelViewCell的中的循环引用" class="headerlink" title="UItabelViewCell的中的循环引用"></a>UItabelViewCell的中的循环引用</h3><p>如果cell内部有多个按钮点击，用Block是最好的选择了，因为代理真的很麻烦，cell中的block拿到控制器中cellforrowAtIndexPath方法中就会出现循环引用的问题， 这个时候我们把cell弱化就行了，和弱化self是一样的</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">__<span class="keyword">weak</span> <span class="keyword">typeof</span>(cell)weakCell = cell;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="如何减少App的内存占有量？"><a href="#如何减少App的内存占有量？" class="headerlink" title="如何减少App的内存占有量？"></a>如何减少App的内存占有量？</h3><p>如果是类似新特性页面哪一种很少用到的图片 不要直接放到image.accets里面~  那样App在运行的时候会占用很多内存，  直接放在一个新开起的文件夹内即可，</p>
+<p>因为image.accets里面的图片是不会自动释放的，UIImage.imageNamed方法 加载的图片是不会释放内存的<br>image.accets里面起到保护App内部图片被盗等情况<br>UIImage.imageNamed方法只能加载</p>
+<p>然而加载image.accets内部的图片可以用 UIImage.imageNamed方法去获得图片资源</p>
+<p>不在image.accets里面的图片需要在MainBundle里面去加载</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"search"</span> ofType:<span class="string">@"png"</span>];</div><div class="line"></div><div class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageWithContentsOfFile:path];</div></pre></td></tr></table></figure>
+<!--more-->
+<hr>
+<p>所以呢~ 今后开发，小图片请放在image.accets里面 并且用<br>UIImage.imageNamed方法去加载</p>
+<p>大图片加载的时候需要新建一个文件夹，然后把图片放进文件夹内<br>利用如下方法进行加载图片</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *path = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"search"</span> ofType:<span class="string">@"png"</span>];</div><div class="line"></div><div class="line"><span class="built_in">UIImage</span> *image = [<span class="built_in">UIImage</span> imageWithContentsOfFile:path];</div></pre></td></tr></table></figure>
 <p><a href="http://www.jianshu.com/p/4523eafb4cd4" target="_blank" rel="external">技巧集合传送门</a></p>
 
       
@@ -493,7 +504,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -550,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#给appDelegate创建categtory-明确AppDelegate的业务逻辑"><span class="nav-number">1.</span> <span class="nav-text">给appDelegate创建categtory 明确AppDelegate的业务逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IBOutlet-的-didSet-（摘自喵神博客）"><span class="nav-number">2.</span> <span class="nav-text">@IBOutlet 的 didSet （摘自喵神博客）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#仿QQ导航条颜色渐变的样式"><span class="nav-number">3.</span> <span class="nav-text">仿QQ导航条颜色渐变的样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同一个项目的导航条的多样化"><span class="nav-number">4.</span> <span class="nav-text">同一个项目的导航条的多样化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UItabelViewCell的中的循环引用"><span class="nav-number">5.</span> <span class="nav-text">UItabelViewCell的中的循环引用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#给appDelegate创建categtory-明确AppDelegate的业务逻辑"><span class="nav-number">1.</span> <span class="nav-text">给appDelegate创建categtory 明确AppDelegate的业务逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IBOutlet-的-didSet-（摘自喵神博客）"><span class="nav-number">2.</span> <span class="nav-text">@IBOutlet 的 didSet （摘自喵神博客）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#仿QQ导航条颜色渐变的样式"><span class="nav-number">3.</span> <span class="nav-text">仿QQ导航条颜色渐变的样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同一个项目的导航条的多样化"><span class="nav-number">4.</span> <span class="nav-text">同一个项目的导航条的多样化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UItabelViewCell的中的循环引用"><span class="nav-number">5.</span> <span class="nav-text">UItabelViewCell的中的循环引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何减少App的内存占有量？"><span class="nav-number">6.</span> <span class="nav-text">如何减少App的内存占有量？</span></a></li></ol></div>
             
 
           </div>
