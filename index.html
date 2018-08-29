@@ -252,7 +252,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/TCP:IP详解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/网络基础TCP:IP /">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Joey">
@@ -274,7 +274,7 @@
             
               
                 
-                <a class="post-title-link" href="/2018/08/29/TCP:IP详解/" itemprop="url">
+                <a class="post-title-link" href="/2018/08/29/网络基础TCP:IP /" itemprop="url">
                   网络基础 TCP/IP 详解
                 </a>
               
@@ -328,47 +328,14 @@
 
       
         
-          
-            <h3 id="网络基础TCP-IP"><a href="#网络基础TCP-IP" class="headerlink" title="网络基础TCP/IP"></a>网络基础TCP/IP</h3><p> <strong>TCP/IP协议族</strong> </p>
-<ul>
-<li>通常使用的网络实在TCP/IP西一组的基础上运作的，而HTTP是属于它内部的一个子集</li>
-<li>计算机与网络设备要相互通信， 双方就必须基于相同的方法，比如如何探测到通信目标，。 有哪一边先发起通信、使用哪种语言进行通信， 怎么样结束通信等规则都需要实现确定， 不同的硬件、操作系统之间的通信， 所有的这一切都需要一种规则， 而这种规则就是协议（protocal）</li>
-</ul>
-<p><strong>TCP/IP的分层管理</strong></p>
-<ul>
-<li>TCP/IP协议族里最重要的一点就是分层，TCP/IP协议族按层次分分别分为： 应用层、传输层、网络层、数据联络层。（优点，发生变化不要统统改变，只需改变一层即可）</li>
-<li><p>TCP/IP协议族各层的作用如下</p>
-<ul>
-<li><p>应用层，决定了向用户提供应用服务时通信的活动（<strong>HTTP</strong>协议处于垓层）</p>
-</li>
-<li><p>传输层，对上层 应用层 提供处于网络连接中的两台计算机之间的数据传输 （ <strong>TCP</strong>传输控制协议、<strong>UDP</strong>用户数据报协议 ） 其作用是将大块数据分割成以报文段为单位的书籍宝进行管理并且确认数据最终是否送到给对方。 为了准确无误地将数据送达目标处，TCP采用了三次握手策略，握手过程中使用的TCP标志 <strong>SYN（synchronize 同步）</strong> <strong>ACK（acknowledgement 确认）</strong> </p>
-<p>  <img src="https://ws3.sinaimg.cn/large/0069RVTdly1fuqwttcmbrj30ro0efmyu.jpg" alt="TCP三次握手"></p>
-<p>  <strong>其中如果握手过程中有一个阶段会莫名中断，TCP会再次以相同的顺序发送相同的数据包。</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>- 网络层，用来处理在网络上流动的数据包， 数据包是网络传输的最小数据单位， 该层规定了通过怎样的路径到达对方计算机中， 并把数据包传送给对方 ，与对方计算机之间通过多台计算机或者网络设备进行传输时，网络层所起的作用就是在众多的选项内选择一条传输路线
-
-- 链路层， 用来处理连接网络硬件部分， 包括控制操作系统、硬件的设备驱动、网卡等 物理可见部分
-</code></pre><p><strong>TCP/IP通信传输流</strong></p>
-<p><img src="https://ws3.sinaimg.cn/large/0069RVTdly1fuqw7cycaaj30ou0j5jsq.jpg" alt="TCP/IP通信传输流"></p>
-<ul>
-<li><p>利用TCP/IP协议族进行网络通信时，会通过分层顺序与对方进行通信，发送端从应用层往下走，接收端则往应用层往上走</p>
-</li>
-<li><p>利用HTTP来举例说明， 首先作为发送端的客户端在应用层（HTTP协议）发出了一个想看某个Web页面的HTTP请求， 接下来，为了传输方便在传输层（TCP协议）把从上一层（应用层）处收到的数据（HTTP请求报文）进行分割，并在各个报文上打上标记序号以及端口号转发给网络层（IP协议），在网络层增加作为通信目的地的MAC地址后转发给链路层， 这样一来 发往网络的通信请求就准备齐全了</p>
-</li>
-<li><p>接受端的服务器在链路层接收到数据， 按序网上曾发送， 一直到应用层， 当传输到应用层才能算真正接收到由客户端发送过来的HTTP请求</p>
-</li>
-</ul>
-<p><img src="https://ws2.sinaimg.cn/large/0069RVTdly1fuqwiqbd0vj30rc0nh0vg.jpg" alt="TCP/IP通信传输流详细部分"></p>
-<ul>
-<li>发送端在曾与层之间数据传输时候， 每经过一层的时候都会打入对应的首部， 反之接收端会经过每一层的时候去把首部摸消掉</li>
-</ul>
-<p><strong>各种协议与HTTP的关系</strong></p>
-<p><img src="https://ws3.sinaimg.cn/large/0069RVTdly1fuqx3qvhmoj30ju0qdn07.jpg" alt="各种协议与HTTP的关系"></p>
-
-          
+          <p>看完这个，对网络基础 TCP/IP 更深刻</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/29/网络基础TCP:IP /#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
